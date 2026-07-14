@@ -1,0 +1,3 @@
+Using the attached Master Reference Portrait, recreate exactly the same character.
+The only change allowed is the camera angle. Every other visible detail—including hairstyle, hair length, hair color, and head proportions—must remain exactly the same as the reference image.
+Generate a back view of the character's head and shoulders on a pure white studio background.

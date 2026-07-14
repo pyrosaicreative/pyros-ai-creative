@@ -1,0 +1,48 @@
+---
+import Section from './Section.astro';
+import SectionHeader from './SectionHeader.astro';
+import Card from '../ui/Card.astro';
+---
+
+<Section id="overview">
+
+  <SectionHeader
+    eyebrow="Overview"
+    title="What You'll Build"
+    description="By following this workflow you'll create two production-ready reference sheets that keep your AI character visually consistent across images, videos and future productions."
+    maxWidth="lg"
+  />
+
+  <div class="mt-10 grid gap-5 md:grid-cols-2 max-w-4xl">
+
+    <Card class="p-6">
+
+      <h3 class="text-lg font-semibold text-white">
+        Face Reference Sheet
+      </h3>
+
+      <p class="mt-3 text-base leading-relaxed text-gray-300">
+        Complete facial references including front, left, right, back and eye close-up views.
+      </p>
+
+    </Card>
+
+    <Card class="p-6">
+
+      <h3 class="text-lg font-semibold text-white">
+        Character Reference Sheet
+      </h3>
+
+      <p class="mt-3 text-base leading-relaxed text-gray-300">
+        Professional full-body references ready for consistent AI image and video generation.
+      </p>
+
+    </Card>
+
+  </div>
+
+  <p class="mt-8 max-w-4xl text-base leading-relaxed text-gray-400">
+    These reference sheets become your permanent visual foundation for future AI image and video generation.
+  </p>
+
+</Section>

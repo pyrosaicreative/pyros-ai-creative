@@ -1,0 +1,35 @@
+Using the attached reference images, create a clean, professional Character Reference Sheet.
+Requirements:
+• Use every attached image exactly as provided.
+• Do not modify, regenerate, enhance, upscale, or reinterpret any image.
+• Do not change facial features, hairstyle, clothing, accessories, body proportions, colors, lighting, or image quality.
+• Simply arrange the images into a clean, balanced reference sheet.
+
+Layout:
+Top row:
+• Face Front
+• Face Left Profile
+• Face Right Profile
+• Face Back
+
+Bottom row:
+• Full Body Front
+• Full Body Left Profile
+• Full Body Right Profile
+• Full Body Back
+
+Style:
+• Pure white background.
+• No text.
+• No labels.
+• No titles.
+• No arrows.
+• No borders.
+• No logos.
+• No graphics.
+• Equal image size within each row.
+• Consistent spacing between all images.
+• Leave slightly more vertical spacing between the two rows to clearly separate the face references from the full-body references.
+• Clean, symmetrical, studio-quality presentation suitable for a professional AI Character Reference Pack.
+
+Output a single high-resolution reference sheet.

@@ -1,0 +1,140 @@
+---
+import Section from './Section.astro';
+import SectionHeader from './SectionHeader.astro';
+import PromptBox from './PromptBox.astro';
+
+import faceSideProfile from '~/content/prompts/face-side-profile.txt?raw';
+import faceBackView from '~/content/prompts/face-back-view.txt?raw';
+import eyeCloseup from '~/content/prompts/eye-closeup.txt?raw';
+
+import fullBodySideProfile from '~/content/prompts/full-body-side-profile.txt?raw';
+import fullBodyBackView from '~/content/prompts/full-body-back-view.txt?raw';
+---
+
+<Section>
+
+  <SectionHeader
+    eyebrow="Phase 3"
+    title="Generate Every Reference Angle"
+    description="Create a complete set of reference images covering every important viewing angle of your character. These references will significantly improve character consistency across future AI image and video generations."
+    maxWidth="lg"
+  />
+
+  <div class="mt-8 max-w-3xl">
+
+    <!-- STEP 1 -->
+
+    <h2 class="text-xl font-bold text-white">
+      Step 1 — Face Reference Set
+    </h2>
+
+    <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+      <li>
+        <strong class="text-white">1.</strong>
+        Always attach the <strong class="text-white">Master Reference Portrait</strong> as the reference image.
+      </li>
+
+      <li>
+        <strong class="text-white">2.</strong>
+        Use the corresponding prompt below to generate each new facial angle while preserving the exact same identity.
+      </li>
+
+      <li>
+        <strong class="text-white">3.</strong>
+        Generate and approve each reference image before moving on to the next one.
+      </li>
+
+    </ol>
+
+    <PromptBox
+  title="Right / Left Side Prompt"
+  prompt={faceSideProfile}
+/>
+
+    <PromptBox
+  title="Face Back View Prompt"
+  prompt={faceBackView}
+/>
+
+    <PromptBox
+  title="Eye Close-up Prompt"
+  prompt={eyeCloseup}
+/>
+
+    <p class="mt-8 text-sm italic leading-7 text-gray-400">
+      You should now have five reference images of your character's face: a Front View, Left Profile, Right Profile, Back View and Eye Close-up.
+    </p>
+
+    <!-- STEP 2 -->
+
+    <div class="mt-12 border-t border-white/10 pt-12">
+
+      <h2 class="text-xl font-bold text-white">
+        Step 2 — Body Reference Set
+      </h2>
+
+      <p class="mt-4 text-sm leading-7 text-gray-300">
+        Now let's do the same for the full body.
+      </p>
+
+      <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+        <li>
+          <strong class="text-white">1.</strong>
+          Always attach the <strong class="text-white">Master Reference Full Body</strong> together with the corresponding Face Reference image for the angle you want to generate.
+        </li>
+
+        <li>
+          <strong class="text-white">2.</strong>
+          Use the corresponding prompt below to generate each full-body angle while preserving the exact same character identity.
+        </li>
+
+        <li>
+          <strong class="text-white">3.</strong>
+          Generate and approve each reference image before moving on to the next one.
+        </li>
+
+      </ol>
+
+      <p class="mt-6 text-sm leading-7 text-gray-300">
+        For example:
+      </p>
+
+      <ul class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+        <li>• Left Body Profile → Master Reference Full Body + Left Face Profile</li>
+
+        <li>• Right Body Profile → Master Reference Full Body + Right Face Profile</li>
+
+        <li>• Back Body View → Master Reference Full Body + Back Face View</li>
+
+      </ul>
+
+      <p class="mt-6 text-sm leading-7 text-gray-300">
+        This approach ensures the AI preserves both the character's body proportions and the correct head orientation, resulting in much greater character consistency.
+      </p>
+
+      <p class="mt-4 text-sm leading-7 text-gray-300">
+        If any reference image looks inconsistent, regenerate only that specific angle before proceeding to the next step.
+      </p>
+
+      <PromptBox
+  title="Full Body Side Profile Prompt"
+  prompt={fullBodySideProfile}
+/>
+
+      <PromptBox
+  title="Full Body Back View Prompt"
+  prompt={fullBodyBackView}
+/>
+
+      <p class="mt-8 text-sm italic leading-7 text-gray-400">
+        You should now have four full-body reference images of your character: a Front View, Left Profile, Right Profile and Back View.
+      </p>
+
+    </div>
+
+  </div>
+
+</Section>

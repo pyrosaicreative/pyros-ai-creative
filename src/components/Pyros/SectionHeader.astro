@@ -1,0 +1,48 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  align = 'left',
+  maxWidth = 'lg',
+} = Astro.props;
+
+const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left';
+
+const widths = {
+  sm: 'max-w-xl',
+  md: 'max-w-2xl',
+  lg: 'max-w-3xl',
+  xl: 'max-w-4xl',
+  full: 'max-w-none',
+};
+---
+
+<div class={`${alignment} ${widths[maxWidth]}`}>
+
+  {eyebrow && (
+    <p class="mb-4 text-sx font-semibold uppercase tracking-[0.25em] text-[#B71C1C]">
+      {eyebrow}
+    </p>
+  )}
+
+  <h2
+  class="text-xl font-black leading-tight text-white lg:text-2xl"
+  set:html={title}
+/>
+
+  {description && (
+    <p class="mt-4 text-base leading-relaxed text-gray-400 lg:text-base">
+      {description}
+    </p>
+  )}
+
+</div>

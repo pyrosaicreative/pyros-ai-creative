@@ -1,0 +1,124 @@
+---
+import Section from './Section.astro';
+import SectionHeader from './SectionHeader.astro';
+import PromptBox from './PromptBox.astro';
+import masterReferencePortrait from '~/content/prompts/master-reference-portrait.txt?raw';
+import masterReferenceFullBody from '~/content/prompts/master-reference-full-body.txt?raw';
+---
+
+<Section>
+
+  <SectionHeader
+    eyebrow="Phase 2"
+    title="Master References"
+    description="This phase creates the two most important images. Never skip this step. Everything that follows depends on these references."
+    maxWidth="lg"
+  />
+
+  <div class="mt-8 max-w-3xl">
+
+    <!-- STEP 1 -->
+
+    <h2 class="text-xl font-bold text-white">
+      Step 1 — Master Reference Portrait
+    </h2>
+
+    <p class="mt-4 text-sm leading-7 text-gray-300">
+      Generate a prompt that will create a detailed image generation prompt for your main character's face.
+    </p>
+
+    <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+      <li>
+        <strong class="text-white">1.</strong>
+        Add the Character Blueprint you just generated to the <strong class="text-white">Master Reference Portrait Template Prompt</strong> below.
+      </li>
+
+      <li>
+        <strong class="text-white">2.</strong>
+        Paste the completed prompt into ChatGPT.
+      </li>
+
+      <li>
+        <strong class="text-white">3.</strong>
+        Copy the image generation prompt that ChatGPT creates.
+      </li>
+
+      <li>
+        <strong class="text-white">4.</strong>
+        Paste it into Nano Banana 2 or Nano Banana Pro.
+      </li>
+
+      <li>
+        <strong class="text-white">5.</strong>
+        Generate multiple portrait variations until you're completely satisfied with the result.
+      </li>
+
+    </ol>
+
+    <p class="mt-6 text-sm italic leading-7 text-gray-400">
+      This portrait will serve as the facial reference for your entire Character Consistency Pipeline.
+    </p>
+
+    <PromptBox
+  title="Master Reference Portrait Template Prompt"
+  prompt={masterReferencePortrait}
+/>
+
+    <p class="mt-8 text-sm italic leading-7 text-gray-400">
+      Now you have your face image generation prompt and the first front-view portrait of your character's face.
+    </p>
+
+    <!-- STEP 2 -->
+
+    <div class="mt-12 border-t border-white/10 pt-12">
+
+      <h2 class="text-xl font-bold text-white">
+        Step 2 — Master Reference Full Body
+      </h2>
+
+      <p class="mt-4 text-sm leading-7 text-gray-300">
+        Generate a prompt that will create a detailed image generation prompt for your main character's full body while preserving the exact facial identity from the Master Reference Portrait.
+      </p>
+
+      <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+        <li>
+          <strong class="text-white">1.</strong>
+          Paste the <strong class="text-white">Master Reference Full Body Template Prompt</strong> into ChatGPT.
+        </li>
+
+        <li>
+          <strong class="text-white">2.</strong>
+          Copy the image generation prompt that ChatGPT generates.
+        </li>
+
+        <li>
+          <strong class="text-white">3.</strong>
+          Paste the prompt into Nano Banana 2 or Nano Banana Pro, and attach the Master Reference Portrait you generated in the previous step.
+        </li>
+
+        <li>
+          <strong class="text-white">4.</strong>
+          Generate multiple versions if necessary and choose the best result.
+        </li>
+
+      </ol>
+
+      <p class="mt-6 text-sm italic leading-7 text-gray-400">
+        The AI will preserve the same facial identity while generating the complete body, including clothing, proportions, and posture.
+      </p>
+
+      <p class="mt-4 text-sm italic leading-7 text-gray-400">
+        This image will become the full-body reference for the rest of your Character Consistency Pipeline.
+      </p>
+
+      <PromptBox
+  title="Master Reference Full Body Template Prompt"
+  prompt={masterReferenceFullBody}
+/>
+    </div>
+
+  </div>
+
+</Section>

@@ -1,0 +1,66 @@
+---
+import Container from './Container.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const {
+  title,
+  description,
+} = Astro.props;
+---
+
+<section class="bg-black pt-16 pb-4">
+
+  <Container>
+
+    <!-- Breadcrumb -->
+
+    <p class="mb-5 text-sm uppercase tracking-[0.2em] text-gray-500">
+      Prompt Packs / Character Consistency Pipeline
+    </p>
+
+    <div class="grid gap-14 xl:grid-cols-[1.15fr_0.85fr] xl:items-start">
+
+      <!-- LEFT -->
+
+<div>
+
+  <SectionHeader
+    eyebrow="PYROS AI Creative"
+    title={title}
+    maxWidth="lg"
+  />
+
+  <p class="mt-6 text-lg leading-relaxed text-gray-300">
+    Create production-ready AI characters for images, videos and short movies.
+  </p>
+
+  <p class="mt-5 text-base leading-relaxed text-gray-400 max-w-2xl">
+    Learn how to build a complete Character Reference Pack that keeps your AI character
+    consistent across every scene, camera angle and generation.
+  </p>
+
+</div>
+
+      <!-- RIGHT -->
+
+      <div class="flex justify-center xl:justify-end">
+
+        <img
+          src="/images/prompt-packs/character-reference-sheet-placeholder.jpeg"
+          alt="Character Reference Sheet"
+          class="w-full max-w-xl rounded-2xl border border-white/10 shadow-2xl"
+          loading="eager"
+        />
+
+      </div>
+
+    </div>
+
+  </Container>
+
+</section>

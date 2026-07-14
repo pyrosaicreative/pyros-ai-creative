@@ -1,0 +1,3 @@
+Using the attached Master Reference Portrait, recreate exactly the same character.
+The only change allowed is the camera angle. Every other visible detail—including facial features, hairstyle, skin tone, age, and expression—must remain exactly the same as the reference image.
+Generate a [right/left] profile headshot (90°) on a pure white studio background with a neutral expression

@@ -1,0 +1,43 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import PromptHero from '~/components/Pyros/PromptHero.astro';
+import PromptOverview from '~/components/Pyros/PromptOverview.astro';
+import BeforeYouStart from '~/components/Pyros/BeforeYouStart.astro';
+
+import Phase1CharacterDesign from '~/components/Pyros/Phase1CharacterDesign.astro';
+import Phase2MasterPortrait from '~/components/Pyros/Phase2MasterPortrait.astro';
+import Phase3ReferenceAngles from '~/components/Pyros/Phase3ReferenceAngles.astro';
+import Phase4ReferenceSheets from '~/components/Pyros/Phase4ReferenceSheets.astro';
+import Phase5ProductionReady from '~/components/Pyros/Phase5ProductionReady.astro';
+
+import Tips from '~/components/Pyros/Tips.astro';
+
+const metadata = {
+  title: 'Character Consistency Pipeline',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <PromptHero
+    title="Character Consistency Pipeline"
+  />
+
+  <PromptOverview />
+
+  <BeforeYouStart />
+
+  <Phase1CharacterDesign />
+
+  <Phase2MasterPortrait />
+
+  <Phase3ReferenceAngles />
+
+  <Phase4ReferenceSheets />
+
+  <Phase5ProductionReady />
+
+  <Tips />
+
+</Layout>

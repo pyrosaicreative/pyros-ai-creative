@@ -1,0 +1,23 @@
+Using the attached reference images, create a clean professional Face Reference Sheet.
+Requirements:
+• Use the attached images exactly as they are.
+• Do not modify, regenerate, enhance, or reinterpret any image.
+• Do not change colors, lighting, facial features, or proportions.
+• Simply arrange the images into a clean, symmetrical layout.
+
+Layout:
+• Top row: Front View, Left Profile, Right Profile, Back View.
+• Bottom row: Large centered close-up of both eyes.
+
+Style:
+• Pure white background.
+• No text.
+• No labels.
+• No arrows.
+• No borders.
+• No logos.
+• No graphics.
+• Equal spacing between all images.
+• Clean professional presentation suitable for an AI Character Reference Pack.
+
+Output a single high-resolution reference sheet.

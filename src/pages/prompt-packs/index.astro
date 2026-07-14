@@ -1,0 +1,132 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Container from '~/components/Pyros/Container.astro';
+import SectionHeader from '~/components/Pyros/SectionHeader.astro';
+import Card from '~/components/ui/Card.astro';
+
+const metadata = {
+  title: 'Prompt Packs',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <!-- HERO -->
+
+  <section class="relative min-h-[55vh] overflow-hidden bg-black">
+
+    <img
+      src="/images/hero/prompt-packs-hero.jpeg"
+      alt="Prompt Packs"
+      class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+    />
+
+    <!-- Dark Overlay -->
+
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <!-- Cinematic Gradient -->
+
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
+
+    <div class="relative z-10 flex min-h-[55vh] items-center">
+
+      <Container>
+
+        <SectionHeader
+  eyebrow="Library"
+  title="Prompt Packs"
+  maxWidth="lg"
+/>
+
+<p class="mt-4 mb-10 max-w-3xl text-base leading-relaxed text-gray-300">
+  Professional AI workflows designed for filmmakers, storytellers and content creators.
+  <br /><br />
+  Each Prompt Pack includes a complete step-by-step workflow, production-ready prompts and clear guidance to help you create consistent, cinematic AI content with confidence.
+</p>
+
+      </Container>
+
+    </div>
+
+  </section>
+
+  <!-- LIBRARY -->
+
+  <section class="bg-black py-0">
+
+    <Container>
+
+      <div class="rounded-2xl border border-white/10 bg-[#111111] p-8">
+
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-center">
+
+          <!-- COVER -->
+
+          <a
+  href="/prompt-packs/character-consistency"
+  class="block w-56 flex-shrink-0"
+>
+
+            <div
+  class="overflow-hidden rounded-2xl border border-white/10"
+  style="width:220px; aspect-ratio:1;"
+>
+
+              <img
+                src="/images/prompt-packs/character-consistency.jpeg"
+                alt="Character Consistency Pipeline"
+                class="h-full w-full object-cover transition duration-500 hover:scale-105"
+              />
+
+            </div>
+
+          </a>
+
+          <!-- INFO -->
+
+          <div class="flex-1">
+
+            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#B71C1C]">
+              Prompt Pack
+            </p>
+
+            <h2 class="mt-3 text-3xl font-bold text-white">
+              Character Consistency Pipeline
+            </h2>
+
+            <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-300">
+
+              Create production-ready AI characters for images,
+              videos and short films using a complete
+              character consistency workflow.
+
+            </p>
+
+            <div class="mt-8 flex items-center gap-5">
+
+              <span class="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-gray-400">
+                Beginner
+              </span>
+
+              <a
+                href="/prompt-packs/character-consistency"
+                class="text-sm font-semibold text-[#B71C1C] transition hover:text-red-400"
+              >
+                → Open Prompt Pack
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </Container>
+
+  </section>
+
+</Layout>

@@ -1,0 +1,3 @@
+Using the attached reference images, recreate exactly the same character.
+The only change allowed is the camera angle. Every other visible detail—including clothing, accessories, props, hairstyle, body proportions, and facial features—must remain exactly the same as the reference images.
+Generate a full-body [right/left] profile view (90°) of the character on a pure white studio background with a neutral expression.

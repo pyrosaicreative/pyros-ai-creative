@@ -1,0 +1,65 @@
+---
+import Container from './Container.astro';
+---
+
+<section class="relative min-h-screen overflow-hidden bg-black">
+
+  <!-- Background -->
+  <img
+    src="/images/hero/hero-home.png"
+    alt="PYROS AI Creative"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+
+  <!-- Overlays -->
+  <div class="absolute inset-0 bg-black/60"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex min-h-screen items-start pt-20">
+
+    <Container>
+
+      <div class="max-w-4xl">
+
+        <h1 class="font-black leading-[0.95] text-white">
+
+          <div class="text-5xl lg:text-5xl xl:text-[4.8rem]">
+            Learn
+            <span class="text-[#B71C1C]">AI</span>
+            Filmmaking
+          </div>
+
+          <div class="mt-6 text-3xl lg:text-4xl xl:text-[3.5rem]">
+            Create
+            <span class="text-[#B71C1C]">Cinematic</span>
+            Movies
+          </div>
+
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300 lg:text-xl">
+          Create cinematic videos, consistent AI characters,
+          commercials and short movies using today's most powerful AI tools.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-5">
+
+          <a
+            href="#"
+            class="rounded-2xl bg-[#B71C1C] px-8 py-4 text-lg font-semibold text-white transition duration-300 hover:bg-[#991B1B]"
+          >
+            Start Learning
+          </a>
+
+      
+
+        </div>
+
+      </div>
+
+    </Container>
+
+  </div>
+
+</section>

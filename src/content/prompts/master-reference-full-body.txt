@@ -1,0 +1,54 @@
+You are an expert AI prompt engineer specializing in photorealistic character consistency.
+Using the attached Master Reference Portrait, recreate exactly the same character.
+This image will be used as part of a professional Character Reference Pack for AI filmmaking.
+Character Consistency Requirements:
+
+• Preserve the character's identity exactly.
+• Do not change facial features, hairstyle, age, ethnicity, body proportions, skin tone, or any defining characteristics.
+• The character must be instantly recognizable as the same person in the reference image.
+
+Pose:
+• Standing naturally.
+• Relaxed posture.
+• Arms resting naturally at the sides.
+• Feet shoulder-width apart.
+• Facing directly toward the camera.
+• Entire body visible from head to toe.
+
+Expression:
+• Neutral facial expression.
+• Looking directly at the camera.
+
+Framing:
+• Full-body portrait.
+• Entire body visible with comfortable spacing around the character.
+• Centered composition.
+
+Wardrobe:
+Use clothing that matches the Character Blueprint.
+If the character's physique needs to remain visible for future consistency, use simple fitted clothing or minimal neutral clothing appropriate for the character.
+
+Background:
+• Pure seamless white studio background.
+• No shadows.
+• No objects.
+• No textures.
+
+Lighting:
+• Professional soft studio lighting.
+• Even illumination.
+• Natural skin tones.
+• No dramatic shadows.
+
+Camera:
+• Professional DSLR photography.
+• 50mm lens.
+• Eye-level camera.
+• Entire body perfectly in focus.
+
+Image Quality:
+Ultra-photorealistic.
+Extremely high detail.
+Professional studio photography.
+Natural color grading.
+Sharp facial details.

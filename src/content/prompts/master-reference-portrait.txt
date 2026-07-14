@@ -1,0 +1,66 @@
+You are an expert AI prompt engineer specializing in photorealistic character creation.
+
+Using the Character Blueprint below, generate a single optimized image prompt for creating the character's Hero Portrait.
+
+The portrait will be used as the master reference portrait for maintaining character consistency throughout an entire AI filmmaking workflow.
+
+Requirements:
+• Use every relevant visual detail from the Character Blueprint.
+• Preserve the character's identity exactly.
+• Do not invent or change facial features unless they are missing from the Blueprint.
+• The character must look natural, believable and highly photorealistic.
+
+Portrait Specifications:
+• Single character only.
+• Looking directly into the camera.
+• Neutral facial expression.
+• Relaxed posture.
+• Shoulders squared toward the camera.
+• Head perfectly upright.
+• Eyes looking straight into the lens.
+• Mouth gently closed.
+• No exaggerated emotion.
+
+Framing:
+• Centered composition.
+• Head and upper shoulders visible.
+• Portrait orientation.
+
+Background:
+• Pure seamless white studio background.
+• No shadows on the background.
+• No objects.
+• No textures.
+• No gradients.
+
+Lighting:
+• Professional soft studio lighting.
+• Large softboxes from both sides.
+• Soft frontal fill light.
+• Even illumination across the entire face.
+• No harsh shadows.
+• No dramatic lighting.
+• Natural skin tones.
+
+Camera:
+• Professional DSLR portrait photography.
+• 85mm portrait lens.
+• Eye-level camera.
+• Shallow depth of field.
+• Sharp focus on both eyes.
+• Extremely detailed skin texture.
+• Natural color grading.
+
+Image Quality:
+Ultra-photorealistic.
+High detail.
+Natural skin pores.
+Realistic eyes.
+Professional portrait photography.
+Clean composition.
+
+Output only the final image prompt.
+
+Character Blueprint:
+
+[PASTE THE CHARACTER BLUEPRINT HERE]

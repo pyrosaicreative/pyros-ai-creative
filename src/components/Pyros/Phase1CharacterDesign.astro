@@ -1,0 +1,55 @@
+---
+import Section from './Section.astro';
+import SectionHeader from './SectionHeader.astro';
+import PromptBox from './PromptBox.astro';
+
+import characterBlueprint from '~/content/prompts/character-blueprint.txt?raw';
+---
+
+<Section>
+
+  <SectionHeader
+    eyebrow="Phase 1"
+    title="Character Design"
+    description="Create the complete identity of your character."
+    maxWidth="lg"
+  />
+
+  <div class="mt-8 max-w-3xl">
+
+    <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+      <li>
+        <strong class="text-white">1.</strong>
+        Paste your screenplay, story, or scene into ChatGPT (or any AI text generator you use). This gives the AI important context about your world, genre, tone, and the character's role before creating the Character Blueprint.
+      </li>
+
+      <li>
+        <strong class="text-white">2.</strong>
+        Fill in the <strong class="text-white">Character Blueprint Template Prompt</strong> with the details you already know, such as the character's appearance, personality, profession, or backstory.
+      </li>
+
+      <li>
+        <strong class="text-white">3.</strong>
+        Leave any fields you're unsure about blank. The AI will intelligently infer the missing details while keeping everything consistent with your story and the information you've already provided. The more context you provide, the more accurate and believable your final character will be.
+      </li>
+
+      <li>
+        <strong class="text-white">4.</strong>
+        Paste the completed Character Blueprint Template Prompt into ChatGPT.
+      </li>
+
+    </ol>
+
+    <PromptBox
+  title="Character Blueprint Template Prompt"
+  prompt={characterBlueprint}
+/>
+
+    <p class="mt-8 text-sm italic leading-7 text-gray-400">
+      Now you have a complete Character Blueprint that we can use to create your first image generation prompt.
+    </p>
+
+  </div>
+
+</Section>

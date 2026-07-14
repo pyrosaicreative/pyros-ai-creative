@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  prompt: string;
+}
+
+const { title, prompt } = Astro.props;
+
+const id = crypto.randomUUID().replace(/-/g, '');
+---
+
+<div class="mt-6 rounded-lg border border-white/10 bg-[#111111]">
+
+  <!-- Header -->
+
+  <div class="flex items-center justify-between border-b border-white/10 px-3 py-2">
+
+    <h3 class="text-sm font-medium text-white">
+      {title}
+    </h3>
+
+    <button
+      id={`copy-${id}`}
+      class="rounded-md border border-white/10 px-2.5 py-1 text-[11px] font-medium text-gray-300 transition hover:border-[#B71C1C] hover:text-white"
+    >
+      Copy Prompt
+    </button>
+
+  </div>
+
+  <!-- Prompt -->
+
+  <pre
+  id={id}
+  class="max-h-[7.5rem] overflow-y-auto overflow-x-auto p-3 text-[12px] leading-5 font-mono text-gray-300 whitespace-pre-wrap"
+><code>{prompt}</code></pre>
+
+</div>
+
+<script define:vars={{ id }}>
+
+const button = document.getElementById(`copy-${id}`);
+const prompt = document.getElementById(id);
+
+button?.addEventListener("click", async () => {
+
+  await navigator.clipboard.writeText(prompt.innerText);
+
+  const original = button.innerText;
+
+  button.innerText = "Copied!";
+
+  setTimeout(() => {
+
+    button.innerText = original;
+
+  }, 2000);
+
+});
+
+</script>

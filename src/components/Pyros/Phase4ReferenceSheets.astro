@@ -1,0 +1,96 @@
+---
+import Section from './Section.astro';
+import SectionHeader from './SectionHeader.astro';
+import PromptBox from './PromptBox.astro';
+
+import faceReferenceSheet from '~/content/prompts/face-reference-sheet.txt?raw';
+import characterReferenceSheet from '~/content/prompts/character-reference-sheet.txt?raw';
+---
+
+<Section>
+
+  <SectionHeader
+    eyebrow="Phase 4"
+    title="Build the Reference Sheets"
+    description="Combine all your reference images into clean, professional reference sheets."
+    maxWidth="lg"
+  />
+
+  <div class="mt-8 max-w-3xl">
+
+    <!-- STEP 1 -->
+
+    <h2 class="text-xl font-bold text-white">
+      Step 1 — Face Reference Sheet
+    </h2>
+
+    <p class="mt-4 text-sm leading-7 text-gray-300">
+      Attach the following images:
+    </p>
+
+    <ul class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+      <li>• Front Face</li>
+      <li>• Left Face Profile</li>
+      <li>• Right Face Profile</li>
+      <li>• Back Face View</li>
+      <li>• Eye Close-up</li>
+
+    </ul>
+
+    <p class="mt-6 text-sm leading-7 text-gray-300">
+      The prompt will arrange them into a clean, high-resolution Face Reference Sheet.
+    </p>
+
+    <PromptBox
+  title="Face Reference Sheet Prompt"
+  prompt={faceReferenceSheet}
+/>
+
+    <p class="mt-8 text-sm italic leading-7 text-gray-400">
+      You should now have a Face Reference Sheet similar to the one shown below.
+    </p>
+
+    <!-- STEP 2 -->
+
+    <div class="mt-12 border-t border-white/10 pt-12">
+
+      <h2 class="text-xl font-bold text-white">
+        Step 2 — Character Reference Sheet
+      </h2>
+
+      <p class="mt-4 text-sm leading-7 text-gray-300">
+        Attach the following images:
+      </p>
+
+      <ul class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
+
+        <li>• Front Face</li>
+        <li>• Left Face Profile</li>
+        <li>• Right Face Profile</li>
+        <li>• Back Face View</li>
+        <li>• Front Full Body</li>
+        <li>• Left Full Body Profile</li>
+        <li>• Right Full Body Profile</li>
+        <li>• Back Full Body View</li>
+
+      </ul>
+
+      <p class="mt-6 text-sm leading-7 text-gray-300">
+        The prompt will arrange them into a professional Character Reference Sheet, ready to use as a master reference for future AI image and video generation.
+      </p>
+
+      <PromptBox
+  title="Character Reference Sheet Prompt"
+  prompt={characterReferenceSheet}
+/>
+
+      <p class="mt-8 text-sm italic leading-7 text-gray-400">
+        You should now have a Character Reference Sheet similar to the one shown below.
+      </p>
+
+    </div>
+
+  </div>
+
+</Section>
