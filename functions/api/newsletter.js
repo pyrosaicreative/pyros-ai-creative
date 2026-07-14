@@ -1,13 +1,8 @@
-export async function onRequestPost(context) {
-  return new Response(
-    JSON.stringify({
-      success: true,
-      message: "Cloudflare Function is working!"
-    }),
-    {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
+export async function onRequest(context) {
+  return new Response("Function OK", {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  });
 }
