@@ -28,8 +28,11 @@ export async function onRequest(context) {
       );
     }
 
-    const response = await fetch(
-      "https://api.kit.com/v4/forms/9682576/subscribers",
+    //
+    // STEP 1 - Create (or fetch) subscriber
+    //
+    const subscriberResponse = await fetch(
+      "https://api.kit.com/v4/subscribers",
       {
         method: "POST",
         headers: {
@@ -38,37 +41,58 @@ export async function onRequest(context) {
         },
         body: JSON.stringify({
           email_address: email,
-          referrer: "https://pyrosaicreative.com/tutorials",
         }),
       }
     );
 
-    const text = await response.text();
+    const subscriberData = await subscriberResponse.json();
 
-    let data;
-
-    try {
-      data = JSON.parse(text);
-    } catch {
-      data = { raw: text };
-    }
-
-    if (!response.ok) {
+    if (!subscriberResponse.ok) {
       return Response.json(
         {
           success: false,
-          status: response.status,
-          kit: data,
+          step: "create_subscriber",
+          response: subscriberData,
         },
         {
-          status: response.status,
+          status: subscriberResponse.status,
+        }
+      );
+    }
+
+    const subscriberId = subscriberData.subscriber.id;
+
+    //
+    // STEP 2 - Add subscriber to form
+    //
+    const formResponse = await fetch(
+      `https://api.kit.com/v4/forms/9682576/subscribers/${subscriberId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Kit-Api-Key": context.env.KIT_API_KEY,
+        },
+      }
+    );
+
+    const formData = await formResponse.json();
+
+    if (!formResponse.ok) {
+      return Response.json(
+        {
+          success: false,
+          step: "add_to_form",
+          response: formData,
+        },
+        {
+          status: formResponse.status,
         }
       );
     }
 
     return Response.json({
       success: true,
-      kit: data,
     });
 
   } catch (err) {
@@ -76,7 +100,6 @@ export async function onRequest(context) {
       {
         success: false,
         message: err.message,
-        error: String(err),
       },
       {
         status: 500,
