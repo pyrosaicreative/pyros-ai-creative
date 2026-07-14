@@ -53,6 +53,8 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   button.disabled = true;
+  button.classList.add("opacity-70");
+button.classList.add("cursor-not-allowed");
   button.textContent = "Joining...";
   message.textContent = "";
 
@@ -80,7 +82,7 @@ form.addEventListener("submit", async (e) => {
     }
 
     if (response.ok && data.success) {
-      message.textContent = "Thanks! You're on the list.";
+      message.textContent = "You're in! Check your inbox to confirm your subscription.";
       email.value = "";
     } else {
       console.error(data);
@@ -94,6 +96,8 @@ form.addEventListener("submit", async (e) => {
   }
 
   button.disabled = false;
+  button.classList.remove("opacity-70");
+button.classList.remove("cursor-not-allowed");
   button.textContent = "Join for Free";
 });
 </script>
