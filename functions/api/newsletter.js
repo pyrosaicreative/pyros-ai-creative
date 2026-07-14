@@ -1,5 +1,4 @@
 export async function onRequest(context) {
-  // Gestione CORS
   if (context.request.method === "OPTIONS") {
     return new Response(null, {
       headers: {
@@ -44,23 +43,40 @@ export async function onRequest(context) {
       }
     );
 
-    const data = await response.json();
+    const text = await response.text();
+
+    let data;
+
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = { raw: text };
+    }
 
     if (!response.ok) {
-      return Response.json(data, {
-        status: response.status,
-      });
+      return Response.json(
+        {
+          success: false,
+          status: response.status,
+          kit: data,
+        },
+        {
+          status: response.status,
+        }
+      );
     }
 
     return Response.json({
       success: true,
-      message: "Successfully subscribed!",
+      kit: data,
     });
+
   } catch (err) {
     return Response.json(
       {
         success: false,
-        message: "Server error",
+        message: err.message,
+        error: String(err),
       },
       {
         status: 500,
