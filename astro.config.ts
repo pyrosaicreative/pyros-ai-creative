@@ -13,8 +13,6 @@ import icon from 'astro-icon';
 import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
-import cloudflare from '@astrojs/cloudflare';
-
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
@@ -28,8 +26,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   site: 'https://pyrosaicreative.com',
 
-  output: 'server',
-adapter: cloudflare(),
+  output: 'static',
 
   integrations: [
     sitemap(),
