@@ -16,28 +16,83 @@
       </p>
 
       <form
-        action="https://app.kit.com/forms/9682576/subscriptions"
-        method="post"
-        target="_blank"
-        class="mt-10 flex flex-col gap-4 sm:flex-row"
-      >
+  id="newsletter-form"
+  class="mt-10 flex flex-col gap-4 sm:flex-row"
+>
 
-        <input
-          type="email"
-          name="email_address"
-          placeholder="Enter your email"
-          required
-          class="flex-1 rounded-xl border border-[#B32626] bg-white px-6 py-4 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#B32626]"
-        />
+  <input
+    id="newsletter-email"
+    type="email"
+    placeholder="Enter your email"
+    required
+    class="flex-1 rounded-xl border border-[#B32626] bg-white px-6 py-4 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#B32626]"
+  />
 
-        <button
-          type="submit"
-          class="rounded-xl bg-[#B32626] px-8 py-4 font-semibold text-white transition duration-300 hover:bg-[#991B1B]"
-        >
-          Join for Free
-        </button>
+  <button
+    id="newsletter-button"
+    type="submit"
+    class="rounded-xl bg-[#B32626] px-8 py-4 font-semibold text-white transition duration-300 hover:bg-[#991B1B]"
+  >
+    Join for Free
+  </button>
 
-      </form>
+</form>
+
+<p
+  id="newsletter-message"
+  class="mt-4 text-center text-sm text-gray-300"
+></p>
+
+<script>
+const form = document.getElementById("newsletter-form");
+const email = document.getElementById("newsletter-email");
+const button = document.getElementById("newsletter-button");
+const message = document.getElementById("newsletter-message");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  button.disabled = true;
+  button.textContent = "Joining...";
+  message.textContent = "";
+
+  try {
+    const response = await fetch("/api/newsletter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email.value,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      message.textContent = "Thanks! You're on the list.";
+      email.value = "";
+    } else {
+      message.textContent =
+        data.message || "Something went wrong.";
+    }
+  } catch (err) {
+  return Response.json(
+    {
+      success: false,
+      message: err.message,
+      error: String(err),
+    },
+    {
+      status: 500,
+    }
+  );
+}
+
+  button.disabled = false;
+  button.textContent = "Join for Free";
+});
+</script>
 
     </div>
 
