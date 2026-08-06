@@ -12,7 +12,7 @@ export default function AuthCallback() {
         return;
       }
 
-      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
       if (error) {
         console.error(error);
@@ -20,7 +20,11 @@ export default function AuthCallback() {
         return;
       }
 
-      window.location.replace("/dashboard");
+      if (data.session) {
+        window.location.replace("/");
+      } else {
+        window.location.replace("/account");
+      }
     }
 
     handleCallback();
