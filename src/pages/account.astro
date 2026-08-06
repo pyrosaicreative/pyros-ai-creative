@@ -1,9 +1,12 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
 import AuthForm from "../components/Pyros/AuthForm.tsx";
+import AccountRedirect from "../components/AccountRedirect.tsx";
 ---
 
 <Layout>
+
+  <AccountRedirect client:load />
 
   <section class="flex min-h-screen justify-center bg-black px-6 pt-10 pb-20">
 
