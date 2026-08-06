@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { supabase } from "~/lib/supabase";
 import { Eye, EyeOff } from "lucide-preact";
 
@@ -12,8 +12,26 @@ const [messageType, setMessageType] = useState<"success" | "error">("error");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
 
-  async function handleSubmit() {
+  useEffect(() => {
+  async function checkSession() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (session) {
+      window.location.replace("/");
+      return;
+    }
+
+    setCheckingSession(false);
+  }
+
+  checkSession();
+}, []);
+
+async function handleSubmit() {
   setMessage("");
 
   console.log("handleSubmit");
@@ -105,7 +123,13 @@ setMessageType("success");
 setMessage("Password reset email sent.");
   }
 
+  if (checkingSession) {
   return (
+    <div className="flex min-h-screen items-center justify-center bg-black text-white">
+      Loading...
+    </div>
+  );
+}
   <div className="mx-auto w-full max-w-[1400px]">
     <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
       <div className="grid lg:grid-cols-[44%_56%]">
