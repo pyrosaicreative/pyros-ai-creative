@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/Pyros/Hero.astro';
+import TutorialSections from '~/components/Pyros/TutorialSections.astro';
 
 const metadata = {
   title: 'PYROS AI Creative',
@@ -10,4 +11,15 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero />
+  <TutorialSections />
 </Layout>
+
+<script type="module">
+  import { supabase } from "/src/lib/supabase.ts";
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  console.log("SESSION:", session);
+</script>

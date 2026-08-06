@@ -1,0 +1,54 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Container from '~/components/Pyros/Container.astro';
+import SectionHeader from '~/components/Pyros/SectionHeader.astro';
+
+const metadata = {
+  title: 'AI Guides',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <!-- HERO -->
+
+  <section class="relative min-h-[55vh] overflow-hidden bg-black">
+
+    <img
+      src="/images/hero/ai-guides-hero.jpeg"
+      alt="AI Guides"
+      class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+    />
+
+    <!-- Dark Overlay -->
+
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <!-- Cinematic Gradient -->
+
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
+
+    <div class="relative z-10 flex min-h-[55vh] items-center">
+
+      <Container>
+
+        <SectionHeader
+          eyebrow="Library"
+          title="AI Guides"
+          maxWidth="lg"
+        />
+
+        <p class="mt-4 mb-10 max-w-3xl text-base leading-relaxed text-gray-300">
+          Professional AI workflows designed for filmmakers, storytellers and content creators.
+          <br /><br />
+          Each Prompt Pack includes a complete step-by-step workflow, production-ready prompts and clear guidance to help you create consistent, cinematic AI content with confidence.
+        </p>
+
+      </Container>
+
+    </div>
+
+  </section>
+
+</Layout>

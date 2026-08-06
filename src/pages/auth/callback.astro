@@ -1,0 +1,19 @@
+<script type="module">
+  import { supabase } from "/src/lib/supabase.ts";
+
+  const url = new URL(window.location.href);
+  const code = url.searchParams.get("code");
+
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+    if (!error) {
+      window.location.replace("/dashboard");
+    } else {
+      console.error(error);
+      window.location.replace("/account");
+    }
+  } else {
+    window.location.replace("/account");
+  }
+</script>

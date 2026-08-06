@@ -1,0 +1,68 @@
+---
+import TutorialCard from './TutorialCard.astro';
+
+interface Props {
+  title: string;
+  tutorials: any[];
+}
+
+const { title, tutorials } = Astro.props;
+
+const rowId = title.replace(/\s+/g, '-').toLowerCase();
+
+const cardWidth = 446;
+---
+
+<div class="mb-16">
+
+  <div class="mb-5 flex items-center justify-between">
+
+    <h2 class="text-3xl font-bold text-white">
+      {title}
+    </h2>
+
+    <div class="flex gap-3">
+
+      <button
+        class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-[#B71C1C]"
+        onclick={`document.getElementById('${rowId}')?.scrollBy({ left: -${cardWidth}, behavior: 'smooth' })`}
+      >
+        ←
+      </button>
+
+      <button
+        class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-[#B71C1C]"
+        onclick={`document.getElementById('${rowId}')?.scrollBy({ left: ${cardWidth}, behavior: 'smooth' })`}
+      >
+        →
+      </button>
+
+    </div>
+
+  </div>
+
+  <div
+  id={rowId}
+  class="flex gap-6 px-2 py-4"
+>
+
+    {
+      tutorials.map((tutorial) => (
+
+        <div class="w-[430px] min-w-[430px]">
+
+          <TutorialCard
+            title={tutorial.title}
+            image={tutorial.thumbnail}
+            href={`/tutorials/${tutorial.slug}`}
+            badge={tutorial.badge}
+          />
+
+        </div>
+
+      ))
+    }
+
+  </div>
+
+</div>

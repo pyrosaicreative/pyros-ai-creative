@@ -15,12 +15,10 @@ export const headerData = {
       href: getPermalink('/why-ai-filmmaking'),
     },
     {
-      text: 'Tutorials',
-      href: getPermalink('/tutorials'),
+      text: 'AI Guides',
+      href: getPermalink('/ai-guides'),
     },
-    {
-  text: 'Prompt Packs',
-  href: getPermalink('/prompt-packs'),
-},
   ],
+
+  actions: [],
 };

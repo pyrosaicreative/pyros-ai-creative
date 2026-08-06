@@ -12,7 +12,7 @@ metadata:
     default: PYROS AI Creative
     template: '%s | PYROS AI Creative'
 
-  description: 'Learn AI Filmmaking. Build AI Stories. Professional tutorials, cinematic AI workflows and production-ready Prompt Packs for filmmakers, storytellers and content creators.'
+  description: 'Learn AI Filmmaking. Build AI Stories. Professional tutorials, cinematic AI workflows and production-ready AI Guides for filmmakers, storytellers and content creators.'
 
   robots:
     index: true

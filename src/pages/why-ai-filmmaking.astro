@@ -1,10 +1,12 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import WhyAIFilmmaking from '~/components/Pyros/why-ai-filmmaking.astro';
+import Layout from "~/layouts/PageLayout.astro";
+import WhyAIFilmmaking from "~/components/Pyros/why-ai-filmmaking.astro";
+
+const metadata = {
+  title: "Why AI Filmmaking | PYROS AI Creative",
+};
 ---
 
-<Layout
-  title="Why AI Filmmaking | PYROS AI Creative"
->
+<Layout metadata={metadata}>
   <WhyAIFilmmaking />
 </Layout>

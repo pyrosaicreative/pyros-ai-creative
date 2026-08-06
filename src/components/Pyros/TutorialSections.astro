@@ -1,0 +1,52 @@
+---
+import Container from './Container.astro';
+import TutorialRow from './TutorialRow.astro';
+import { tutorials } from '~/data/tutorials';
+
+const sections = [
+  {
+    title: '🔥 Latest Tutorials',
+    filter: () => tutorials,
+  },
+  {
+    title: '🎬 AI Filmmaking',
+    filter: () =>
+      tutorials.filter((t) => t.category === 'AI Filmmaking'),
+  },
+  {
+    title: '👥 AI Characters',
+    filter: () =>
+      tutorials.filter((t) => t.category === 'AI Characters'),
+  },
+  {
+    title: '🌍 AI Worlds',
+    filter: () =>
+      tutorials.filter((t) => t.category === 'AI Worlds'),
+  },
+];
+---
+
+<section class="relative -mt-8 z-20 bg-black pt-0 pb-24">
+
+  <Container>
+
+    {
+      sections.map((section) => {
+
+        const items = section.filter();
+
+        return items.length > 0 ? (
+
+          <TutorialRow
+            title={section.title}
+            tutorials={items}
+          />
+
+        ) : null;
+
+      })
+    }
+
+  </Container>
+
+</section>

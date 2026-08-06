@@ -4,13 +4,9 @@ import SectionHeader from './SectionHeader.astro';
 
 interface Props {
   title: string;
-  description: string;
 }
 
-const {
-  title,
-  description,
-} = Astro.props;
+const { title } = Astro.props;
 ---
 
 <section class="bg-black pt-16 pb-4">
@@ -20,7 +16,7 @@ const {
     <!-- Breadcrumb -->
 
     <p class="mb-5 text-sm uppercase tracking-[0.2em] text-gray-500">
-      Prompt Packs / Character Consistency Pipeline
+      AI Guides / Character Consistency Pipeline
     </p>
 
     <div class="grid gap-14 xl:grid-cols-[1.15fr_0.85fr] xl:items-start">
@@ -51,7 +47,7 @@ const {
       <div class="flex justify-center xl:justify-end">
 
         <img
-          src="/images/prompt-packs/character-reference-sheet-placeholder.jpeg"
+          src="/images/ai-guides/character-reference-sheet-placeholder.jpeg"
           alt="Character Reference Sheet"
           class="w-full max-w-xl rounded-2xl border border-white/10 shadow-2xl"
           loading="eager"
