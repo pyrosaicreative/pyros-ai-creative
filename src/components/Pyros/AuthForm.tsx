@@ -130,6 +130,8 @@ setMessage("Password reset email sent.");
     </div>
   );
 }
+
+return (
   <div className="mx-auto w-full max-w-[1400px]">
     <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
       <div className="grid lg:grid-cols-[44%_56%]">
