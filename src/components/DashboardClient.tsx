@@ -34,7 +34,7 @@ export default function DashboardClient() {
 
       <button
         onClick={handleLogout}
-        className="mt-8 rounded-xl bg-[#B71C1C] px-5 py-3 font-semibold text-white transition hover:bg-[#9A7A49]"
+        className="mt-8 rounded-xl bg-[#171717] px-5 py-3 font-semibold text-white transition hover:bg-[#202020]"
       >
         Sign Out
       </button>
