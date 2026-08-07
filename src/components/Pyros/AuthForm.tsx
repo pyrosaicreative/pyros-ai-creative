@@ -132,15 +132,15 @@ setMessage("Password reset email sent.");
 }
 
 return (
-  <div className="mx-auto w-full max-w-[1400px]">
+  <div className="mx-auto w-full max-w-[1250px]">
     <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
       <div className="grid lg:grid-cols-[44%_56%]">
 
         {/* LEFT */}
 
-        <div className="bg-[#0d0d0d] px-12 py-10">
+        <div className="bg-[#0d0d0d] px-10 py-8">
 
-          <h1 className="text-[2.25rem] font-black leading-[1.05] text-white">
+          <h1 className="text-[2.20rem] font-black leading-[1.05] text-white">
             Welcome to
             <span className="mt-2 block text-[#B71C1C]">
               PYROS AI Creative
@@ -161,7 +161,7 @@ return (
               "Unlock premium content",
             ].map((item) => (
               <div className="flex items-center gap-3" key={item}>
-                <span className="text-[#B71C1C]">✓</span>
+                <span className="text-[#8F6B3B]">✓</span>
                 <span className="text-[15px] text-gray-300">
                   {item}
                 </span>
@@ -174,7 +174,7 @@ return (
 
         {/* RIGHT */}
 
-        <div className="px-12 py-10">
+        <div className="px-10 py-8">
 
           <form
             onSubmit={(e) => {
@@ -196,9 +196,9 @@ return (
     setMessageType("error");
     setConfirmPassword("");
   }}
-                className={`flex-1 rounded-lg py-2 text-sm font-semibold transition disabled:cursor-not-allowed ${
+                className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
                   mode === "signin"
-                    ? "bg-[#B71C1C] text-white"
+                    ? "bg-[#8F6B3B] text-white"
                     : "text-gray-400"
                 }`}
               >
@@ -213,9 +213,9 @@ return (
     setMessage("");
     setMessageType("error");
   }}
-                className={`flex-1 rounded-lg py-2 text-sm font-semibold transition disabled:cursor-not-allowed ${
+                className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
                   mode === "signup"
-                    ? "bg-[#B71C1C] text-white"
+                    ? "bg-[#8F6B3B] text-white"
                     : "text-gray-400"
                 }`}
               >
@@ -241,7 +241,7 @@ return (
                 onInput={(e) =>
                   setEmail((e.target as HTMLInputElement).value)
                 }
-                className="h-11 w-full rounded-xl border border-white/10 bg-black px-4 text-[15px] text-white outline-none transition focus:border-[#B71C1C] focus:ring-2 focus:ring-[#B71C1C]/30 disabled:opacity-60"
+                className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
               />
 
             </div>
@@ -269,7 +269,7 @@ return (
     onInput={(e) =>
       setPassword((e.target as HTMLInputElement).value)
     }
-    className="h-11 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#B71C1C] focus:ring-2 focus:ring-[#B71C1C]/30 disabled:opacity-60"
+    className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
   />
 
   <button
@@ -314,7 +314,7 @@ return (
               (e.target as HTMLInputElement).value
             )
           }
-          className="h-11 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#B71C1C] focus:ring-2 focus:ring-[#B71C1C]/30 disabled:opacity-60"
+          className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
         />
 
         <button
@@ -362,7 +362,7 @@ return (
             <button
   type="submit"
   disabled={loading}
-  className="mt-6 flex h-11 w-full items-center justify-center rounded-xl bg-[#B71C1C] text-[15px] font-semibold text-white transition hover:bg-[#991B1B] disabled:cursor-not-allowed disabled:opacity-60"
+  className="mt-5 flex h-9 w-full items-center justify-center rounded-xl bg-[#8F6B3B] text-[15px] font-semibold text-white transition hover:bg-[#9A7A49] disabled:cursor-not-allowed disabled:opacity-60"
 >
   {loading ? (
     <>
@@ -415,13 +415,13 @@ return (
 
             {/* Footer */}
 
-            <p className="mt-6 text-center text-[12px] leading-6 text-gray-500">
+            <p className="mt-5 text-center text-[12px] leading-6 text-gray-500">
 
               By continuing you agree to our{" "}
 
               <a
                 href="/terms"
-                className="text-white transition hover:text-[#B71C1C]"
+                className="text-white transition hover:text-[#8F6B3B]"
               >
                 Terms
               </a>
@@ -430,7 +430,7 @@ return (
 
               <a
                 href="/privacy"
-                className="text-white transition hover:text-[#B71C1C]"
+                className="text-white transition hover:text-[#8F6B3B]"
               >
                 Privacy Policy
               </a>

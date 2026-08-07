@@ -62,12 +62,12 @@
   rounded-xl
   border
   font-semibold
-  text-white
+  text-black
   transition-all
   duration-300
   cursor-pointer;
 
-  background-color: #8f1d1d;
+  background-color: #8F6B3B;
   border-color: rgba(255,255,255,.08);
 
   padding: 0.9rem 1.8rem;
@@ -79,12 +79,12 @@
 }
 
 .btn-primary:hover {
-  background-color: #b32626;
+  background-color: #B38F4E;
   border-color: rgba(255,255,255,.15);
   transform: translateY(-1px);
   box-shadow:
     0 12px 35px rgba(0,0,0,.35),
-    0 0 24px rgba(179,38,38,.25);
+    0 0 24px rgba(198,161,91,.25);
 }
 
 @utility btn-secondary {

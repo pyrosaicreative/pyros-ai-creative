@@ -40,7 +40,7 @@ const [label, setLabel] = useState("Sign In");
   return (
   <a
     href={href}
-    class="ml-2 rounded-lg bg-[#B71C1C] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#991B1B]"
+    class="ml-2 rounded-lg bg-[#8F6B3B] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#9A7A49]"
   >
     {label}
   </a>
