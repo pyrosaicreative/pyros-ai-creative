@@ -11,9 +11,15 @@ import Container from './Container.astro';
     class="absolute inset-0 h-full w-full object-cover object-right"
   />
 
-  <!-- Overlays -->
-  <div class="absolute inset-0 bg-black/60"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
+  <!-- Overlay -->
+<div class="absolute inset-0 bg-black/15"></div>
+
+<div
+  class="absolute inset-0 bg-gradient-to-r
+         from-black/90
+         via-black/55
+         to-transparent"
+></div>
 
   <!-- Content -->
   <div class="relative z-10 flex h-full items-center">
