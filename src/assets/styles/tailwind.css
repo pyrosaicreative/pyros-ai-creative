@@ -157,3 +157,15 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+@layer components {
+
+  .hero-home {
+    @apply relative overflow-hidden bg-black h-[500px];
+  }
+
+  .hero-page {
+    @apply relative overflow-hidden bg-[#090909] h-[440px];
+  }
+
+}

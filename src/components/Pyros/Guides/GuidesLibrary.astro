@@ -1,0 +1,274 @@
+---
+import GuideCard from './GuideCard.astro';
+import { guides } from '~/data/guides';
+---
+
+<section class="bg-[#090909] pt-5 pb-24">
+
+  <div class="mx-auto max-w-7xl px-8 lg:px-12">
+
+    <!-- SECTION HEADER -->
+
+    <div
+      class="flex flex-col gap-8 border-b border-white/10 pb-5
+             lg:flex-row lg:items-end lg:justify-between"
+    >
+
+      <div class="max-w-2xl">
+
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#8F6B3B]">
+  AI GUIDES
+</p>
+
+<h2 class="mt-3 text-3xl font-black tracking-tight text-white lg:text-4xl">
+  Explore the Guides
+</h2>
+
+        <p class="mt-4 max-w-xl text-base leading-7 text-gray-400">
+          Practical guides, handbooks and resources created to help you
+          build better AI filmmaking workflows.
+        </p>
+
+      </div>
+
+
+      <!-- FILTERS -->
+
+      <div class="flex flex-wrap gap-2">
+
+        <button
+          type="button"
+          data-filter="all"
+          class="guide-filter rounded-full border border-[#8F6B3B]
+                 bg-[#8F6B3B] px-5 py-2.5
+                 text-sm font-medium text-white
+                 transition duration-300"
+        >
+          All
+        </button>
+
+        <button
+          type="button"
+          data-filter="free"
+          class="guide-filter rounded-full border border-white/10
+                 bg-white/5 px-5 py-2.5
+                 text-sm font-medium text-gray-300
+                 transition duration-300
+                 hover:border-[#8F6B3B] hover:text-white"
+        >
+          Free
+        </button>
+
+        <button
+          type="button"
+          data-filter="premium"
+          class="guide-filter rounded-full border border-white/10
+                 bg-white/5 px-5 py-2.5
+                 text-sm font-medium text-gray-300
+                 transition duration-300
+                 hover:border-[#8F6B3B] hover:text-white"
+        >
+          Premium
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- GUIDE GRID -->
+
+    <div
+      id="guides-grid"
+class="mt-3 grid grid-cols-1 gap-x-6 gap-y-14
+       md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+
+<div
+  id="guides-empty"
+  class="hidden col-span-full py-16 text-center"
+>
+  <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#8F6B3B]">
+    COMING SOON
+  </p>
+
+  <h3 class="mt-4 text-2xl font-bold text-white">
+    More guides are on the way.
+  </h3>
+
+  <p class="mx-auto mt-3 max-w-lg text-sm leading-6 text-gray-400">
+    New AI filmmaking guides and premium resources will be added to the library soon.
+  </p>
+</div>
+
+      {guides.map((guide) => (
+        <div
+          class="guide-item"
+          data-type={guide.type}
+        >
+          <GuideCard guide={guide} />
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FILTERS + DOWNLOAD -->
+
+<script>
+  import { supabase } from '~/lib/supabase';
+
+  /*
+   * FILTERS
+   */
+
+  const filterButtons =
+    document.querySelectorAll<HTMLButtonElement>('.guide-filter');
+
+  const guideItems =
+    document.querySelectorAll<HTMLElement>('.guide-item');
+    const emptyState =
+  document.querySelector<HTMLElement>('#guides-empty');
+
+  filterButtons.forEach((button) => {
+
+    button.addEventListener('click', () => {
+
+      const filter = button.dataset.filter;
+
+      filterButtons.forEach((item) => {
+
+        item.classList.remove(
+          'border-[#8F6B3B]',
+          'bg-[#8F6B3B]',
+          'text-white'
+        );
+
+        item.classList.add(
+          'border-white/10',
+          'bg-white/5',
+          'text-gray-300'
+        );
+
+      });
+
+      button.classList.remove(
+        'border-white/10',
+        'bg-white/5',
+        'text-gray-300'
+      );
+
+      button.classList.add(
+        'border-[#8F6B3B]',
+        'bg-[#8F6B3B]',
+        'text-white'
+      );
+
+      guideItems.forEach((item) => {
+
+        let visibleGuides = 0;
+
+guideItems.forEach((item) => {
+
+  const type = item.dataset.type;
+
+  if (filter === 'all' || type === filter) {
+    item.classList.remove('hidden');
+    visibleGuides++;
+  } else {
+    item.classList.add('hidden');
+  }
+
+});
+
+if (emptyState) {
+  if (visibleGuides === 0) {
+    emptyState.classList.remove('hidden');
+  } else {
+    emptyState.classList.add('hidden');
+  }
+}
+
+      });
+
+    });
+
+  });
+
+
+  /*
+   * DOWNLOAD
+   */
+
+  const downloadButtons =
+    document.querySelectorAll<HTMLButtonElement>(
+      '[data-guide-download]'
+    );
+
+  downloadButtons.forEach((button) => {
+
+    button.addEventListener('click', async () => {
+
+      const storagePath = button.dataset.storagePath;
+
+      if (!storagePath) {
+        console.error('Guide storage path is missing.');
+        return;
+      }
+
+
+      /*
+       * CHECK AUTHENTICATION
+       */
+
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+
+      if (!session) {
+
+        window.location.href =
+          '/account?redirect=/ai-guides';
+
+        return;
+
+      }
+
+
+      /*
+       * CREATE TEMPORARY DOWNLOAD URL
+       */
+
+      const { data, error } =
+        await supabase.storage
+          .from('guides')
+          .createSignedUrl(storagePath, 60);
+
+
+      if (error) {
+
+        console.error(
+          'Guide download error:',
+          error
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * START DOWNLOAD
+       */
+
+      window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+
+    });
+
+  });
+</script>
