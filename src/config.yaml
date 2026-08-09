@@ -21,7 +21,7 @@ metadata:
   openGraph:
     site_name: PYROS AI Creative
     images:
-      - url: 'https://pyrosaicreative.com/images/hero/hero-home.png'
+      - url: 'https://pyrosaicreative.com/images/hero/hero-home.jpg'
         width: 1200
         height: 630
     type: website
