@@ -15,12 +15,12 @@ export const guides: Guide[] = [
   {
     id: 'character-consistency-express',
     title: 'Character Consistency Guide',
-    workflow: 'EXPRESS WORKFLOW',
+    workflow: 'EXPRESS IMAGE WORKFLOW',
     description:
-      'Create highly consistent AI characters from a single image for images, videos and filmmaking.',
-    cover: '/images/ai-guides/character-consistency-express-workflow-guide.png',
-    pages: 23,
+      'Create a professional Character Reference Sheet from a single image and use it to create consistent AI images.',
+    cover: '/images/ai-guides/character-consistency-express-image-workflow-guide.png',
+    pages: 24,
     type: 'free',
-    storagePath: 'character-consistency-express-workflow-guide.pdf',
+    storagePath: 'character-consistency-express-image-workflow-guide.pdf',
   },
 ];
