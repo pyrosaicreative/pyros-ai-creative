@@ -30,12 +30,23 @@ const relatedTutorials = tutorials.filter(
 );
 
 const metadata = {
-  title: `${tutorial.title} | PYROS AI Creative`,
+  title: tutorial.title,
   description: tutorial.description,
+};
+const videoSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: tutorial.title,
+  description: tutorial.description,
+  thumbnailUrl: `https://pyrosaicreative.com${tutorial.thumbnail}`,
+  uploadDate: tutorial.uploadDate,
+  embedUrl: `https://www.youtube.com/embed/${tutorial.youtubeId}`,
+  url: `https://pyrosaicreative.com/tutorials/${tutorial.slug}`,
 };
 ---
 
 <Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
 
   <main class="bg-black pb-24">
 

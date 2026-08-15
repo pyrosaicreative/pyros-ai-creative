@@ -9,6 +9,7 @@ export interface Tutorial {
   category: 'AI Filmmaking' | 'AI Characters' | 'AI Worlds' | 'AI Workflows';
 
   youtubeId: string;
+  uploadDate: string;
 
   guide: {
     title: string;
