@@ -23,40 +23,40 @@ export interface Tutorial {
 
 export const tutorials: Tutorial[] = [
   {
-    title: 'Character Consistency — Express Workflow',
+  title: 'This ONE Prompt Fixes AI Character Consistency (Free Guide)',
 
-    slug: 'character-consistency-express-workflow',
+  slug: 'character-consistency-express-image-workflow',
 
-    description:
-      'Learn how to create consistent AI characters quickly using a streamlined workflow with Google AI Studio, Nano Banana and Seedance.',
+  description:
+    'Learn how to create consistent AI characters quickly using a streamlined workflow with Google AI Studio, Nano Banana and Seedance.',
 
-    thumbnail:
-      '/images/tutorials/character-consistency-express-workflow.jpeg',
+  thumbnail:
+    '/images/tutorials/character-consistency-express-image-workflow.png',
 
-    badge: 'FREE',
+  badge: 'FREE',
 
-    category: 'AI Characters',
+  category: 'AI Characters',
 
-    youtubeId: 'VIDEO_ID',
+  youtubeId: 'wV-SNlnsONI',
 
-    guide: {
-      title: 'Character Consistency Guide — Express Workflow',
-      file: '/guides/character-consistency-guide-express-workflow.pdf',
-    },
-
-    software: [
-      {
-        name: 'Google AI Studio',
-        url: 'https://aistudio.google.com/',
-      },
-      {
-        name: 'Nano Banana',
-        url: 'https://aistudio.google.com/',
-      },
-      {
-        name: 'Seedance',
-        url: 'https://seedance.ai/',
-      },
-    ],
+  guide: {
+    title: 'Character Consistency Guide — Express Workflow',
+    file: '/guides/character-consistency-guide-express-workflow.pdf',
   },
+
+  software: [
+    {
+      name: 'Google AI Studio',
+      url: 'https://aistudio.google.com/',
+    },
+    {
+      name: 'Nano Banana',
+      url: 'https://aistudio.google.com/',
+    },
+    {
+      name: 'Seedance',
+      url: 'https://seedance.ai/',
+    },
+  ],
+},
 ];
