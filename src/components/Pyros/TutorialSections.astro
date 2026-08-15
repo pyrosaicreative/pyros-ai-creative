@@ -6,7 +6,7 @@ import { tutorials } from '~/data/tutorials';
 const sections = [
   {
     title: '🔥 Latest Tutorials',
-    filter: () => tutorials,
+    filter: () => tutorials.slice(0, 4), // Prende solo i primi 4 elementi
   },
   {
     title: '🎬 AI Filmmaking',
