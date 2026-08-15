@@ -9,6 +9,7 @@ export interface Guide {
   pages: number;
   type: GuideType;
   storagePath?: string;
+  tutorialUrl?: string;
 }
 
 export const guides: Guide[] = [
@@ -22,5 +23,6 @@ export const guides: Guide[] = [
     pages: 24,
     type: 'free',
     storagePath: 'character-consistency-express-image-workflow-guide.pdf',
+    tutorialUrl: '/tutorials/character-consistency-express-image-workflow/',
   },
 ];

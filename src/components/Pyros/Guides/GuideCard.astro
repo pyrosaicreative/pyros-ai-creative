@@ -140,6 +140,16 @@ const { guide } = Astro.props;
       {guide.description}
     </p>
 
+    {guide.tutorialUrl && (
+  <a
+    href={guide.tutorialUrl}
+    class="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#C9A66B] transition duration-300 hover:text-white"
+  >
+    Watch the Tutorial
+    <span aria-hidden="true">→</span>
+  </a>
+)}
+
   </div>
 
 </article>
