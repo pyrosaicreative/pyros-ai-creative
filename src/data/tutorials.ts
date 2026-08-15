@@ -39,6 +39,7 @@ export const tutorials: Tutorial[] = [
   category: 'AI Characters',
 
   youtubeId: 'wV-SNlnsONI',
+  uploadDate: '2026-08-15',
 
   guide: {
     title: 'Character Consistency Guide — Express Workflow',
