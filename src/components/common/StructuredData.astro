@@ -1,0 +1,34 @@
+---
+import { SITE } from 'astrowind:config';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.site}#organization`,
+      name: SITE.name,
+      url: SITE.site,
+      logo: `${SITE.site}/images/logo-pyros.png`,
+      sameAs: [
+        'https://www.youtube.com/channel/UC52jL2fl7QQh37vjbau2XIg',
+        'https://www.tiktok.com/@pyrosaicreative',
+        'https://www.linkedin.com/in/pyrosaicreative',
+        'https://x.com/PyrosAICreative',
+        'https://www.instagram.com/pyrosaicreative/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.site}#website`,
+      url: SITE.site,
+      name: SITE.name,
+      publisher: {
+        '@id': `${SITE.site}#organization`,
+      },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
