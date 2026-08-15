@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Container from '~/components/Pyros/Container.astro';
 import TutorialCard from '~/components/Pyros/TutorialCard.astro';
 import { tutorials } from '~/data/tutorials';
+import { guides } from '~/data/guides';
 
 export function getStaticPaths() {
   return tutorials.map((tutorial) => ({
@@ -16,6 +17,11 @@ export function getStaticPaths() {
 }
 
 const { tutorial } = Astro.props;
+
+const guide =
+  guides.find(
+    (item) => item.id === 'character-consistency-express'
+  ) ?? null;
 
 const relatedTutorials = tutorials.filter(
   (item) =>
@@ -42,7 +48,7 @@ const metadata = {
       <Container>
 
         <div
-          class="mx-auto max-w-3xl overflow-hidden rounded-2xl
+          class="mx-auto max-w-2xl overflow-hidden rounded-2xl
                  border border-white/10 bg-[#0D0D0D]
                  shadow-2xl shadow-black/50"
         >
@@ -70,118 +76,58 @@ const metadata = {
 
 
     <!-- ===================================================== -->
-    <!-- TUTORIAL HEADER -->
+    <!-- YOUTUBE ACTIONS -->
     <!-- ===================================================== -->
 
-    <section class="pt-6 pb-8">
-
-      <Container>
-
-        <div class="mx-auto max-w-3xl">
-
-          <div class="flex items-center gap-2">
-
-            <span
-              class="rounded-full border border-white/10 bg-white/5
-                     px-3 py-1 text-[10px] font-semibold uppercase
-                     tracking-[0.18em] text-white/60"
-            >
-              {tutorial.category}
-            </span>
-
-            <span
-              class={`rounded-full px-3 py-1 text-[10px] font-bold ${
-                tutorial.badge === 'FREE'
-                  ? 'bg-[#27272A] text-white'
-                  : 'bg-yellow-500 text-black'
-              }`}
-            >
-              {tutorial.badge}
-            </span>
-
-          </div>
-
-
-          <h1
-            class="mt-3 max-w-3xl text-2xl font-black leading-tight
-                   tracking-tight text-white
-                   md:text-3xl lg:text-[38px]"
-          >
-            {tutorial.title}
-          </h1>
-
-
-          <p
-            class="mt-2 max-w-2xl text-sm leading-6 text-white/50"
-          >
-            {tutorial.description}
-          </p>
-
-        </div>
-
-      </Container>
-
-    </section>
-
-
-    <!-- ===================================================== -->
-    <!-- GUIDE DOWNLOAD -->
-    <!-- ===================================================== -->
-
-    <section class="pt-4">
+    <section class="pt-3 pb-2">
 
       <Container>
 
         <div
-          class="mx-auto max-w-4xl rounded-3xl border border-white/10
-                 bg-[#111111] p-7 shadow-xl shadow-black/30
-                 md:p-9"
+          class="mx-auto flex max-w-2xl flex-wrap items-center
+                 justify-center gap-2"
         >
 
-          <div
-            class="flex flex-col gap-7
-                   md:flex-row md:items-center md:justify-between"
+          <a
+            href={`https://www.youtube.com/watch?v=${tutorial.youtubeId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded-full
+                   border border-white/10 bg-white/5
+                   px-4 py-2 text-xs font-medium text-white/70
+                   transition duration-300
+                   hover:border-white/20 hover:bg-white/10
+                   hover:text-white"
           >
+            Watch on YouTube
+          </a>
 
-            <div class="max-w-2xl">
+          <a
+            href={`https://www.youtube.com/watch?v=${tutorial.youtubeId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded-full
+                   border border-white/10 bg-white/5
+                   px-4 py-2 text-xs font-medium text-white/70
+                   transition duration-300
+                   hover:border-white/20 hover:bg-white/10
+                   hover:text-white"
+          >
+            Like the video
+          </a>
 
-              <p
-                class="text-xs font-semibold uppercase tracking-[0.3em]
-                       text-[#8F6B3B]"
-              >
-                FREE GUIDE
-              </p>
-
-              <h2
-                class="mt-3 text-2xl font-bold text-white md:text-3xl"
-              >
-                {tutorial.guide.title}
-              </h2>
-
-              <p
-                class="mt-3 text-sm leading-6 text-white/50 md:text-base"
-              >
-                Download the complete guide and follow the workflow
-                step by step.
-              </p>
-
-            </div>
-
-
-            <button
-              type="button"
-              data-guide-download
-              data-storage-path={tutorial.guide.storagePath}
-              class="inline-flex shrink-0 items-center justify-center
-                     rounded-xl bg-[#8F6B3B] px-7 py-4
-                     text-sm font-semibold text-white
-                     transition duration-300
-                     hover:bg-[#9A7A49]"
-            >
-              Download Free Guide
-            </button>
-
-          </div>
+          <a
+            href="https://www.youtube.com/channel/UC52jL2fl7QQh37vjbau2XIg"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded-full
+                   bg-[#8F6B3B] px-4 py-2
+                   text-xs font-semibold text-white
+                   transition duration-300
+                   hover:bg-[#9A7A49]"
+          >
+            Subscribe to PYROS
+          </a>
 
         </div>
 
@@ -191,124 +137,370 @@ const metadata = {
 
 
     <!-- ===================================================== -->
-    <!-- WHAT YOU'LL LEARN -->
+    <!-- GUIDE + WHAT YOU'LL LEARN -->
     <!-- ===================================================== -->
 
-    <section class="pt-20">
+    <section class="pt-10">
 
       <Container>
 
-        <div class="mx-auto max-w-4xl">
+        <div
+          class="mx-auto grid max-w-5xl gap-12
+                 lg:grid-cols-2 lg:items-start"
+        >
 
-          <div class="max-w-3xl">
+          <!-- ================================================= -->
+          <!-- GUIDE -->
+          <!-- ================================================= -->
+
+          {
+            guide && (
+
+              <div>
+
+                <!-- SECTION LABEL -->
+
+                <p
+                  class="text-[10px] font-semibold uppercase
+                         tracking-[0.35em] text-[#8F6B3B]"
+                >
+                  FREE GUIDE
+                </p>
+
+
+                <!-- GUIDE CONTENT -->
+
+                <div class="mt-6 flex gap-6">
+
+                  <!-- ========================================= -->
+                  <!-- COVER -->
+                  <!-- ========================================= -->
+
+                  <button
+                    type="button"
+                    data-guide-download
+                    data-storage-path={guide.storagePath}
+                    aria-label={`Download ${guide.title}`}
+                    class="group relative block w-[175px]
+                           shrink-0 overflow-hidden rounded-xl
+                           shadow-xl shadow-black/40
+                           transition duration-300
+                           hover:-translate-y-1
+                           hover:shadow-2xl hover:shadow-black/60"
+                  >
+
+                    <img
+                      src={guide.cover}
+                      alt={guide.title}
+                      width="1055"
+                      height="1491"
+                      class="block h-auto w-full
+                             transition duration-500
+                             group-hover:scale-[1.025]"
+                    />
+
+                    <!-- COVER HOVER -->
+
+                    <div
+                      class="absolute inset-0 flex items-center
+                             justify-center
+                             bg-black/0 transition duration-300
+                             group-hover:bg-black/35"
+                    >
+
+                      <span
+                        class="translate-y-2 rounded-full
+                               bg-[#8F6B3B] px-4 py-2
+                               text-[10px] font-semibold text-white
+                               opacity-0 transition duration-300
+                               group-hover:translate-y-0
+                               group-hover:opacity-100"
+                      >
+                        DOWNLOAD
+                      </span>
+
+                    </div>
+
+                  </button>
+
+
+                  <!-- ========================================= -->
+                  <!-- GUIDE INFO -->
+                  <!-- ========================================= -->
+
+                  <div class="flex min-w-0 flex-1 flex-col">
+
+                    <h2
+                      class="text-xl font-bold leading-tight
+                             tracking-tight text-white"
+                    >
+                      {guide.title}
+                    </h2>
+
+
+                    <p
+                      class="mt-2 text-[10px] font-semibold uppercase
+                             tracking-[0.22em] text-[#8F6B3B]"
+                    >
+                      {guide.workflow}
+                    </p>
+
+
+                    <p
+                      class="mt-4 text-sm leading-6 text-white/50"
+                    >
+                      {guide.description}
+                    </p>
+
+
+                    <!-- META -->
+
+                    <div class="mt-5 flex flex-wrap gap-2">
+
+                      <span
+                        class="rounded-full border border-white/10
+                               px-3 py-1.5 text-[10px]
+                               font-semibold uppercase
+                               tracking-wider text-white/50"
+                      >
+                        PDF
+                      </span>
+
+                      <span
+                        class="rounded-full border border-white/10
+                               px-3 py-1.5 text-[10px]
+                               font-semibold uppercase
+                               tracking-wider text-white/50"
+                      >
+                        {guide.pages} PAGES
+                      </span>
+
+                    </div>
+
+
+                    <!-- DOWNLOAD BUTTON -->
+
+                    <button
+                      type="button"
+                      data-guide-download
+                      data-storage-path={guide.storagePath}
+                      class="mt-5 inline-flex w-fit
+                             items-center rounded-full
+                             bg-[#8F6B3B]
+                             px-5 py-2.5
+                             text-xs font-semibold text-white
+                             transition duration-300
+                             hover:bg-[#9A7A49]"
+                    >
+                      Download Free Guide
+                      <span class="ml-2 text-white/60">
+                        →
+                      </span>
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            )
+          }
+
+
+          <!-- ================================================= -->
+          <!-- WHAT YOU'LL LEARN -->
+          <!-- ================================================= -->
+
+          <div class="lg:pt-0">
 
             <p
-              class="text-xs font-semibold uppercase tracking-[0.3em]
-                     text-[#8F6B3B]"
+              class="text-[10px] font-semibold uppercase
+                     tracking-[0.35em] text-[#8F6B3B]"
             >
               WHAT YOU'LL LEARN
             </p>
 
-            <h2
-              class="mt-3 text-3xl font-black tracking-tight text-white
-                     md:text-4xl"
-            >
-              Build consistent AI characters from a single reference.
-            </h2>
 
             <p
-              class="mt-4 text-base leading-7 text-white/55"
+              class="mt-4 max-w-xl text-sm leading-6 text-white/45"
             >
-              This tutorial shows a streamlined image workflow for
-              creating the same AI character across different images,
+              Follow a simple workflow to create and maintain
+              consistent AI characters across different images,
               poses and scenes.
             </p>
 
-          </div>
+
+            <!-- CHECKLIST -->
+
+            <div class="mt-7 space-y-5">
+
+              <!-- ============================================= -->
+              <!-- 01 -->
+              <!-- ============================================= -->
+
+              <div class="flex items-start gap-4">
+
+                <div
+                  class="mt-0.5 flex h-7 w-7 shrink-0
+                         items-center justify-center rounded-full
+                         bg-[#8F6B3B]/15"
+                >
+
+                  <svg
+                    class="h-3.5 w-3.5 text-[#B89563]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+
+                </div>
+
+                <div>
+
+                  <h3 class="text-sm font-semibold text-white">
+                    Create a strong character reference
+                  </h3>
+
+                  <p class="mt-1 text-xs leading-5 text-white/40">
+                    Build a reliable visual foundation that clearly
+                    defines your AI character.
+                  </p>
+
+                </div>
+
+              </div>
 
 
-          <div class="mt-8 grid gap-4 md:grid-cols-2">
+              <!-- ============================================= -->
+              <!-- 02 -->
+              <!-- ============================================= -->
 
-            <div
-              class="rounded-2xl border border-white/10
-                     bg-[#111111] p-6"
-            >
+              <div class="flex items-start gap-4">
 
-              <span class="text-sm font-semibold text-[#8F6B3B]">
-                01
-              </span>
+                <div
+                  class="mt-0.5 flex h-7 w-7 shrink-0
+                         items-center justify-center rounded-full
+                         bg-[#8F6B3B]/15"
+                >
 
-              <h3 class="mt-3 text-lg font-semibold text-white">
-                Create a strong character reference
-              </h3>
+                  <svg
+                    class="h-3.5 w-3.5 text-[#B89563]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
 
-              <p class="mt-2 text-sm leading-6 text-white/45">
-                Build a reliable visual foundation that clearly defines
-                the identity of your AI character.
-              </p>
+                </div>
 
-            </div>
+                <div>
 
+                  <h3 class="text-sm font-semibold text-white">
+                    Preserve identity across images
+                  </h3>
 
-            <div
-              class="rounded-2xl border border-white/10
-                     bg-[#111111] p-6"
-            >
+                  <p class="mt-1 text-xs leading-5 text-white/40">
+                    Maintain the character's key facial and visual
+                    features when creating new images.
+                  </p>
 
-              <span class="text-sm font-semibold text-[#8F6B3B]">
-                02
-              </span>
+                </div>
 
-              <h3 class="mt-3 text-lg font-semibold text-white">
-                Preserve identity across images
-              </h3>
-
-              <p class="mt-2 text-sm leading-6 text-white/45">
-                Learn how to maintain the character's key facial and
-                visual features when creating new images.
-              </p>
-
-            </div>
+              </div>
 
 
-            <div
-              class="rounded-2xl border border-white/10
-                     bg-[#111111] p-6"
-            >
+              <!-- ============================================= -->
+              <!-- 03 -->
+              <!-- ============================================= -->
 
-              <span class="text-sm font-semibold text-[#8F6B3B]">
-                03
-              </span>
+              <div class="flex items-start gap-4">
 
-              <h3 class="mt-3 text-lg font-semibold text-white">
-                Create new poses and scenes
-              </h3>
+                <div
+                  class="mt-0.5 flex h-7 w-7 shrink-0
+                         items-center justify-center rounded-full
+                         bg-[#8F6B3B]/15"
+                >
 
-              <p class="mt-2 text-sm leading-6 text-white/45">
-                Move beyond a single portrait and generate new images
-                while keeping the same character identity.
-              </p>
+                  <svg
+                    class="h-3.5 w-3.5 text-[#B89563]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 011.414 1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
 
-            </div>
+                </div>
+
+                <div>
+
+                  <h3 class="text-sm font-semibold text-white">
+                    Create new poses and scenes
+                  </h3>
+
+                  <p class="mt-1 text-xs leading-5 text-white/40">
+                    Generate new images while keeping the same
+                    character identity.
+                  </p>
+
+                </div>
+
+              </div>
 
 
-            <div
-              class="rounded-2xl border border-white/10
-                     bg-[#111111] p-6"
-            >
+              <!-- ============================================= -->
+              <!-- 04 -->
+              <!-- ============================================= -->
 
-              <span class="text-sm font-semibold text-[#8F6B3B]">
-                04
-              </span>
+              <div class="flex items-start gap-4">
 
-              <h3 class="mt-3 text-lg font-semibold text-white">
-                Build a repeatable workflow
-              </h3>
+                <div
+                  class="mt-0.5 flex h-7 w-7 shrink-0
+                         items-center justify-center rounded-full
+                         bg-[#8F6B3B]/15"
+                >
 
-              <p class="mt-2 text-sm leading-6 text-white/45">
-                Turn character consistency into a repeatable part of
-                your AI filmmaking workflow.
-              </p>
+                  <svg
+                    class="h-3.5 w-3.5 text-[#B89563]"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 5.29a1 1 0 011.414 0l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 011.414 1.414l2.793-2.793a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+
+                </div>
+
+                <div>
+
+                  <h3 class="text-sm font-semibold text-white">
+                    Build a repeatable workflow
+                  </h3>
+
+                  <p class="mt-1 text-xs leading-5 text-white/40">
+                    Turn character consistency into a repeatable part
+                    of your AI filmmaking workflow.
+                  </p>
+
+                </div>
+
+              </div>
 
             </div>
 
@@ -332,26 +524,25 @@ const metadata = {
 
           <Container>
 
-            <div class="mx-auto max-w-4xl">
+            <div class="mx-auto max-w-5xl">
 
               <div class="mb-8">
 
                 <p
-                  class="text-xs font-semibold uppercase tracking-[0.3em]
-                         text-[#8F6B3B]"
+                  class="text-[10px] font-semibold uppercase
+                         tracking-[0.3em] text-[#8F6B3B]"
                 >
                   KEEP LEARNING
                 </p>
 
                 <h2
-                  class="mt-3 text-3xl font-black tracking-tight text-white
-                         md:text-4xl"
+                  class="mt-3 text-3xl font-black tracking-tight
+                         text-white md:text-4xl"
                 >
                   Related Tutorials
                 </h2>
 
               </div>
-
 
               <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
@@ -387,56 +578,74 @@ const metadata = {
   <script>
     import { supabase } from '~/lib/supabase';
 
-    const downloadButton =
-      document.querySelector<HTMLButtonElement>(
+    const downloadButtons =
+      document.querySelectorAll<HTMLButtonElement>(
         '[data-guide-download]'
       );
 
-    downloadButton?.addEventListener('click', async () => {
+    downloadButtons.forEach((button) => {
 
-      const storagePath =
-        downloadButton.dataset.storagePath;
+      button.addEventListener('click', async () => {
 
-      if (!storagePath) {
-        console.error('Guide storage path is missing.');
-        return;
-      }
+        const storagePath =
+          button.dataset.storagePath;
 
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+        if (!storagePath) {
+          console.error('Guide storage path is missing.');
+          return;
+        }
 
-      if (!session) {
+        /*
+         * CHECK AUTHENTICATION
+         */
 
-        const redirect =
-          encodeURIComponent(window.location.pathname);
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-        window.location.href =
-          `/account?redirect=${redirect}`;
+        if (!session) {
 
-        return;
-      }
+          const redirect =
+            encodeURIComponent(window.location.pathname);
 
-      const { data, error } =
-        await supabase.storage
-          .from('guides')
-          .createSignedUrl(storagePath, 60);
+          window.location.href =
+            `/account?redirect=${redirect}`;
 
-      if (error) {
+          return;
+        }
 
-        console.error(
-          'Guide download error:',
-          error
+
+        /*
+         * CREATE TEMPORARY DOWNLOAD URL
+         */
+
+        const { data, error } =
+          await supabase.storage
+            .from('guides')
+            .createSignedUrl(storagePath, 60);
+
+        if (error) {
+
+          console.error(
+            'Guide download error:',
+            error
+          );
+
+          return;
+        }
+
+
+        /*
+         * START DOWNLOAD
+         */
+
+        window.open(
+          data.signedUrl,
+          '_blank',
+          'noopener,noreferrer'
         );
 
-        return;
-      }
-
-      window.open(
-        data.signedUrl,
-        '_blank',
-        'noopener,noreferrer'
-      );
+      });
 
     });
   </script>
