@@ -24,7 +24,7 @@ export interface Tutorial {
 
 export const tutorials: Tutorial[] = [
   {
-  title: 'This ONE Prompt Fixes AI Character Consistency (Free Guide)',
+  title: 'ONE Prompt → Character Reference Sheet → Consistent AI Characters (Free Guide)',
 
   slug: 'character-consistency-express-image-workflow',
 
