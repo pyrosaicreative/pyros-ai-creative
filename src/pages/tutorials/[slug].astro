@@ -20,7 +20,7 @@ const { tutorial } = Astro.props;
 
 const guide =
   guides.find(
-    (item) => item.id === 'character-consistency-express'
+    (item) => item.id === tutorial.guideId
   ) ?? null;
 
 const relatedTutorials = tutorials.filter(
@@ -342,174 +342,55 @@ const videoSchema = {
             </p>
 
 
-            <!-- CHECKLIST -->
+           <!-- CHECKLIST -->
 
-            <div class="mt-7 space-y-5">
+<div class="mt-7 space-y-5">
 
-              <!-- ============================================= -->
-              <!-- 01 -->
-              <!-- ============================================= -->
+  {tutorial.whatYoullLearn.map((item) => (
 
-              <div class="flex items-start gap-4">
+    <div class="flex items-start gap-4">
 
-                <div
-                  class="mt-0.5 flex h-7 w-7 shrink-0
-                         items-center justify-center rounded-full
-                         bg-[#8F6B3B]/15"
-                >
+      <div
+        class="mt-0.5 flex h-7 w-7 shrink-0
+               items-center justify-center rounded-full
+               bg-[#8F6B3B]/15"
+      >
 
-                  <svg
-                    class="h-3.5 w-3.5 text-[#B89563]"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
+        <svg
+          class="h-3.5 w-3.5 text-[#B89563]"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
 
-                </div>
+      </div>
 
-                <div>
+      <div>
 
-                  <h3 class="text-sm font-semibold text-white">
-                    Create a strong character reference
-                  </h3>
+        <h3 class="text-sm font-semibold text-white">
+          {item.title}
+        </h3>
 
-                  <p class="mt-1 text-xs leading-5 text-white/40">
-                    Build a reliable visual foundation that clearly
-                    defines your AI character.
-                  </p>
+        <p class="mt-1 text-xs leading-5 text-white/40">
+          {item.description}
+        </p>
 
-                </div>
+      </div>
 
-              </div>
+    </div>
 
+  ))}
 
-              <!-- ============================================= -->
-              <!-- 02 -->
-              <!-- ============================================= -->
-
-              <div class="flex items-start gap-4">
-
-                <div
-                  class="mt-0.5 flex h-7 w-7 shrink-0
-                         items-center justify-center rounded-full
-                         bg-[#8F6B3B]/15"
-                >
-
-                  <svg
-                    class="h-3.5 w-3.5 text-[#B89563]"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-
-                </div>
-
-                <div>
-
-                  <h3 class="text-sm font-semibold text-white">
-                    Preserve identity across images
-                  </h3>
-
-                  <p class="mt-1 text-xs leading-5 text-white/40">
-                    Maintain the character's key facial and visual
-                    features when creating new images.
-                  </p>
-
-                </div>
-
-              </div>
-
-
-              <!-- ============================================= -->
-              <!-- 03 -->
-              <!-- ============================================= -->
-
-              <div class="flex items-start gap-4">
-  <div
-    class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#8F6B3B]/15"
-  >
-    <svg
-  class="h-3.5 w-3.5 text-[#B89563]"
-  viewBox="0 0 20 20"
-  fill="currentColor"
->
-  <path
-    fill-rule="evenodd"
-    d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
-    clip-rule="evenodd"
-  />
-</svg>
-  </div>
-
-  <div>
-    <h3 class="text-sm font-semibold text-white">
-      Create new poses and scenes
-    </h3>
-
-    <p class="mt-1 text-xs leading-5 text-white/40">
-      Generate new images while keeping the same
-      character identity.
-    </p>
-  </div>
 </div>
-
-
-              <!-- ============================================= -->
-              <!-- 04 -->
-              <!-- ============================================= -->
-
-              <div class="flex items-start gap-4">
-
-                <div
-                  class="mt-0.5 flex h-7 w-7 shrink-0
-                         items-center justify-center rounded-full
-                         bg-[#8F6B3B]/15"
-                >
-
-                  <svg
-                    class="h-3.5 w-3.5 text-[#B89563]"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.704 5.29a1 1 0 011.414 0l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 011.414 1.414l2.793-2.793a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-
-                </div>
-
-                <div>
-
-                  <h3 class="text-sm font-semibold text-white">
-                    Build a repeatable workflow
-                  </h3>
-
-                  <p class="mt-1 text-xs leading-5 text-white/40">
-                    Turn character consistency into a repeatable part
-                    of your AI filmmaking workflow.
-                  </p>
-
-                </div>
-
-              </div>
 
             </div>
 
           </div>
-
-        </div>
 
       </Container>
 
@@ -578,79 +459,76 @@ const videoSchema = {
   <!-- AUTHENTICATED GUIDE DOWNLOAD -->
   <!-- ===================================================== -->
 
-  <script>
-    import { supabase } from '~/lib/supabase';
+ <script>
+  import { supabase } from '~/lib/supabase';
 
-    const downloadButtons =
-      document.querySelectorAll<HTMLButtonElement>(
-        '[data-guide-download]'
+  /*
+   * DOWNLOAD
+   *
+   * Uses event delegation so the download buttons
+   * continue working when navigating between tutorials.
+   */
+
+  document.addEventListener('click', async (event) => {
+
+    const target = event.target as HTMLElement;
+
+    const button =
+      target.closest<HTMLButtonElement>('[data-guide-download]');
+
+    if (!button) return;
+
+    const storagePath = button.dataset.storagePath;
+
+    if (!storagePath) {
+      console.error('Guide storage path is missing.');
+      return;
+    }
+
+    /*
+     * CHECK AUTHENTICATION
+     */
+
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      window.location.href =
+        '/account?redirect=/ai-guides';
+
+      return;
+    }
+
+    /*
+     * CREATE TEMPORARY DOWNLOAD URL
+     */
+
+    const { data, error } =
+      await supabase.storage
+        .from('guides')
+        .createSignedUrl(storagePath, 60);
+
+    if (error) {
+      console.error(
+        'Guide download error:',
+        error
       );
 
-    downloadButtons.forEach((button) => {
+      return;
+    }
 
-      button.addEventListener('click', async () => {
+    /*
+     * START DOWNLOAD
+     */
 
-        const storagePath =
-          button.dataset.storagePath;
+    window.open(
+      data.signedUrl,
+      '_blank',
+      'noopener,noreferrer'
+    );
 
-        if (!storagePath) {
-          console.error('Guide storage path is missing.');
-          return;
-        }
-
-        /*
-         * CHECK AUTHENTICATION
-         */
-
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
-
-        if (!session) {
-
-          const redirect =
-            encodeURIComponent(window.location.pathname);
-
-          window.location.href =
-            `/account?redirect=${redirect}`;
-
-          return;
-        }
-
-
-        /*
-         * CREATE TEMPORARY DOWNLOAD URL
-         */
-
-        const { data, error } =
-          await supabase.storage
-            .from('guides')
-            .createSignedUrl(storagePath, 60);
-
-        if (error) {
-
-          console.error(
-            'Guide download error:',
-            error
-          );
-
-          return;
-        }
-
-
-        /*
-         * START DOWNLOAD
-         */
-
-        window.open(
-          data.signedUrl,
-          '_blank',
-          'noopener,noreferrer'
-        );
-
-      });
-
-    });
-  </script>
+  });
+</script>
 
 </Layout>
