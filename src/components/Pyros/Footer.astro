@@ -103,6 +103,8 @@ import { Icon } from 'astro-icon/components';
           Follow
         </h3>
 
+        <!-- Social Icons -->
+
         <div class="mt-6 flex items-center gap-5">
 
           <a
@@ -162,10 +164,34 @@ import { Icon } from 'astro-icon/components';
 
         </div>
 
+
+        <!-- Newsletter -->
+
+        <div class="mt-7 max-w-[360px]">
+
+          <h4 class="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B08A57]">
+            Join the Newsletter
+          </h4>
+
+          <p class="mt-1 text-xs leading-relaxed text-gray-500">
+            AI filmmaking tutorials, workflows & free resources.
+          </p>
+
+          <div class="newsletter-form mt-1 w-full">
+
+            <script
+              async
+              data-uid="8abb2a5bc4"
+              src="https://pyros-ai-creative.kit.com/8abb2a5bc4/index.js"
+            ></script>
+
+          </div>
+
+        </div>
+
       </div>
 
     </div>
-
 
 
     <!-- Bottom -->
@@ -185,3 +211,150 @@ import { Icon } from 'astro-icon/components';
   </div>
 
 </footer>
+
+
+<style>
+  /* =========================================
+     NEWSLETTER
+     ========================================= */
+
+  .newsletter-form {
+    width: 100%;
+    max-width: 340px;
+    min-width: 0;
+    margin-top: -22px;
+    overflow: visible;
+  }
+
+  .newsletter-form :global(.formkit-form),
+  .newsletter-form :global(form) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .newsletter-form :global(.formkit-fields) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .newsletter-form :global(.formkit-field) {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .newsletter-form :global(.formkit-input) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+
+    background: #111111 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 2px !important;
+
+    color: #ffffff !important;
+    font-size: 12px !important;
+  }
+
+  .newsletter-form :global(.formkit-input::placeholder) {
+    color: #777777 !important;
+    opacity: 1 !important;
+  }
+
+  .newsletter-form :global(.formkit-submit) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    flex: 0 0 68px !important;
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+
+    height: 40px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #B08A57 !important;
+    border: 1px solid #B08A57 !important;
+    border-radius: 2px !important;
+
+    color: #090909 !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em !important;
+
+    white-space: nowrap !important;
+  }
+
+  .newsletter-form :global(.formkit-submit:hover) {
+    background: #C6A16A !important;
+    border-color: #C6A16A !important;
+  }
+
+  .newsletter-form :global(.formkit-powered-by) {
+    display: block !important;
+    width: auto !important;
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+
+    font-size: 7px !important;
+    line-height: 9px !important;
+    opacity: 0.15 !important;
+    text-align: left !important;
+  }
+
+  /* =========================================
+     MOBILE
+     ========================================= */
+
+  @media (max-width: 600px) {
+
+    .newsletter-form {
+      max-width: 100%;
+      margin-top: -10px;
+    }
+
+    .newsletter-form :global(.formkit-form),
+    .newsletter-form :global(form),
+    .newsletter-form :global(.formkit-fields) {
+      max-width: 100% !important;
+    }
+
+    .newsletter-form :global(.formkit-fields) {
+      flex-direction: row !important;
+      gap: 6px !important;
+    }
+
+    .newsletter-form :global(.formkit-submit) {
+      flex: 0 0 68px !important;
+      width: 68px !important;
+      min-width: 68px !important;
+      max-width: 68px !important;
+    }
+
+  }
+</style>
