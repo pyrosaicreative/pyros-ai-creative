@@ -31,7 +31,8 @@ export const tutorials: Tutorial[] = [
 
     slug: 'character-consistency-express-image-workflow',
 
-    description: '',
+    description:
+  'Learn how to create a Character Reference Sheet from a single image and use it to maintain consistent AI character identity across images and videos.',
 
     thumbnail:
       '/images/tutorials/character-consistency-express-image-workflow.png',
@@ -80,7 +81,8 @@ export const tutorials: Tutorial[] = [
 
     slug: 'character-consistency-express-video-workflow',
 
-    description: '',
+    description:
+  'Learn how to create consistent AI videos using character and environment reference sheets, cinematic start frames and a reliable animation workflow.',
 
     thumbnail:
       '/images/tutorials/character-consistency-express-video-workflow.jpeg',
