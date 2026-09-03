@@ -165,7 +165,7 @@ import { Icon } from 'astro-icon/components';
         </div>
 
 
-        <!-- Newsletter -->
+               <!-- Newsletter -->
 
         <div class="mt-7 max-w-[360px]">
 
@@ -177,15 +177,7 @@ import { Icon } from 'astro-icon/components';
             AI filmmaking tutorials, workflows & free resources.
           </p>
 
-          <div class="newsletter-form mt-1 w-full">
-
-            <script
-              async
-              data-uid="8abb2a5bc4"
-              src="https://pyros-ai-creative.kit.com/8abb2a5bc4/index.js"
-            ></script>
-
-          </div>
+          <div class="newsletter-form mt-1 w-full"></div>
 
         </div>
 
@@ -327,6 +319,7 @@ import { Icon } from 'astro-icon/components';
     text-align: left !important;
   }
 
+
   /* =========================================
      MOBILE
      ========================================= */
@@ -358,3 +351,29 @@ import { Icon } from 'astro-icon/components';
 
   }
 </style>
+
+
+<script>
+  function loadKitNewsletter() {
+    const container = document.querySelector('.newsletter-form');
+
+    if (!container) return;
+
+    // Avoid loading Kit more than once
+    if (container.querySelector('.formkit-form')) return;
+
+    const script = document.createElement('script');
+
+    script.async = true;
+    script.setAttribute('data-uid', '8abb2a5bc4');
+    script.src = 'https://pyros-ai-creative.kit.com/8abb2a5bc4/index.js';
+
+    container.appendChild(script);
+  }
+
+  // Initial page load
+  loadKitNewsletter();
+
+  // Astro client-side navigation
+  document.addEventListener('astro:page-load', loadKitNewsletter);
+</script>
