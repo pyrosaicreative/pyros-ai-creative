@@ -85,7 +85,7 @@ export const tutorials: Tutorial[] = [
   'Learn how to create consistent AI videos using character and environment reference sheets, cinematic start frames and a reliable animation workflow.',
 
     thumbnail:
-      '/images/tutorials/character-consistency-express-video-workflow.jpeg',
+      '/images/tutorials/character-consistency-express-video-workflow.png',
 
     badge: 'FREE',
 
