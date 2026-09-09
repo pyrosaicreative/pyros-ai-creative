@@ -38,4 +38,15 @@ export const guides: Guide[] = [
   storagePath: 'character-consistency-express-video-workflow-guide.pdf',
   tutorialUrl: 'https://youtu.be/8HaKm1e4NM4',
 },
+ {
+    id: 'google-flow-storyboard-studio',
+    title: 'Google Flow Storyboard Studio - The AI Filmmaking Guide',
+    workflow: 'STORYBOARD STUDIO WORKFLOW',
+    description:
+      'Learn a complete AI filmmaking workflow in Google Flow, from story development and visual assets to storyboards, animation and a finished short film.',
+    cover: '/images/ai-guides/google-flow-storyboard-studio-guide.png',
+    pages: 15,
+    type: 'free',
+    storagePath: 'google-flow-storyboard-studio-guide.pdf',
+  },
 ];

@@ -124,4 +124,58 @@ export const tutorials: Tutorial[] = [
       },
     ],
   },
+    {
+    title:
+      'Google Flow Storyboard Studio: From Idea to AI Short Film (Free Guide)',
+
+    slug: 'google-flow-storyboard-studio',
+
+    description:
+      'Learn how to use Google Flow Storyboard Studio to develop a story, create characters, locations and props, build a storyboard, and turn your scenes into a complete AI short film.',
+
+    thumbnail:
+      '/images/tutorials/Storyboard-Studio.png',
+
+    badge: 'FREE',
+
+    category: 'AI Filmmaking',
+
+    youtubeId: 'OJZC40izHdc',
+    uploadDate: '2026-09-10',
+
+    guideId: 'google-flow-storyboard-studio',
+
+    guide: {
+      title: 'Google Flow Storyboard Studio — The AI Filmmaking Guide',
+      file: '/guides/google-flow-storyboard-studio-guide.pdf',
+    },
+
+    whatYoullLearn: [
+      {
+        title: 'Develop your short-film story',
+        description:
+          'Use Storyboard Studio to develop an original story and organize it into a three-act structure.',
+      },
+      {
+        title: 'Build characters, locations and props',
+        description:
+          'Create and refine the visual assets needed to maintain a consistent visual foundation throughout your film.',
+      },
+      {
+        title: 'Create and refine your storyboard',
+        description:
+          'Turn your story into scenes and storyboard frames, then refine them for stronger visual continuity.',
+      },
+      {
+        title: 'Animate your scenes',
+        description:
+          'Use Agent Mode or Standard Mode to transform storyboard frames into cinematic AI video scenes.',
+      },
+      {
+        title: 'Build the final AI short film',
+        description:
+          'Combine your generated scenes into a complete short film using a structured AI filmmaking workflow.',
+      },
+    ],
+  },
 ];
