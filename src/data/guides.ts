@@ -40,7 +40,7 @@ export const guides: Guide[] = [
 },
  {
     id: 'google-flow-storyboard-studio',
-    title: 'Google Flow Storyboard Studio - The AI Filmmaking Guide',
+    title: 'Storyboard Studio Guide',
     workflow: 'STORYBOARD STUDIO WORKFLOW',
     description:
       'Learn a complete AI filmmaking workflow in Google Flow, from story development and visual assets to storyboards, animation and a finished short film.',
@@ -48,5 +48,6 @@ export const guides: Guide[] = [
     pages: 15,
     type: 'free',
     storagePath: 'google-flow-storyboard-studio-guide.pdf',
+    tutorialUrl: 'https://youtu.be/OJZC40izHdc',
   },
 ];
