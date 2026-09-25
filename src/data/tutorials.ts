@@ -178,4 +178,58 @@ export const tutorials: Tutorial[] = [
       },
     ],
   },
+    {
+    title:
+      'I Found Google’s Secret FREE AI Tool for Filmmakers (Free Guide)',
+
+    slug: 'google-flow-music-ai-filmmaking',
+
+    description:
+      'Discover how to use Google Flow Music to turn an existing script into cinematic images, video scenes, dialogue, consistent character voices, and a matching soundtrack.',
+
+    thumbnail:
+      '/images/tutorials/google-flow-music-ai-filmmaking.png',
+
+    badge: 'FREE',
+
+    category: 'AI Filmmaking',
+
+    youtubeId: '-_omF8KmqUE',
+    uploadDate: '2026-09-26',
+
+    guideId: 'google-flow-music-ai-filmmaking',
+
+    guide: {
+      title: 'Google Flow Music — AI Filmmaking Guide',
+      file: '/guides/google-flow-music-ai-filmmaking-guide.pdf',
+    },
+
+    whatYoullLearn: [
+      {
+        title: 'Create cinematic environments',
+        description:
+          'Build cinematic environments from your existing script and control the model, aspect ratio and quality directly through your prompts.',
+      },
+      {
+        title: 'Create consistent characters and scenes',
+        description:
+          'Use character and environment references to maintain visual continuity across your AI filmmaking workflow.',
+      },
+      {
+        title: 'Generate cinematic video and dialogue',
+        description:
+          'Turn your images into video scenes, extend your sequences, and create dialogue scenes with consistent visual references.',
+      },
+      {
+        title: 'Achieve consistent character voices',
+        description:
+          'Separate generated voices, replace them with consistent voices using ElevenLabs, and preserve the original sound effects.',
+      },
+      {
+        title: 'Create a cinematic soundtrack',
+        description:
+          'Generate a soundtrack designed to match the scenes you created and bring the complete workflow together in your final edit.',
+      },
+    ],
+  },
 ];

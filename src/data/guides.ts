@@ -50,4 +50,16 @@ export const guides: Guide[] = [
     storagePath: 'google-flow-storyboard-studio-guide.pdf',
     tutorialUrl: 'https://youtu.be/OJZC40izHdc',
   },
+    {
+    id: 'google-flow-music-ai-filmmaking',
+    title: 'Google Flow Music Guide',
+    workflow: 'AI FILMMAKING WORKFLOW',
+    description:
+      'Turn an existing script into cinematic images, video scenes, dialogue, consistent character voices, and a matching soundtrack with Google Flow Music.',
+    cover: '/images/ai-guides/google-flow-music-ai-filmmaking-guide.png',
+    pages: 16,
+    type: 'free',
+    storagePath: 'google-flow-music-ai-filmmaking-guide.pdf',
+    tutorialUrl: 'https://youtu.be/-_omF8KmqUE',
+  },
 ];
