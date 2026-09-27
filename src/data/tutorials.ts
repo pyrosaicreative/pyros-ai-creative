@@ -180,7 +180,7 @@ export const tutorials: Tutorial[] = [
   },
     {
     title:
-      'I Found Google’s Secret FREE AI Tool for Filmmakers (Free Guide)',
+      'I Found Google’s Secret AI Tool for Filmmakers (Free Guide)',
 
     slug: 'google-flow-music-ai-filmmaking',
 
