@@ -191,6 +191,8 @@ const videoSchema = {
                     type="button"
                     data-guide-download
                     data-storage-path={guide.storagePath}
+                    data-guide-id={guide.id}
+                    data-guide-name={`${guide.title} — ${guide.workflow}`}
                     aria-label={`Download ${guide.title}`}
                     class="group relative block w-[175px]
                            shrink-0 overflow-hidden rounded-xl
@@ -295,6 +297,8 @@ const videoSchema = {
                       type="button"
                       data-guide-download
                       data-storage-path={guide.storagePath}
+                      data-guide-id={guide.id}
+                      data-guide-name={`${guide.title} — ${guide.workflow}`}
                       class="mt-5 inline-flex w-fit
                              items-center rounded-full
                              bg-[#8F6B3B]
@@ -456,32 +460,33 @@ const videoSchema = {
 
 
   <!-- ===================================================== -->
-  <!-- AUTHENTICATED GUIDE DOWNLOAD -->
-  <!-- ===================================================== -->
+<!-- AUTHENTICATED GUIDE DOWNLOAD -->
+<!-- ===================================================== -->
 
- <script>
+<script>
   import { supabase } from '~/lib/supabase';
 
   /*
-   * DOWNLOAD
-   *
-   * Uses event delegation so the download buttons
-   * continue working when navigating between tutorials.
-   */
+ * DOWNLOAD
+ */
 
-  document.addEventListener('click', async (event) => {
+const downloadButtons =
+  document.querySelectorAll<HTMLButtonElement>(
+    '[data-guide-download]'
+  );
 
-    const target = event.target as HTMLElement;
+downloadButtons.forEach((button) => {
 
-    const button =
-      target.closest<HTMLButtonElement>('[data-guide-download]');
-
-    if (!button) return;
+  button.addEventListener('click', async () => {
 
     const storagePath = button.dataset.storagePath;
+    const guideId = button.dataset.guideId;
+    const guideName = button.dataset.guideName;
 
-    if (!storagePath) {
-      console.error('Guide storage path is missing.');
+    if (!storagePath || !guideId || !guideName) {
+      console.error(
+        'Guide storage path or guide ID is missing.'
+      );
       return;
     }
 
@@ -494,6 +499,7 @@ const videoSchema = {
     } = await supabase.auth.getSession();
 
     if (!session) {
+
       window.location.href =
         '/account?redirect=/ai-guides';
 
@@ -510,12 +516,36 @@ const videoSchema = {
         .createSignedUrl(storagePath, 60);
 
     if (error) {
+
       console.error(
         'Guide download error:',
         error
       );
 
       return;
+    }
+
+    /*
+     * RECORD DOWNLOAD
+     */
+
+    const { error: trackingError } =
+      await supabase
+        .from('guide_downloads')
+        .insert({
+          user_id: session.user.id,
+          guide_id: guideId,
+          guide_name: guideName,
+          storage_path: storagePath,
+        });
+
+    if (trackingError) {
+
+      console.error(
+        'Guide download tracking error:',
+        trackingError
+      );
+
     }
 
     /*
@@ -529,6 +559,6 @@ const videoSchema = {
     );
 
   });
-</script>
 
-</Layout>
+});
+</script>

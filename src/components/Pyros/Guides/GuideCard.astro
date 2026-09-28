@@ -22,10 +22,12 @@ const { guide } = Astro.props;
   >
 
     <button
-      type="button"
-      data-guide-download
-      data-storage-path={guide.storagePath}
-      aria-label={`Download ${guide.title}`}
+  type="button"
+  data-guide-download
+  data-storage-path={guide.storagePath}
+  data-guide-id={guide.id}
+  data-guide-name={`${guide.title} — ${guide.workflow}`}
+  aria-label={`Download ${guide.title}`}
       class="block w-full cursor-pointer text-left"
     >
       <div class="aspect-[210/297] w-full overflow-hidden leading-none">
@@ -88,10 +90,12 @@ const { guide } = Astro.props;
       {guide.type === 'free' ? (
 
         <button
-          type="button"
-          data-guide-download
-          data-storage-path={guide.storagePath}
-          class="inline-flex shrink-0 items-center rounded-full
+  type="button"
+  data-guide-download
+  data-storage-path={guide.storagePath}
+  data-guide-id={guide.id}
+  data-guide-name={`${guide.title} — ${guide.workflow}`}
+  class="inline-flex shrink-0 items-center rounded-full
                  bg-[#8F6B3B] px-3.5 py-2
                  text-[10px] font-semibold uppercase
                  tracking-[0.12em] text-white
