@@ -30,26 +30,53 @@ const sections = [
   id="tutorials"
   class="relative -mt-8 z-20 bg-black pt-0 pb-24"
 >
-
   <Container>
 
     {
       sections.map((section) => {
-
         const items = section.filter();
 
         return items.length > 0 ? (
-
           <TutorialRow
             title={section.title}
             tutorials={items}
           />
-
         ) : null;
-
       })
     }
 
-  </Container>
+    <!-- Support Banner -->
 
+    <div class="mt-16">
+      <div
+        class="flex flex-col gap-6 rounded-2xl border border-[#B08A57]/20 bg-[#0d0d0d] px-6 py-6 md:flex-row md:items-center md:justify-between md:px-8"
+      >
+        <div class="max-w-2xl">
+
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B08A57]">
+            Support the Project
+          </p>
+
+          <h3 class="mt-2 text-xl font-semibold text-white md:text-2xl">
+            Support PYROS AI Creative
+          </h3>
+
+          <p class="mt-2 text-sm leading-6 text-gray-400 md:text-base">
+            Help us create more free AI filmmaking guides, tutorials and creative resources.
+          </p>
+
+        </div>
+
+        <a
+          href="https://shop.pyrosaicreative.com/pages/contribute"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex shrink-0 items-center justify-center rounded-full bg-[#B08A57] px-6 py-3 text-sm font-semibold text-[#090909] transition duration-300 hover:bg-[#C6A16A]"
+        >
+          Contribute
+        </a>
+      </div>
+    </div>
+
+  </Container>
 </section>
