@@ -90,6 +90,17 @@ import { Icon } from 'astro-icon/components';
             </a>
           </li>
 
+          <li>
+            <a
+              href="https://shop.pyrosaicreative.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-400 transition duration-300 hover:text-white"
+            >
+              Shop
+            </a>
+          </li>
+
         </ul>
 
       </div>
@@ -165,7 +176,7 @@ import { Icon } from 'astro-icon/components';
         </div>
 
 
-               <!-- Newsletter -->
+        <!-- Newsletter -->
 
         <div class="mt-7 max-w-[360px]">
 
@@ -359,7 +370,6 @@ import { Icon } from 'astro-icon/components';
 
     if (!container) return;
 
-    // Avoid loading Kit more than once
     if (container.querySelector('.formkit-form')) return;
 
     const script = document.createElement('script');
@@ -371,9 +381,7 @@ import { Icon } from 'astro-icon/components';
     container.appendChild(script);
   }
 
-  // Initial page load
   loadKitNewsletter();
 
-  // Astro client-side navigation
   document.addEventListener('astro:page-load', loadKitNewsletter);
 </script>
