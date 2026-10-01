@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/Pyros/Footer.astro';
+import CookieConsent from '~/components/Pyros/CookieConsent.astro';
 
 import { headerData } from "~/navigation";
 
@@ -26,4 +27,5 @@ const { metadata } = Astro.props;
   <slot name="footer">
     <Footer />
   </slot>
+ <CookieConsent />
 </Layout>
