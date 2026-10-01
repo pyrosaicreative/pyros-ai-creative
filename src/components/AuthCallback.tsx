@@ -26,16 +26,21 @@ export default function AuthCallback() {
         return;
       }
 
-      const newsletterConsent =
-        data.session.user.user_metadata?.newsletter_consent === true;
-
-      if (newsletterConsent) {
-        const { error: kitError } =
-          await supabase.functions.invoke("subscribe-to-kit");
+      try {
+        const { data: kitData, error: kitError } =
+          await supabase.functions.invoke("subscribe-to-kit", {
+            headers: {
+              Authorization: `Bearer ${data.session.access_token}`,
+            },
+          });
 
         if (kitError) {
           console.error("Kit newsletter error:", kitError);
+        } else {
+          console.log("Kit newsletter result:", kitData);
         }
+      } catch (error) {
+        console.error("Kit newsletter unexpected error:", error);
       }
 
       window.location.replace("/");
