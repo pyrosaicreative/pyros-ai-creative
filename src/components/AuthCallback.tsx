@@ -12,19 +12,33 @@ export default function AuthCallback() {
         return;
       }
 
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data, error } =
+        await supabase.auth.exchangeCodeForSession(code);
 
       if (error) {
-        console.error(error);
+        console.error("Auth callback error:", error);
         window.location.replace("/account");
         return;
       }
 
-      if (data.session) {
-        window.location.replace("/");
-      } else {
+      if (!data.session) {
         window.location.replace("/account");
+        return;
       }
+
+      const newsletterConsent =
+        data.session.user.user_metadata?.newsletter_consent === true;
+
+      if (newsletterConsent) {
+        const { error: kitError } =
+          await supabase.functions.invoke("subscribe-to-kit");
+
+        if (kitError) {
+          console.error("Kit newsletter error:", kitError);
+        }
+      }
+
+      window.location.replace("/");
     }
 
     handleCallback();

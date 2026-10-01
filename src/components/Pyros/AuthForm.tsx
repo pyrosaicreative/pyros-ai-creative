@@ -7,6 +7,7 @@ export default function AuthForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
   const [message, setMessage] = useState("");
 const [messageType, setMessageType] = useState<"success" | "error">("error");
   const [loading, setLoading] = useState(false);
@@ -67,6 +68,12 @@ const { error } = await supabase.auth.signUp({
   password,
   options: {
     emailRedirectTo: `${window.location.origin}/auth/callback`,
+    data: {
+      newsletter_consent: newsletterConsent,
+      newsletter_consent_at: newsletterConsent
+        ? new Date().toISOString()
+        : null,
+    },
   },
 });
 
@@ -356,7 +363,25 @@ return (
               </div>
 
             )}
+{mode === "signup" && (
+  <label className="mt-5 flex cursor-pointer items-start gap-3">
+    <input
+      type="checkbox"
+      checked={newsletterConsent}
+      disabled={loading}
+      onChange={(e) =>
+        setNewsletterConsent(
+          (e.target as HTMLInputElement).checked
+        )
+      }
+      className="mt-1 h-4 w-4 accent-[#8F6B3B]"
+    />
 
+    <span className="text-[12px] leading-5 text-gray-400">
+      Send me AI filmmaking tutorials, new guides and PYROS updates by email.
+    </span>
+  </label>
+)}
             {/* Submit */}
 
             <button
