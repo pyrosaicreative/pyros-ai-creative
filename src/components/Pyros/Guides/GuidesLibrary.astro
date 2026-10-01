@@ -266,58 +266,40 @@ downloadButtons.forEach((button) => {
     }
 
 
-  /*
- * RECORD DOWNLOAD
- */
+    /*
+     * RECORD DOWNLOAD
+     */
 
-const { error: trackingError } =
-  await supabase
-    .from('guide_downloads')
-    .insert({
-      user_id: session.user.id,
-      guide_id: guideId,
-      guide_name: guideName,
-      storage_path: storagePath,
-    });
-
-
-if (trackingError) {
-
-  console.error(
-    'Guide download tracking error:',
-    trackingError
-  );
-
-}
+    const { error: trackingError } =
+      await supabase
+        .from('guide_downloads')
+        .insert({
+          user_id: session.user.id,
+          guide_id: guideId,
+          guide_name: guideName,
+          storage_path: storagePath,
+        });
 
 
-/*
- * RECORD GOOGLE ANALYTICS GUIDE VIEW
- */
+    if (trackingError) {
 
-if (typeof (window as any).gtag === 'function') {
+      console.error(
+        'Guide download tracking error:',
+        trackingError
+      );
 
-  (window as any).gtag(
-    'event',
-    'guide_view',
-    {
-      guide_id: guideId,
-      guide_name: guideName,
     }
-  );
-
-}
 
 
-/*
- * OPEN GUIDE
- */
+    /*
+     * START DOWNLOAD
+     */
 
-window.open(
-  data.signedUrl,
-  '_blank',
-  'noopener,noreferrer'
-);
+    window.open(
+      data.signedUrl,
+      '_blank',
+      'noopener,noreferrer'
+    );
 
   });
 
