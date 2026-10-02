@@ -536,11 +536,11 @@ const videoSchema = {
   return;
 }
 
-const redirect =
+const encodedRedirect =
   encodeURIComponent(shopUrl);
 
 window.open(
-  `/account?redirect=${redirect}`,
+  `/account?redirect=${encodedRedirect}`,
   '_blank',
   'noopener,noreferrer'
 );
