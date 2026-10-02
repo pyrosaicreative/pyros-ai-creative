@@ -3,6 +3,31 @@ import { supabase } from "~/lib/supabase";
 import { Eye, EyeOff } from "lucide-preact";
 
 export default function AuthForm() {
+    const getSafeRedirect = () => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect");
+
+    if (!redirect) {
+      return "/dashboard";
+    }
+
+    try {
+      const url = new URL(redirect, window.location.origin);
+
+      const allowedHosts = [
+        window.location.host,
+        "shop.pyrosaicreative.com",
+      ];
+
+      if (!allowedHosts.includes(url.host)) {
+        return "/dashboard";
+      }
+
+      return url.toString();
+    } catch {
+      return "/dashboard";
+    }
+  };
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,22 +40,22 @@ const [messageType, setMessageType] = useState<"success" | "error">("error");
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [checkingSession, setCheckingSession] = useState(true);
 
-  useEffect(() => {
-  async function checkSession() {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
+    useEffect(() => {
+    async function checkSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
 
-    if (session) {
-      window.location.replace("/");
-      return;
+      if (session) {
+        window.location.replace(getSafeRedirect());
+        return;
+      }
+
+      setCheckingSession(false);
     }
 
-    setCheckingSession(false);
-  }
-
-  checkSession();
-}, []);
+    checkSession();
+  }, []);
 
 async function handleSubmit() {
   setMessage("");
@@ -67,7 +92,11 @@ const { error } = await supabase.auth.signUp({
   email: email.trim(),
   password,
   options: {
-    emailRedirectTo: `${window.location.origin}/auth/callback`,
+    emailRedirectTo: `${
+  window.location.origin
+}/auth/callback?redirect=${encodeURIComponent(
+  getSafeRedirect()
+)}`,
     data: {
       newsletter_consent: newsletterConsent,
       newsletter_consent_at: newsletterConsent
@@ -106,7 +135,7 @@ if (error) {
   return setMessage(error.message);
 }
 
-window.location.href = "/dashboard";
+window.location.href = getSafeRedirect();
 }
 
 async function forgotPassword() {

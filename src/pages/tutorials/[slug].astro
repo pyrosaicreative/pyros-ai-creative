@@ -33,6 +33,7 @@ const metadata = {
   title: tutorial.title,
   description: tutorial.description,
 };
+
 const videoSchema = {
   '@context': 'https://schema.org',
   '@type': 'VideoObject',
@@ -46,7 +47,10 @@ const videoSchema = {
 ---
 
 <Layout metadata={metadata}>
-  <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(videoSchema)}
+  />
 
   <main class="bg-black pb-24">
 
@@ -55,7 +59,6 @@ const videoSchema = {
     <!-- ===================================================== -->
 
     <section class="pt-5 lg:pt-6">
-
       <Container>
 
         <div
@@ -82,7 +85,6 @@ const videoSchema = {
         </div>
 
       </Container>
-
     </section>
 
 
@@ -91,7 +93,6 @@ const videoSchema = {
     <!-- ===================================================== -->
 
     <section class="pt-3 pb-2">
-
       <Container>
 
         <div
@@ -143,7 +144,6 @@ const videoSchema = {
         </div>
 
       </Container>
-
     </section>
 
 
@@ -152,7 +152,6 @@ const videoSchema = {
     <!-- ===================================================== -->
 
     <section class="pt-10">
-
       <Container>
 
         <div
@@ -183,17 +182,14 @@ const videoSchema = {
 
                 <div class="mt-6 flex gap-6">
 
-                  <!-- ========================================= -->
                   <!-- COVER -->
-                  <!-- ========================================= -->
 
                   <button
                     type="button"
-                    data-guide-download
-                    data-storage-path={guide.storagePath}
+                    data-guide-access
                     data-guide-id={guide.id}
-                    data-guide-name={`${guide.title} — ${guide.workflow}`}
-                    aria-label={`Download ${guide.title}`}
+                    data-shop-url={guide.shopUrl}
+                    aria-label={`Get ${guide.title}`}
                     class="group relative block w-[175px]
                            shrink-0 overflow-hidden rounded-xl
                            shadow-xl shadow-black/40
@@ -229,7 +225,7 @@ const videoSchema = {
                                group-hover:translate-y-0
                                group-hover:opacity-100"
                       >
-                        DOWNLOAD
+                        GET GUIDE
                       </span>
 
                     </div>
@@ -237,9 +233,7 @@ const videoSchema = {
                   </button>
 
 
-                  <!-- ========================================= -->
                   <!-- GUIDE INFO -->
-                  <!-- ========================================= -->
 
                   <div class="flex min-w-0 flex-1 flex-col">
 
@@ -250,14 +244,12 @@ const videoSchema = {
                       {guide.title}
                     </h2>
 
-
                     <p
                       class="mt-2 text-[10px] font-semibold uppercase
                              tracking-[0.22em] text-[#8F6B3B]"
                     >
                       {guide.workflow}
                     </p>
-
 
                     <p
                       class="mt-4 text-sm leading-6 text-white/50"
@@ -291,14 +283,20 @@ const videoSchema = {
                     </div>
 
 
-                    <!-- DOWNLOAD BUTTON -->
+                    <!-- FREE NOTE -->
+
+                    <p class="mt-4 text-[11px] font-medium text-white/40">
+                      Free · No card required
+                    </p>
+
+
+                    <!-- GUIDE BUTTON -->
 
                     <button
                       type="button"
-                      data-guide-download
-                      data-storage-path={guide.storagePath}
+                      data-guide-access
                       data-guide-id={guide.id}
-                      data-guide-name={`${guide.title} — ${guide.workflow}`}
+                      data-shop-url={guide.shopUrl}
                       class="mt-5 inline-flex w-fit
                              items-center rounded-full
                              bg-[#8F6B3B]
@@ -307,7 +305,8 @@ const videoSchema = {
                              transition duration-300
                              hover:bg-[#9A7A49]"
                     >
-                      Download Free Guide
+                      Get Free Guide
+
                       <span class="ml-2 text-white/60">
                         →
                       </span>
@@ -316,30 +315,42 @@ const videoSchema = {
                   </div>
 
                 </div>
-<div class="mt-8">
 
-  <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8F6B3B]">
-    SUPPORT THE PROJECT
-  </p>
 
-  <h3 class="mt-2 text-lg font-semibold text-white">
-    Support PYROS AI Creative
-  </h3>
+                <!-- SUPPORT -->
 
-  <p class="mt-2 max-w-md text-sm leading-6 text-white/45">
-    Help us create more free AI filmmaking guides, tutorials and creative resources.
-  </p>
+                <div class="mt-8">
 
-  <a
-    href="https://shop.pyrosaicreative.com/pages/contribute"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="mt-4 inline-flex items-center text-sm font-semibold text-[#B89563] transition duration-300 hover:text-[#C7A56F]"
-  >
-    Contribute
-  </a>
+                  <p
+                    class="text-[10px] font-semibold uppercase
+                           tracking-[0.3em] text-[#8F6B3B]"
+                  >
+                    SUPPORT THE PROJECT
+                  </p>
 
-</div>
+                  <h3 class="mt-2 text-lg font-semibold text-white">
+                    Support PYROS AI Creative
+                  </h3>
+
+                  <p class="mt-2 max-w-md text-sm leading-6 text-white/45">
+                    Help us create more free AI filmmaking guides,
+                    tutorials and creative resources.
+                  </p>
+
+                  <a
+                    href="https://shop.pyrosaicreative.com/pages/contribute"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-4 inline-flex items-center
+                           text-sm font-semibold text-[#B89563]
+                           transition duration-300
+                           hover:text-[#C7A56F]"
+                  >
+                    Contribute
+                  </a>
+
+                </div>
+
               </div>
 
             )
@@ -359,68 +370,64 @@ const videoSchema = {
               WHAT YOU'LL LEARN
             </p>
 
-
             <p
-              class="mt-4 max-w-xl text-sm leading-6 text-white/45"
-            >
-              Follow a simple workflow to create and maintain
-              consistent AI characters across different images,
-              poses and scenes.
-            </p>
+  class="mt-4 max-w-xl text-sm leading-6 text-white/45"
+>
+  {tutorial.learnIntro}
+</p>
 
 
-           <!-- CHECKLIST -->
+            <!-- CHECKLIST -->
 
-<div class="mt-7 space-y-5">
+            <div class="mt-7 space-y-5">
 
-  {tutorial.whatYoullLearn.map((item) => (
+              {tutorial.whatYoullLearn.map((item) => (
 
-    <div class="flex items-start gap-4">
+                <div class="flex items-start gap-4">
 
-      <div
-        class="mt-0.5 flex h-7 w-7 shrink-0
-               items-center justify-center rounded-full
-               bg-[#8F6B3B]/15"
-      >
+                  <div
+                    class="mt-0.5 flex h-7 w-7 shrink-0
+                           items-center justify-center rounded-full
+                           bg-[#8F6B3B]/15"
+                  >
 
-        <svg
-          class="h-3.5 w-3.5 text-[#B89563]"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
+                    <svg
+                      class="h-3.5 w-3.5 text-[#B89563]"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
 
-      </div>
+                  </div>
 
-      <div>
+                  <div>
 
-        <h3 class="text-sm font-semibold text-white">
-          {item.title}
-        </h3>
+                    <h3 class="text-sm font-semibold text-white">
+                      {item.title}
+                    </h3>
 
-        <p class="mt-1 text-xs leading-5 text-white/40">
-          {item.description}
-        </p>
+                    <p class="mt-1 text-xs leading-5 text-white/40">
+                      {item.description}
+                    </p>
 
-      </div>
+                  </div>
 
-    </div>
+                </div>
 
-  ))}
-
-</div>
+              ))}
 
             </div>
 
           </div>
 
-      </Container>
+        </div>
 
+      </Container>
     </section>
 
 
@@ -432,7 +439,6 @@ const videoSchema = {
       relatedTutorials.length > 0 && (
 
         <section class="pt-20">
-
           <Container>
 
             <div class="mx-auto max-w-5xl">
@@ -473,7 +479,6 @@ const videoSchema = {
             </div>
 
           </Container>
-
         </section>
 
       )
@@ -483,105 +488,63 @@ const videoSchema = {
 
 
   <!-- ===================================================== -->
-<!-- AUTHENTICATED GUIDE DOWNLOAD -->
-<!-- ===================================================== -->
+  <!-- AUTHENTICATED GUIDE ACCESS -->
+  <!-- ===================================================== -->
 
-<script>
-  import { supabase } from '~/lib/supabase';
+  <script>
+    import { supabase } from '~/lib/supabase';
 
-  /*
- * DOWNLOAD
- */
-
-const downloadButtons =
-  document.querySelectorAll<HTMLButtonElement>(
-    '[data-guide-download]'
-  );
-
-downloadButtons.forEach((button) => {
-
-  button.addEventListener('click', async () => {
-
-    const storagePath = button.dataset.storagePath;
-    const guideId = button.dataset.guideId;
-    const guideName = button.dataset.guideName;
-
-    if (!storagePath || !guideId || !guideName) {
-      console.error(
-        'Guide storage path or guide ID is missing.'
-      );
-      return;
-    }
-
-    /*
-     * CHECK AUTHENTICATION
-     */
-
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (!session) {
-
-      window.location.href =
-        '/account?redirect=/ai-guides';
-
-      return;
-    }
-
-    /*
-     * CREATE TEMPORARY DOWNLOAD URL
-     */
-
-    const { data, error } =
-      await supabase.storage
-        .from('guides')
-        .createSignedUrl(storagePath, 60);
-
-    if (error) {
-
-      console.error(
-        'Guide download error:',
-        error
+    const guideButtons =
+      document.querySelectorAll<HTMLButtonElement>(
+        '[data-guide-access]'
       );
 
-      return;
-    }
+    guideButtons.forEach((button) => {
 
-    /*
-     * RECORD DOWNLOAD
-     */
+      button.addEventListener('click', async () => {
 
-    const { error: trackingError } =
-      await supabase
-        .from('guide_downloads')
-        .insert({
-          user_id: session.user.id,
-          guide_id: guideId,
-          guide_name: guideName,
-          storage_path: storagePath,
-        });
+        const shopUrl = button.dataset.shopUrl;
 
-    if (trackingError) {
+        if (!shopUrl) {
+          console.error(
+            'Fourthwall guide URL is missing.'
+          );
+          return;
+        }
 
-      console.error(
-        'Guide download tracking error:',
-        trackingError
-      );
 
-    }
+        /*
+         * CHECK PYROS ACCOUNT
+         */
 
-    /*
-     * START DOWNLOAD
-     */
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-    window.open(
-      data.signedUrl,
-      '_blank',
-      'noopener,noreferrer'
-    );
 
-  });
+        /*
+         * ALREADY SIGNED IN
+         */
 
-});
-</script>
+        if (session) {
+          window.location.href = shopUrl;
+          return;
+        }
+
+
+        /*
+         * SIGN IN / CREATE ACCOUNT FIRST
+         */
+
+        const redirect =
+          encodeURIComponent(shopUrl);
+
+        window.location.href =
+          `/account?redirect=${redirect}`;
+
+      });
+
+    });
+  </script>
+
+</Layout>

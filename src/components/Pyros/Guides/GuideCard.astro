@@ -21,15 +21,27 @@ const { guide } = Astro.props;
            group-hover:shadow-black/40"
   >
 
-    <button
-  type="button"
-  data-guide-download
-  data-storage-path={guide.storagePath}
-  data-guide-id={guide.id}
-  data-guide-name={`${guide.title} — ${guide.workflow}`}
-  aria-label={`Download ${guide.title}`}
-      class="block w-full cursor-pointer text-left"
-    >
+    {guide.type === 'free' ? (
+      <button
+        type="button"
+        data-guide-access
+        data-guide-id={guide.id}
+        data-shop-url={guide.shopUrl}
+        aria-label={`Get ${guide.title}`}
+        class="block w-full cursor-pointer text-left"
+      >
+        <div class="aspect-[210/297] w-full overflow-hidden leading-none">
+
+          <img
+            src={guide.cover}
+            alt={guide.title}
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+
+        </div>
+      </button>
+    ) : (
       <div class="aspect-[210/297] w-full overflow-hidden leading-none">
 
         <img
@@ -40,7 +52,7 @@ const { guide } = Astro.props;
         />
 
       </div>
-    </button>
+    )}
 
   </div>
 
@@ -49,9 +61,9 @@ const { guide } = Astro.props;
 
   <div class="-mt-3 relative z-10">
 
-    <!-- BADGES + DOWNLOAD -->
+    <!-- BADGES -->
 
-    <div class="flex items-center gap-2">
+    <div class="flex flex-wrap items-center gap-2">
 
       {guide.type === 'free' ? (
         <span
@@ -87,41 +99,16 @@ const { guide } = Astro.props;
         {guide.pages} Pages
       </span>
 
-      {guide.type === 'free' ? (
-
-        <button
-  type="button"
-  data-guide-download
-  data-storage-path={guide.storagePath}
-  data-guide-id={guide.id}
-  data-guide-name={`${guide.title} — ${guide.workflow}`}
-  class="inline-flex shrink-0 items-center rounded-full
-                 bg-[#8F6B3B] px-3.5 py-2
-                 text-[10px] font-semibold uppercase
-                 tracking-[0.12em] text-white
-                 transition duration-300
-                 hover:bg-[#9A7A49]"
-        >
-          Download
-        </button>
-
-      ) : (
-
-        <button
-          type="button"
-          disabled
-          class="inline-flex shrink-0 items-center rounded-full
-                 border border-white/10
-                 bg-[#090909] px-3.5 py-2
-                 text-[10px] font-semibold uppercase
-                 tracking-[0.12em] text-gray-500"
-        >
-          Coming Soon
-        </button>
-
-      )}
-
     </div>
+
+
+    <!-- FREE ACCESS NOTE -->
+
+    {guide.type === 'free' && (
+      <p class="mt-3 text-[11px] font-medium text-gray-500">
+        Free · No card required
+      </p>
+    )}
 
 
     <!-- TITLE -->
@@ -140,30 +127,63 @@ const { guide } = Astro.props;
 
     <!-- DESCRIPTION -->
 
-<div class="relative mt-3 max-w-md">
+    <div class="relative mt-3 max-w-md">
 
-  <p
-    data-guide-description
-    class="text-sm leading-6 text-gray-400"
-  >
-    {guide.description}
-  </p>
+      <p
+        data-guide-description
+        class="text-sm leading-6 text-gray-400"
+      >
+        {guide.description}
+      </p>
 
-  <button
-    type="button"
-    data-guide-more
-    aria-expanded="false"
-    class="absolute bottom-0 right-0 hidden
-           bg-[#090909] pl-2
-           text-[10px] font-semibold uppercase
-           tracking-[0.18em] text-[#C9A66B]
-           transition duration-300
-           hover:text-white"
-  >
-    <span data-guide-more-label>More →</span>
-  </button>
+      <button
+        type="button"
+        data-guide-more
+        aria-expanded="false"
+        class="absolute bottom-0 right-0 hidden
+               bg-[#090909] pl-2
+               text-[10px] font-semibold uppercase
+               tracking-[0.18em] text-[#C9A66B]
+               transition duration-300
+               hover:text-white"
+      >
+        <span data-guide-more-label>More →</span>
+      </button>
 
-</div>
+    </div>
+
+
+    <!-- GET GUIDE -->
+
+    {guide.type === 'free' ? (
+
+      <button
+        type="button"
+        data-guide-access
+        data-guide-id={guide.id}
+        data-shop-url={guide.shopUrl}
+        class="mt-5 inline-flex items-center rounded-full
+               bg-[#8F6B3B] px-5 py-2.5
+               text-xs font-semibold text-white
+               transition duration-300
+               hover:bg-[#9A7A49]"
+      >
+        Get Free Guide
+        <span class="ml-2 text-white/60">→</span>
+      </button>
+
+    ) : (
+
+      <span
+        class="mt-5 inline-flex items-center rounded-full
+               border border-white/10
+               bg-[#090909] px-5 py-2.5
+               text-xs font-semibold text-gray-500"
+      >
+        Coming Soon
+      </span>
+
+    )}
 
 
     <!-- TUTORIAL -->
@@ -171,7 +191,10 @@ const { guide } = Astro.props;
     {guide.tutorialUrl && (
       <a
         href={guide.tutorialUrl}
-        class="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#C9A66B] transition duration-300 hover:text-white"
+        class="mt-5 flex w-fit items-center gap-2
+               text-xs font-semibold uppercase
+               tracking-[0.18em] text-[#C9A66B]
+               transition duration-300 hover:text-white"
       >
         Watch the Tutorial
         <span aria-hidden="true">→</span>
@@ -190,27 +213,26 @@ const { guide } = Astro.props;
     );
 
     descriptions.forEach((description) => {
-      const moreButton = description.parentElement?.querySelector<HTMLButtonElement>(
-        '[data-guide-more]'
-      );
+      const moreButton =
+        description.parentElement?.querySelector<HTMLButtonElement>(
+          '[data-guide-more]'
+        );
 
-      const moreLabel = moreButton?.querySelector<HTMLElement>(
-        '[data-guide-more-label]'
-      );
+      const moreLabel =
+        moreButton?.querySelector<HTMLElement>(
+          '[data-guide-more-label]'
+        );
 
       if (!moreButton || !moreLabel) return;
 
-      // Measure the full text BEFORE applying the 3-line limit.
       const fullHeight = description.scrollHeight;
 
-      // Calculate the height of exactly 3 lines.
       const lineHeight = parseFloat(
         window.getComputedStyle(description).lineHeight
       );
 
       const maxHeight = lineHeight * 3;
 
-      // If the description is longer than 3 lines, show MORE.
       if (fullHeight > maxHeight + 1) {
         description.style.display = '-webkit-box';
         description.style.webkitBoxOrient = 'vertical';

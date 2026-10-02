@@ -6,6 +6,7 @@ export default function AuthCallback() {
     async function handleCallback() {
       const url = new URL(window.location.href);
       const code = url.searchParams.get("code");
+      const redirect = url.searchParams.get("redirect");
 
       if (!code) {
         window.location.replace("/account");
@@ -43,7 +44,34 @@ export default function AuthCallback() {
         console.error("Kit newsletter unexpected error:", error);
       }
 
-      window.location.replace("/");
+      /*
+       * SAFE REDIRECT
+       */
+
+      if (redirect) {
+        try {
+          const redirectUrl = new URL(
+            redirect,
+            window.location.origin
+          );
+
+          const allowedHosts = [
+            window.location.host,
+            "shop.pyrosaicreative.com",
+          ];
+
+          if (allowedHosts.includes(redirectUrl.host)) {
+            window.location.replace(
+              redirectUrl.toString()
+            );
+            return;
+          }
+        } catch {
+          // Fall back to dashboard
+        }
+      }
+
+      window.location.replace("/dashboard");
     }
 
     handleCallback();

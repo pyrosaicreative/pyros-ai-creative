@@ -18,6 +18,8 @@ export interface Tutorial {
     file: string;
   };
 
+  learnIntro: string;
+
   whatYoullLearn: {
     title: string;
     description: string;
@@ -50,6 +52,9 @@ export const tutorials: Tutorial[] = [
       title: 'Character Consistency Guide — Express Workflow',
       file: '/guides/character-consistency-guide-express-workflow.pdf',
     },
+
+    learnIntro:
+  'Follow a practical workflow for building a strong character reference and maintaining consistent identity across new AI-generated images.',
 
     whatYoullLearn: [
       {
@@ -101,6 +106,9 @@ export const tutorials: Tutorial[] = [
       file: '/guides/character-consistency-express-video-workflow-guide.pdf',
     },
 
+    learnIntro:
+  'Learn how to move from a Character Reference Sheet to consistent AI video using environments, cinematic Start Frames and controlled animation.',
+
     whatYoullLearn: [
       {
         title: 'Adapt your character for video',
@@ -149,6 +157,9 @@ export const tutorials: Tutorial[] = [
       title: 'Google Flow Storyboard Studio — The AI Filmmaking Guide',
       file: '/guides/google-flow-storyboard-studio-guide.pdf',
     },
+
+    learnIntro:
+  'Follow the complete Storyboard Studio workflow, from developing your story and visual assets to storyboarding, animation and the final AI short film.',
 
     whatYoullLearn: [
       {
@@ -203,6 +214,9 @@ export const tutorials: Tutorial[] = [
       title: 'Google Flow Music — AI Filmmaking Guide',
       file: '/guides/google-flow-music-ai-filmmaking-guide.pdf',
     },
+
+    learnIntro:
+  'Learn how to turn an existing script into a cinematic sequence using environments, consistent characters, AI video, dialogue, voices and music.',
 
     whatYoullLearn: [
       {

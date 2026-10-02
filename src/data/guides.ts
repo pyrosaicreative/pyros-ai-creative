@@ -8,8 +8,8 @@ export interface Guide {
   cover: string;
   pages: number;
   type: GuideType;
-  storagePath?: string;
   tutorialUrl?: string;
+  shopUrl?: string;
 }
 
 export const guides: Guide[] = [
@@ -22,23 +22,26 @@ export const guides: Guide[] = [
     cover: '/images/ai-guides/character-consistency-express-image-workflow-guide.png',
     pages: 24,
     type: 'free',
-    storagePath: 'character-consistency-express-image-workflow-guide.pdf',
     tutorialUrl: '/tutorials/character-consistency-express-image-workflow/',
+    shopUrl:
+      'https://shop.pyrosaicreative.com/products/character-consistency-guide-express-image-workflow',
   },
 
   {
-  id: 'character-consistency-express-video',
-  title: 'Character Consistency Guide',
-  workflow: 'EXPRESS VIDEO WORKFLOW',
-  description:
-    'Take your Character Reference Sheet into AI video and create consistent characters across cinematic shots.',
-  cover: '/images/ai-guides/character-consistency-express-video-workflow-guide.png',
-  pages: 27,
-  type: 'free',
-  storagePath: 'character-consistency-express-video-workflow-guide.pdf',
-  tutorialUrl: 'https://youtu.be/8HaKm1e4NM4',
-},
- {
+    id: 'character-consistency-express-video',
+    title: 'Character Consistency Guide',
+    workflow: 'EXPRESS VIDEO WORKFLOW',
+    description:
+      'Take your Character Reference Sheet into AI video and create consistent characters across cinematic shots.',
+    cover: '/images/ai-guides/character-consistency-express-video-workflow-guide.png',
+    pages: 27,
+    type: 'free',
+    tutorialUrl: 'https://youtu.be/8HaKm1e4NM4',
+    shopUrl:
+      'https://shop.pyrosaicreative.com/products/character-consistency-guide-express-video-workflow',
+  },
+
+  {
     id: 'google-flow-storyboard-studio',
     title: 'Storyboard Studio Guide',
     workflow: 'STORYBOARD STUDIO WORKFLOW',
@@ -47,10 +50,12 @@ export const guides: Guide[] = [
     cover: '/images/ai-guides/google-flow-storyboard-studio-guide.png',
     pages: 15,
     type: 'free',
-    storagePath: 'google-flow-storyboard-studio-guide.pdf',
     tutorialUrl: 'https://youtu.be/OJZC40izHdc',
+    shopUrl:
+      'https://shop.pyrosaicreative.com/products/google-flow-storyboard-studio-guide',
   },
-    {
+
+  {
     id: 'google-flow-music-ai-filmmaking',
     title: 'Google Flow Music Guide',
     workflow: 'AI FILMMAKING WORKFLOW',
@@ -59,7 +64,8 @@ export const guides: Guide[] = [
     cover: '/images/ai-guides/google-flow-music-ai-filmmaking-guide.png',
     pages: 16,
     type: 'free',
-    storagePath: 'google-flow-music-ai-filmmaking-guide.pdf',
     tutorialUrl: 'https://youtu.be/-_omF8KmqUE',
+    shopUrl:
+      'https://shop.pyrosaicreative.com/products/google-flow-music-ai-filmmaking-guide',
   },
 ];
