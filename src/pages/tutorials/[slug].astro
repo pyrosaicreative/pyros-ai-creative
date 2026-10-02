@@ -527,9 +527,23 @@ const videoSchema = {
          */
 
         if (session) {
-          window.location.href = shopUrl;
-          return;
-        }
+  window.open(
+    shopUrl,
+    '_blank',
+    'noopener,noreferrer'
+  );
+
+  return;
+}
+
+const redirect =
+  encodeURIComponent(shopUrl);
+
+window.open(
+  `/account?redirect=${redirect}`,
+  '_blank',
+  'noopener,noreferrer'
+);
 
 
         /*

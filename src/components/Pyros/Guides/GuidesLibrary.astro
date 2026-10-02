@@ -282,12 +282,24 @@ import { guides } from '~/data/guides';
          */
 
         if (session) {
+  window.open(
+    shopUrl,
+    '_blank',
+    'noopener,noreferrer'
+  );
 
-          window.location.href = shopUrl;
+  return;
+}
 
-          return;
+const redirect =
+  encodeURIComponent(shopUrl);
 
-        }
+window.open(
+  `/account?redirect=${redirect}`,
+  '_blank',
+  'noopener,noreferrer'
+);
+
 
 
         /*
