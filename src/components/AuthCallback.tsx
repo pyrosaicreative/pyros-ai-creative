@@ -1,47 +1,45 @@
-import { useEffect } from "preact/hooks";
-import { supabase } from "~/lib/supabase";
+import { useEffect } from 'preact/hooks';
+import { supabase } from '~/lib/supabase';
 
 export default function AuthCallback() {
   useEffect(() => {
     async function handleCallback() {
       const url = new URL(window.location.href);
-      const code = url.searchParams.get("code");
-      const redirect = url.searchParams.get("redirect");
+      const code = url.searchParams.get('code');
+      const redirect = url.searchParams.get('redirect');
 
       if (!code) {
-        window.location.replace("/account");
+        window.location.replace('/account');
         return;
       }
 
-      const { data, error } =
-        await supabase.auth.exchangeCodeForSession(code);
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
       if (error) {
-        console.error("Auth callback error:", error);
-        window.location.replace("/account");
+        console.error('Auth callback error:', error);
+        window.location.replace('/account');
         return;
       }
 
       if (!data.session) {
-        window.location.replace("/account");
+        window.location.replace('/account');
         return;
       }
 
       try {
-        const { data: kitData, error: kitError } =
-          await supabase.functions.invoke("subscribe-to-kit", {
-            headers: {
-              Authorization: `Bearer ${data.session.access_token}`,
-            },
-          });
+        const { data: kitData, error: kitError } = await supabase.functions.invoke('subscribe-to-kit', {
+          headers: {
+            Authorization: `Bearer ${data.session.access_token}`,
+          },
+        });
 
         if (kitError) {
-          console.error("Kit newsletter error:", kitError);
+          console.error('Kit newsletter error:', kitError);
         } else {
-          console.log("Kit newsletter result:", kitData);
+          console.log('Kit newsletter result:', kitData);
         }
       } catch (error) {
-        console.error("Kit newsletter unexpected error:", error);
+        console.error('Kit newsletter unexpected error:', error);
       }
 
       /*
@@ -50,20 +48,12 @@ export default function AuthCallback() {
 
       if (redirect) {
         try {
-          const redirectUrl = new URL(
-            redirect,
-            window.location.origin
-          );
+          const redirectUrl = new URL(redirect, window.location.origin);
 
-          const allowedHosts = [
-            window.location.host,
-            "shop.pyrosaicreative.com",
-          ];
+          const allowedHosts = [window.location.host, 'shop.pyrosaicreative.com'];
 
           if (allowedHosts.includes(redirectUrl.host)) {
-            window.location.replace(
-              redirectUrl.toString()
-            );
+            window.location.replace(redirectUrl.toString());
             return;
           }
         } catch {
@@ -71,15 +61,11 @@ export default function AuthCallback() {
         }
       }
 
-      window.location.replace("/dashboard");
+      window.location.replace('/dashboard');
     }
 
     handleCallback();
   }, []);
 
-  return (
-    <div class="flex min-h-screen items-center justify-center bg-black text-white">
-      Completing sign in...
-    </div>
-  );
+  return <div class="flex min-h-screen items-center justify-center bg-black text-white">Completing sign in...</div>;
 }

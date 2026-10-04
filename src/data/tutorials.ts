@@ -28,16 +28,14 @@ export interface Tutorial {
 
 export const tutorials: Tutorial[] = [
   {
-    title:
-      'ONE Prompt → Character Reference Sheet → Consistent AI Characters (Free Guide)',
+    title: 'ONE Prompt → Character Reference Sheet → Consistent AI Characters (Free Guide)',
 
     slug: 'character-consistency-express-image-workflow',
 
     description:
-  'Learn how to create a Character Reference Sheet from a single image and use it to maintain consistent AI character identity across images and videos.',
+      'Learn how to create a Character Reference Sheet from a single image and use it to maintain consistent AI character identity across images and videos.',
 
-    thumbnail:
-      '/images/tutorials/character-consistency-express-image-workflow.png',
+    thumbnail: '/images/tutorials/character-consistency-express-image-workflow.png',
 
     badge: 'FREE',
 
@@ -54,43 +52,37 @@ export const tutorials: Tutorial[] = [
     },
 
     learnIntro:
-  'Follow a practical workflow for building a strong character reference and maintaining consistent identity across new AI-generated images.',
+      'Follow a practical workflow for building a strong character reference and maintaining consistent identity across new AI-generated images.',
 
     whatYoullLearn: [
       {
         title: 'Create a strong character reference',
-        description:
-          'Build a reliable visual foundation that clearly defines your AI character.',
+        description: 'Build a reliable visual foundation that clearly defines your AI character.',
       },
       {
         title: 'Preserve identity across images',
-        description:
-          "Maintain the character's key facial and visual features when creating new images.",
+        description: "Maintain the character's key facial and visual features when creating new images.",
       },
       {
         title: 'Create new poses and scenes',
-        description:
-          'Generate new images while keeping the same character identity.',
+        description: 'Generate new images while keeping the same character identity.',
       },
       {
         title: 'Build a repeatable workflow',
-        description:
-          'Turn character consistency into a repeatable part of your AI filmmaking workflow.',
+        description: 'Turn character consistency into a repeatable part of your AI filmmaking workflow.',
       },
     ],
   },
 
   {
-    title:
-      'How to Make AI Videos with Consistent Characters in 2026 (Free Guide)',
+    title: 'How to Make AI Videos with Consistent Characters in 2026 (Free Guide)',
 
     slug: 'character-consistency-express-video-workflow',
 
     description:
-  'Learn how to create consistent AI videos using character and environment reference sheets, cinematic start frames and a reliable animation workflow.',
+      'Learn how to create consistent AI videos using character and environment reference sheets, cinematic start frames and a reliable animation workflow.',
 
-    thumbnail:
-      '/images/tutorials/character-consistency-express-video-workflow.png',
+    thumbnail: '/images/tutorials/character-consistency-express-video-workflow.png',
 
     badge: 'FREE',
 
@@ -107,23 +99,20 @@ export const tutorials: Tutorial[] = [
     },
 
     learnIntro:
-  'Learn how to move from a Character Reference Sheet to consistent AI video using environments, cinematic Start Frames and controlled animation.',
+      'Learn how to move from a Character Reference Sheet to consistent AI video using environments, cinematic Start Frames and controlled animation.',
 
     whatYoullLearn: [
       {
         title: 'Adapt your character for video',
-        description:
-          'Adapt your character’s look, outfit, hairstyle and makeup while preserving their identity.',
+        description: 'Adapt your character’s look, outfit, hairstyle and makeup while preserving their identity.',
       },
       {
         title: 'Build consistent environments',
-        description:
-          'Create an Environment Reference Sheet to maintain location consistency across your shots.',
+        description: 'Create an Environment Reference Sheet to maintain location consistency across your shots.',
       },
       {
         title: 'Create cinematic Start Frames',
-        description:
-          'Build strong visual starting points using your character and environment references.',
+        description: 'Build strong visual starting points using your character and environment references.',
       },
       {
         title: 'Generate consistent AI video',
@@ -132,17 +121,15 @@ export const tutorials: Tutorial[] = [
       },
     ],
   },
-    {
-    title:
-      'Google Flow Storyboard Studio: From Idea to AI Short Film (Free Guide)',
+  {
+    title: 'Google Flow Storyboard Studio: From Idea to AI Short Film (Free Guide)',
 
     slug: 'google-flow-storyboard-studio',
 
     description:
       'Learn how to use Google Flow Storyboard Studio to develop a story, create characters, locations and props, build a storyboard, and turn your scenes into a complete AI short film.',
 
-    thumbnail:
-      '/images/tutorials/Storyboard-Studio.png',
+    thumbnail: '/images/tutorials/Storyboard-Studio.png',
 
     badge: 'FREE',
 
@@ -159,13 +146,12 @@ export const tutorials: Tutorial[] = [
     },
 
     learnIntro:
-  'Follow the complete Storyboard Studio workflow, from developing your story and visual assets to storyboarding, animation and the final AI short film.',
+      'Follow the complete Storyboard Studio workflow, from developing your story and visual assets to storyboarding, animation and the final AI short film.',
 
     whatYoullLearn: [
       {
         title: 'Develop your short-film story',
-        description:
-          'Use Storyboard Studio to develop an original story and organize it into a three-act structure.',
+        description: 'Use Storyboard Studio to develop an original story and organize it into a three-act structure.',
       },
       {
         title: 'Build characters, locations and props',
@@ -179,8 +165,7 @@ export const tutorials: Tutorial[] = [
       },
       {
         title: 'Animate your scenes',
-        description:
-          'Use Agent Mode or Standard Mode to transform storyboard frames into cinematic AI video scenes.',
+        description: 'Use Agent Mode or Standard Mode to transform storyboard frames into cinematic AI video scenes.',
       },
       {
         title: 'Build the final AI short film',
@@ -189,17 +174,15 @@ export const tutorials: Tutorial[] = [
       },
     ],
   },
-    {
-    title:
-      'I Found Google’s Secret AI Tool for Filmmakers (Free Guide)',
+  {
+    title: 'I Found Google’s Secret AI Tool for Filmmakers (Free Guide)',
 
     slug: 'google-flow-music-ai-filmmaking',
 
     description:
       'Discover how to use Google Flow Music to turn an existing script into cinematic images, video scenes, dialogue, consistent character voices, and a matching soundtrack.',
 
-    thumbnail:
-      '/images/tutorials/google-flow-music-ai-filmmaking.png',
+    thumbnail: '/images/tutorials/google-flow-music-ai-filmmaking.png',
 
     badge: 'FREE',
 
@@ -216,7 +199,7 @@ export const tutorials: Tutorial[] = [
     },
 
     learnIntro:
-  'Learn how to turn an existing script into a cinematic sequence using environments, consistent characters, AI video, dialogue, voices and music.',
+      'Learn how to turn an existing script into a cinematic sequence using environments, consistent characters, AI video, dialogue, voices and music.',
 
     whatYoullLearn: [
       {

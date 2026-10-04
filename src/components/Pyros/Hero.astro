@@ -3,7 +3,6 @@ import Container from './Container.astro';
 ---
 
 <section class="hero-home">
-
   <!-- Background -->
   <img
     src="/images/hero/hero-home.jpg"
@@ -12,24 +11,19 @@ import Container from './Container.astro';
   />
 
   <!-- Overlay -->
-<div class="absolute inset-0 bg-black/15"></div>
+  <div class="absolute inset-0 bg-black/15"></div>
 
-<div
-  class="absolute inset-0 bg-gradient-to-r
+  <div class="absolute inset-0 bg-gradient-to-r
          from-black/90
          via-black/55
-         to-transparent"
-></div>
+         to-transparent">
+  </div>
 
   <!-- Content -->
   <div class="relative z-10 flex h-full items-center">
-
     <Container>
-
       <div class="max-w-4xl">
-
         <h1 class="font-black leading-[0.95] text-white">
-
           <div class="text-5xl lg:text-[3.8rem]">
             Learn
             <span class="text-[#B71C1C]">AI</span>
@@ -41,18 +35,13 @@ import Container from './Container.astro';
             <span class="text-[#B71C1C]">Cinematic</span>
             Movies
           </div>
-
         </h1>
 
         <p class="mt-6 max-w-2xl text-lg leading-8 text-gray-300">
-  Learn AI filmmaking through practical tutorials, cinematic workflows,
-  consistent AI characters, commercials and short movies.
-</p>
-
+          Learn AI filmmaking through practical tutorials, cinematic workflows, consistent AI characters, commercials
+          and short movies.
+        </p>
       </div>
-
     </Container>
-
   </div>
-
 </section>

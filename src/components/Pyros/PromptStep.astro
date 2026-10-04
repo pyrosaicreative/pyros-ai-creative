@@ -13,33 +13,16 @@ interface Props {
   prompt: string;
 }
 
-const {
-  eyebrow,
-  title,
-  description,
-  goal,
-  howToUse,
-  promptTitle,
-  prompt,
-} = Astro.props;
+const { eyebrow, title, description, goal, howToUse, promptTitle, prompt } = Astro.props;
 ---
 
 <Section>
-
-  <SectionHeader
-    eyebrow={eyebrow}
-    title={title}
-    description={description}
-    maxWidth="lg"
-  />
+  <SectionHeader eyebrow={eyebrow} title={title} description={description} maxWidth="lg" />
 
   <div class="mt-10 max-w-3xl">
-
     <!-- Goal -->
 
-    <h3 class="text-2xl font-bold text-white">
-      Goal
-    </h3>
+    <h3 class="text-2xl font-bold text-white">Goal</h3>
 
     <p class="mt-4 text-base leading-relaxed text-gray-300">
       {goal}
@@ -47,27 +30,20 @@ const {
 
     <!-- How to Use -->
 
-    <h3 class="mt-10 text-2xl font-bold text-white">
-      How to Use
-    </h3>
+    <h3 class="mt-10 text-2xl font-bold text-white">How to Use</h3>
 
     <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-300">
-
-      {howToUse.map((step, index) => (
-        <li>
-          <strong class="text-white">{index + 1}.</strong> {step}
-        </li>
-      ))}
-
+      {
+        howToUse.map((step, index) => (
+          <li>
+            <strong class="text-white">{index + 1}.</strong> {step}
+          </li>
+        ))
+      }
     </ol>
 
     <!-- Prompt -->
 
-    <PromptBox
-      title={promptTitle}
-      prompt={prompt}
-    />
-
+    <PromptBox title={promptTitle} prompt={prompt} />
   </div>
-
 </Section>

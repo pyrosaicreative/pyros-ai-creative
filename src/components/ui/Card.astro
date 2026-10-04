@@ -3,7 +3,7 @@ interface Props {
   class?: string;
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = '' } = Astro.props;
 ---
 
 <div class={`rounded-2xl border border-white/10 bg-white/[0.03] ${className}`}>

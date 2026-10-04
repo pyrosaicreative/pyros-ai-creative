@@ -10,38 +10,26 @@ const sections = [
   },
   {
     title: '🎬 AI Filmmaking',
-    filter: () =>
-      tutorials.filter((t) => t.category === 'AI Filmmaking'),
+    filter: () => tutorials.filter((t) => t.category === 'AI Filmmaking'),
   },
   {
     title: '👥 AI Characters',
-    filter: () =>
-      tutorials.filter((t) => t.category === 'AI Characters'),
+    filter: () => tutorials.filter((t) => t.category === 'AI Characters'),
   },
   {
     title: '🌍 AI Worlds',
-    filter: () =>
-      tutorials.filter((t) => t.category === 'AI Worlds'),
+    filter: () => tutorials.filter((t) => t.category === 'AI Worlds'),
   },
 ];
 ---
 
-<section
-  id="tutorials"
-  class="relative -mt-8 z-20 bg-black pt-0 pb-24"
->
+<section id="tutorials" class="relative -mt-8 z-20 bg-black pt-0 pb-24">
   <Container>
-
     {
       sections.map((section) => {
         const items = section.filter();
 
-        return items.length > 0 ? (
-          <TutorialRow
-            title={section.title}
-            tutorials={items}
-          />
-        ) : null;
+        return items.length > 0 ? <TutorialRow title={section.title} tutorials={items} /> : null;
       })
     }
 
@@ -52,19 +40,13 @@ const sections = [
         class="flex flex-col gap-6 rounded-2xl border border-[#B08A57]/20 bg-[#0d0d0d] px-6 py-6 md:flex-row md:items-center md:justify-between md:px-8"
       >
         <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B08A57]">Support the Project</p>
 
-          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#B08A57]">
-            Support the Project
-          </p>
-
-          <h3 class="mt-2 text-xl font-semibold text-white md:text-2xl">
-            Support PYROS AI Creative
-          </h3>
+          <h3 class="mt-2 text-xl font-semibold text-white md:text-2xl">Support PYROS AI Creative</h3>
 
           <p class="mt-2 text-sm leading-6 text-gray-400 md:text-base">
             Help us create more free AI filmmaking guides, tutorials and creative resources.
           </p>
-
         </div>
 
         <a
@@ -77,6 +59,5 @@ const sections = [
         </a>
       </div>
     </div>
-
   </Container>
 </section>

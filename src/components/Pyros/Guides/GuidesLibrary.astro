@@ -4,38 +4,26 @@ import { guides } from '~/data/guides';
 ---
 
 <section class="bg-[#090909] pt-5 pb-24">
-
   <div class="mx-auto max-w-7xl px-8 lg:px-12">
-
     <!-- SECTION HEADER -->
 
     <div
       class="flex flex-col gap-8 border-b border-white/10 pb-5
              lg:flex-row lg:items-end lg:justify-between"
     >
-
       <div class="max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#8F6B3B]">AI GUIDES</p>
 
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#8F6B3B]">
-          AI GUIDES
-        </p>
-
-        <h1 class="mt-3 text-3xl font-black tracking-tight text-white lg:text-4xl">
-          AI Filmmaking Guides
-        </h1>
+        <h1 class="mt-3 text-3xl font-black tracking-tight text-white lg:text-4xl">AI Filmmaking Guides</h1>
 
         <p class="mt-4 max-w-xl text-base leading-7 text-gray-400">
-          Practical guides, handbooks and resources created to help you
-          build better AI filmmaking workflows.
+          Practical guides, handbooks and resources created to help you build better AI filmmaking workflows.
         </p>
-
       </div>
-
 
       <!-- FILTERS -->
 
       <div class="flex flex-wrap gap-2">
-
         <button
           type="button"
           data-filter="all"
@@ -70,11 +58,8 @@ import { guides } from '~/data/guides';
         >
           Premium
         </button>
-
       </div>
-
     </div>
-
 
     <!-- GUIDE GRID -->
 
@@ -83,107 +68,58 @@ import { guides } from '~/data/guides';
       class="mt-3 grid grid-cols-1 gap-x-6 gap-y-14
              md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
+      <div id="guides-empty" class="hidden col-span-full py-16 text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#8F6B3B]">COMING SOON</p>
 
-      <div
-        id="guides-empty"
-        class="hidden col-span-full py-16 text-center"
-      >
-        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#8F6B3B]">
-          COMING SOON
-        </p>
-
-        <h3 class="mt-4 text-2xl font-bold text-white">
-          More guides are on the way.
-        </h3>
+        <h3 class="mt-4 text-2xl font-bold text-white">More guides are on the way.</h3>
 
         <p class="mx-auto mt-3 max-w-lg text-sm leading-6 text-gray-400">
           New AI filmmaking guides and premium resources will be added to the library soon.
         </p>
       </div>
 
-
-      {guides.map((guide) => (
-        <div
-          class="guide-item"
-          data-type={guide.type}
-        >
-          <GuideCard guide={guide} />
-        </div>
-      ))}
-
+      {
+        guides.map((guide) => (
+          <div class="guide-item" data-type={guide.type}>
+            <GuideCard guide={guide} />
+          </div>
+        ))
+      }
     </div>
-
   </div>
-
 </section>
-
 
 <script>
   import { supabase } from '~/lib/supabase';
-
 
   /*
    * FILTERS
    */
 
   const setupGuideFilters = () => {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.guide-filter');
 
-    const filterButtons =
-      document.querySelectorAll<HTMLButtonElement>(
-        '.guide-filter'
-      );
+    const guideItems = document.querySelectorAll<HTMLElement>('.guide-item');
 
-    const guideItems =
-      document.querySelectorAll<HTMLElement>(
-        '.guide-item'
-      );
-
-    const emptyState =
-      document.querySelector<HTMLElement>(
-        '#guides-empty'
-      );
-
+    const emptyState = document.querySelector<HTMLElement>('#guides-empty');
 
     filterButtons.forEach((button) => {
-
       button.addEventListener('click', () => {
-
         const filter = button.dataset.filter;
-
 
         /*
          * BUTTON STYLE
          */
 
         filterButtons.forEach((item) => {
+          item.classList.remove('border-[#8F6B3B]', 'bg-[#8F6B3B]', 'text-white');
 
-          item.classList.remove(
-            'border-[#8F6B3B]',
-            'bg-[#8F6B3B]',
-            'text-white'
-          );
-
-          item.classList.add(
-            'border-white/10',
-            'bg-white/5',
-            'text-gray-300'
-          );
-
+          item.classList.add('border-white/10', 'bg-white/5', 'text-gray-300');
         });
 
+        button.classList.remove('border-white/10', 'bg-white/5', 'text-gray-300');
 
-        button.classList.remove(
-          'border-white/10',
-          'bg-white/5',
-          'text-gray-300'
-        );
-
-        button.classList.add(
-          'border-[#8F6B3B]',
-          'bg-[#8F6B3B]',
-          'text-white'
-        );
-
+        button.classList.add('border-[#8F6B3B]', 'bg-[#8F6B3B]', 'text-white');
 
         /*
          * FILTER GUIDES
@@ -192,81 +128,48 @@ import { guides } from '~/data/guides';
         let visibleGuides = 0;
 
         guideItems.forEach((item) => {
-
           const type = item.dataset.type;
 
-          if (
-            filter === 'all' ||
-            type === filter
-          ) {
-
+          if (filter === 'all' || type === filter) {
             item.classList.remove('hidden');
 
             visibleGuides++;
-
           } else {
-
             item.classList.add('hidden');
-
           }
-
         });
-
 
         /*
          * EMPTY STATE
          */
 
         if (emptyState) {
-
           if (visibleGuides === 0) {
-
             emptyState.classList.remove('hidden');
-
           } else {
-
             emptyState.classList.add('hidden');
-
           }
-
         }
-
       });
-
     });
-
   };
-
 
   /*
    * FREE GUIDE ACCESS
    */
 
   const setupGuideAccess = () => {
-
-    const guideButtons =
-      document.querySelectorAll<HTMLButtonElement>(
-        '[data-guide-access]'
-      );
-
+    const guideButtons = document.querySelectorAll<HTMLButtonElement>('[data-guide-access]');
 
     guideButtons.forEach((button) => {
-
       button.addEventListener('click', async () => {
-
-        const shopUrl =
-          button.dataset.shopUrl;
+        const shopUrl = button.dataset.shopUrl;
 
         if (!shopUrl) {
-
-          console.error(
-            'Fourthwall guide URL is missing.'
-          );
+          console.error('Fourthwall guide URL is missing.');
 
           return;
-
         }
-
 
         /*
          * CHECK PYROS ACCOUNT
@@ -276,48 +179,30 @@ import { guides } from '~/data/guides';
           data: { session },
         } = await supabase.auth.getSession();
 
-
         /*
          * USER ALREADY SIGNED IN
          */
 
         if (session) {
-  window.open(
-    shopUrl,
-    '_blank',
-    'noopener,noreferrer'
-  );
+          window.open(shopUrl, '_blank', 'noopener,noreferrer');
 
-  return;
-}
+          return;
+        }
 
-const encodedRedirect =
-  encodeURIComponent(shopUrl);
+        const encodedRedirect = encodeURIComponent(shopUrl);
 
-window.open(
-  `/account?redirect=${encodedRedirect}`,
-  '_blank',
-  'noopener,noreferrer'
-);
-
-
+        window.open(`/account?redirect=${encodedRedirect}`, '_blank', 'noopener,noreferrer');
 
         /*
          * USER NEEDS TO CREATE / SIGN IN TO ACCOUNT
          */
 
-        const redirect =
-          encodeURIComponent(shopUrl);
+        const redirect = encodeURIComponent(shopUrl);
 
-        window.location.href =
-          `/account?redirect=${redirect}`;
-
+        window.location.href = `/account?redirect=${redirect}`;
       });
-
     });
-
   };
-
 
   /*
    * INITIALIZE

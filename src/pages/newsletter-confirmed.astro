@@ -3,48 +3,36 @@ import PageLayout from '~/layouts/PageLayout.astro';
 
 const metadata = {
   title: 'Newsletter Confirmed | PYROS AI Creative',
-  description:
-    'Your PYROS AI Creative newsletter subscription has been confirmed.',
+  description: 'Your PYROS AI Creative newsletter subscription has been confirmed.',
 };
 ---
 
 <PageLayout metadata={metadata}>
   <main class="min-h-[70vh] bg-[#090909]">
-
-  <!-- Hero -->
-<div class="mx-auto w-full max-w-2xl px-6 pt-2">
-  <img
-    src="/images/newsletter/newsletter-confirmed-hero.jpeg"
-    alt="PYROS AI Creative"
-    class="block h-auto w-full rounded-sm"
-  />
-</div>
-  <!-- Confirmation -->
- <section class="flex items-center justify-center px-6 pt-2 pb-8 md:pt-3 md:pb-10">
-    <div class="w-full max-w-2xl text-center">
-
-      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#B08A57]">
-        Newsletter
-      </p>
-
-      <h1 class="font-serif text-3xl md:text-4xl text-white">
-        You're in.
-      </h1>
-
-      <div class="mx-auto mt-4 h-px w-12 bg-[#B08A57]"></div>
-
-      <p class="mt-6 text-lg text-gray-300">
-        Welcome to PYROS AI Creative.
-      </p>
-
-      <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-gray-500">
-        Your newsletter subscription is confirmed. Get ready for AI filmmaking
-        tutorials, practical guides, and creative workflows delivered straight
-        to your inbox.
-      </p>
-
+    <!-- Hero -->
+    <div class="mx-auto w-full max-w-2xl px-6 pt-2">
+      <img
+        src="/images/newsletter/newsletter-confirmed-hero.jpeg"
+        alt="PYROS AI Creative"
+        class="block h-auto w-full rounded-sm"
+      />
     </div>
-  </section>
+    <!-- Confirmation -->
+    <section class="flex items-center justify-center px-6 pt-2 pb-8 md:pt-3 md:pb-10">
+      <div class="w-full max-w-2xl text-center">
+        <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#B08A57]">Newsletter</p>
 
-</main>
+        <h1 class="font-serif text-3xl md:text-4xl text-white">You're in.</h1>
+
+        <div class="mx-auto mt-4 h-px w-12 bg-[#B08A57]"></div>
+
+        <p class="mt-6 text-lg text-gray-300">Welcome to PYROS AI Creative.</p>
+
+        <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-gray-500">
+          Your newsletter subscription is confirmed. Get ready for AI filmmaking tutorials, practical guides, and
+          creative workflows delivered straight to your inbox.
+        </p>
+      </div>
+    </section>
+  </main>
 </PageLayout>

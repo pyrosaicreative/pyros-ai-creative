@@ -3,24 +3,17 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <footer class="relative bg-[#090909]">
-
   <!-- Top Accent -->
   <div class="h-px w-full bg-gradient-to-r from-transparent via-[#B08A57]/30 to-transparent"></div>
 
   <div class="mx-auto max-w-6xl px-8 py-14">
-
     <div class="grid gap-12 lg:grid-cols-3">
-
       <!-- Contact -->
 
       <div>
-
-        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B08A57]">
-          Contact
-        </h3>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B08A57]">Contact</h3>
 
         <ul class="mt-6 space-y-3">
-
           <li>
             <a
               href="mailto:hello@pyrosaicreative.com"
@@ -38,97 +31,65 @@ import { Icon } from 'astro-icon/components';
               support@pyrosaicreative.com
             </a>
           </li>
-
         </ul>
-
       </div>
-
 
       <!-- Navigation -->
 
       <div>
-
-        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B08A57]">
-          Navigation
-        </h3>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B08A57]">Navigation</h3>
 
         <ul class="mt-6 space-y-3">
-
           <li>
-            <a
-              href="/"
-              class="text-sm text-gray-400 transition duration-300 hover:text-white"
-            >
-              Home
-            </a>
+            <a href="/" class="text-sm text-gray-400 transition duration-300 hover:text-white"> Home </a>
           </li>
 
           <li>
-            <a
-              href="/about"
-              class="text-sm text-gray-400 transition duration-300 hover:text-white"
-            >
-              About
-            </a>
+            <a href="/about" class="text-sm text-gray-400 transition duration-300 hover:text-white"> About </a>
           </li>
 
           <li>
-            <a
-              href="/why-ai-filmmaking"
-              class="text-sm text-gray-400 transition duration-300 hover:text-white"
-            >
+            <a href="/why-ai-filmmaking" class="text-sm text-gray-400 transition duration-300 hover:text-white">
               Why AI Filmmaking
             </a>
           </li>
 
           <li>
+            <a href="/ai-guides" class="text-sm text-gray-400 transition duration-300 hover:text-white"> AI Guides </a>
+          </li>
+
+          <li>
             <a
-              href="/ai-guides"
+              href="https://shop.pyrosaicreative.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               class="text-sm text-gray-400 transition duration-300 hover:text-white"
             >
-              AI Guides
+              Shop
             </a>
           </li>
 
           <li>
-  <a
-    href="https://shop.pyrosaicreative.com/"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="text-sm text-gray-400 transition duration-300 hover:text-white"
-  >
-    Shop
-  </a>
-</li>
-
-<li>
-  <a
-    href="https://shop.pyrosaicreative.com/pages/contribute"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="text-sm text-gray-400 transition duration-300 hover:text-white"
-  >
-    Contribute
-  </a>
-</li>
-
+            <a
+              href="https://shop.pyrosaicreative.com/pages/contribute"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-gray-400 transition duration-300 hover:text-white"
+            >
+              Contribute
+            </a>
+          </li>
         </ul>
-
       </div>
-
 
       <!-- Follow -->
 
       <div>
-
-        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B08A57]">
-          Follow
-        </h3>
+        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B08A57]">Follow</h3>
 
         <!-- Social Icons -->
 
         <div class="mt-6 flex items-center gap-5">
-
           <a
             href="https://www.youtube.com/channel/UC52jL2fl7QQh37vjbau2XIg"
             target="_blank"
@@ -183,65 +144,35 @@ import { Icon } from 'astro-icon/components';
           >
             <Icon name="tabler:brand-x" class="h-5 w-5" />
           </a>
-
         </div>
-
 
         <!-- Newsletter -->
 
         <div class="mt-7 max-w-[360px]">
+          <h4 class="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B08A57]">Join the Newsletter</h4>
 
-          <h4 class="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B08A57]">
-            Join the Newsletter
-          </h4>
-
-          <p class="mt-1 text-xs leading-relaxed text-gray-500">
-            AI filmmaking tutorials, workflows & free resources.
-          </p>
+          <p class="mt-1 text-xs leading-relaxed text-gray-500">AI filmmaking tutorials, workflows & free resources.</p>
 
           <div class="newsletter-form mt-1 w-full"></div>
-
         </div>
-
       </div>
-
     </div>
-
 
     <!-- Bottom -->
 
-<div class="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 md:flex-row">
+    <div class="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 md:flex-row">
+      <p class="text-sm text-gray-500">© 2026 PYROS AI Creative. All rights reserved.</p>
 
-  <p class="text-sm text-gray-500">
-    © 2026 PYROS AI Creative. All rights reserved.
-  </p>
+      <div class="flex items-center gap-4 text-sm text-gray-600">
+        <a href="/privacy" class="transition duration-300 hover:text-white"> Privacy Policy </a>
 
-  <div class="flex items-center gap-4 text-sm text-gray-600">
-    <a
-      href="/privacy"
-      class="transition duration-300 hover:text-white"
-    >
-      Privacy Policy
-    </a>
+        <a href="/terms" class="transition duration-300 hover:text-white"> Terms of Use </a>
+      </div>
 
-    <a
-      href="/terms"
-      class="transition duration-300 hover:text-white"
-    >
-      Terms of Use
-    </a>
+      <p class="text-sm text-gray-600">Learn AI Filmmaking. Build AI Stories.</p>
+    </div>
   </div>
-
-  <p class="text-sm text-gray-600">
-    Learn AI Filmmaking. Build AI Stories.
-  </p>
-
-</div>
-
-  </div>
-
 </footer>
-
 
 <style>
   /* =========================================
@@ -328,8 +259,8 @@ import { Icon } from 'astro-icon/components';
     margin: 0 !important;
     padding: 0 !important;
 
-    background: #B08A57 !important;
-    border: 1px solid #B08A57 !important;
+    background: #b08a57 !important;
+    border: 1px solid #b08a57 !important;
     border-radius: 2px !important;
 
     color: #090909 !important;
@@ -341,8 +272,8 @@ import { Icon } from 'astro-icon/components';
   }
 
   .newsletter-form :global(.formkit-submit:hover) {
-    background: #C6A16A !important;
-    border-color: #C6A16A !important;
+    background: #c6a16a !important;
+    border-color: #c6a16a !important;
   }
 
   .newsletter-form :global(.formkit-powered-by) {
@@ -357,13 +288,11 @@ import { Icon } from 'astro-icon/components';
     text-align: left !important;
   }
 
-
   /* =========================================
      MOBILE
      ========================================= */
 
   @media (max-width: 600px) {
-
     .newsletter-form {
       max-width: 100%;
       margin-top: -10px;
@@ -386,10 +315,8 @@ import { Icon } from 'astro-icon/components';
       min-width: 68px !important;
       max-width: 68px !important;
     }
-
   }
 </style>
-
 
 <script>
   function loadKitNewsletter() {

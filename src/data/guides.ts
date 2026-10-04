@@ -23,8 +23,7 @@ export const guides: Guide[] = [
     pages: 24,
     type: 'free',
     tutorialUrl: '/tutorials/character-consistency-express-image-workflow/',
-    shopUrl:
-      'https://shop.pyrosaicreative.com/products/character-consistency-guide-express-image-workflow',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/character-consistency-guide-express-image-workflow',
   },
 
   {
@@ -37,8 +36,7 @@ export const guides: Guide[] = [
     pages: 27,
     type: 'free',
     tutorialUrl: 'https://youtu.be/8HaKm1e4NM4',
-    shopUrl:
-      'https://shop.pyrosaicreative.com/products/character-consistency-guide-express-video-workflow',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/character-consistency-guide-express-video-workflow',
   },
 
   {
@@ -51,8 +49,7 @@ export const guides: Guide[] = [
     pages: 15,
     type: 'free',
     tutorialUrl: 'https://youtu.be/OJZC40izHdc',
-    shopUrl:
-      'https://shop.pyrosaicreative.com/products/google-flow-storyboard-studio-guide',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/google-flow-storyboard-studio-guide',
   },
 
   {
@@ -65,7 +62,6 @@ export const guides: Guide[] = [
     pages: 16,
     type: 'free',
     tutorialUrl: 'https://youtu.be/-_omF8KmqUE',
-    shopUrl:
-      'https://shop.pyrosaicreative.com/products/google-flow-music-ai-filmmaking-guide',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/google-flow-music-ai-filmmaking-guide',
   },
 ];

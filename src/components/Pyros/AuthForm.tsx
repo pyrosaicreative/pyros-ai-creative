@@ -1,46 +1,43 @@
-import { useEffect, useState } from "preact/hooks";
-import { supabase } from "~/lib/supabase";
-import { Eye, EyeOff } from "lucide-preact";
+import { useEffect, useState } from 'preact/hooks';
+import { supabase } from '~/lib/supabase';
+import { Eye, EyeOff } from 'lucide-preact';
 
 export default function AuthForm() {
-    const getSafeRedirect = () => {
+  const getSafeRedirect = () => {
     const params = new URLSearchParams(window.location.search);
-    const redirect = params.get("redirect");
+    const redirect = params.get('redirect');
 
     if (!redirect) {
-      return "/dashboard";
+      return '/dashboard';
     }
 
     try {
       const url = new URL(redirect, window.location.origin);
 
-      const allowedHosts = [
-        window.location.host,
-        "shop.pyrosaicreative.com",
-      ];
+      const allowedHosts = [window.location.host, 'shop.pyrosaicreative.com'];
 
       if (!allowedHosts.includes(url.host)) {
-        return "/dashboard";
+        return '/dashboard';
       }
 
       return url.toString();
     } catch {
-      return "/dashboard";
+      return '/dashboard';
     }
   };
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [mode, setMode] = useState<'signin' | 'signup'>('signin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [newsletterConsent, setNewsletterConsent] = useState(false);
-  const [message, setMessage] = useState("");
-const [messageType, setMessageType] = useState<"success" | "error">("error");
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState<'success' | 'error'>('error');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [checkingSession, setCheckingSession] = useState(true);
 
-    useEffect(() => {
+  useEffect(() => {
     async function checkSession() {
       const {
         data: { session },
@@ -57,448 +54,340 @@ const [messageType, setMessageType] = useState<"success" | "error">("error");
     checkSession();
   }, []);
 
-async function handleSubmit() {
-  setMessage("");
+  async function handleSubmit() {
+    setMessage('');
 
-  console.log("handleSubmit");
+    console.log('handleSubmit');
 
-  if (!email.trim()) {
-    setMessageType("error");
-    return setMessage("Please enter your email.");
-  }
+    if (!email.trim()) {
+      setMessageType('error');
+      return setMessage('Please enter your email.');
+    }
 
-  if (!password.trim()) {
-    setMessageType("error");
-    return setMessage("Please enter your password.");
-  }
+    if (!password.trim()) {
+      setMessageType('error');
+      return setMessage('Please enter your password.');
+    }
 
-    if (mode === "signup") {
+    if (mode === 'signup') {
+      if (password.length < 8) {
+        setMessageType('error');
+        return setMessage('Password must be at least 8 characters.');
+      }
 
-  if (password.length < 8) {
-    setMessageType("error");
-    return setMessage("Password must be at least 8 characters.");
-  }
+      if (password !== confirmPassword) {
+        setMessageType('error');
+        return setMessage('Passwords do not match.');
+      }
 
-  if (password !== confirmPassword) {
-    setMessageType("error");
-    return setMessage("Passwords do not match.");
-  }
+      setLoading(true);
 
-  setLoading(true);
+      console.log('Calling signUp...');
 
-  console.log("Calling signUp...");
+      const { error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(getSafeRedirect())}`,
+          data: {
+            newsletter_consent: newsletterConsent,
+            newsletter_consent_at: newsletterConsent ? new Date().toISOString() : null,
+          },
+        },
+      });
 
-const { error } = await supabase.auth.signUp({
-  email: email.trim(),
-  password,
-  options: {
-    emailRedirectTo: `${
-  window.location.origin
-}/auth/callback?redirect=${encodeURIComponent(
-  getSafeRedirect()
-)}`,
-    data: {
-      newsletter_consent: newsletterConsent,
-      newsletter_consent_at: newsletterConsent
-        ? new Date().toISOString()
-        : null,
-    },
-  },
-});
+      console.log(error);
 
-console.log(error);
+      setLoading(false);
 
-  setLoading(false);
+      if (error) {
+        setMessageType('error');
+        return setMessage(error.message);
+      }
 
-  if (error) {
-    setMessageType("error");
-    return setMessage(error.message);
-  }
+      setMessageType('success');
+      setMessage('Account created. Please check your email.');
+      return;
+    }
 
-  setMessageType("success");
-  setMessage("Account created. Please check your email.");
-  return;
-}
-
-    
     setLoading(true);
 
-const { error } = await supabase.auth.signInWithPassword({
-  email: email.trim(),
-  password,
-});
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
 
-setLoading(false);
+    setLoading(false);
 
-if (error) {
-  setMessageType("error");
-  return setMessage(error.message);
-}
+    if (error) {
+      setMessageType('error');
+      return setMessage(error.message);
+    }
 
-window.location.href = getSafeRedirect();
-}
+    window.location.href = getSafeRedirect();
+  }
 
-async function forgotPassword() {
+  async function forgotPassword() {
     if (!email.trim()) {
-  setMessageType("error");
-  setMessage("Enter your email first.");
-  return;
-}
+      setMessageType('error');
+      setMessage('Enter your email first.');
+      return;
+    }
 
-    const { error } = await supabase.auth.resetPasswordForEmail(
-  email.trim()
-);
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim());
 
-if (error) {
-  setMessageType("error");
-  setMessage(error.message);
-  return;
-}
+    if (error) {
+      setMessageType('error');
+      setMessage(error.message);
+      return;
+    }
 
-setMessageType("success");
-setMessage("Password reset email sent.");
+    setMessageType('success');
+    setMessage('Password reset email sent.');
   }
 
   if (checkingSession) {
+    return <div className="flex min-h-screen items-center justify-center bg-black text-white">Loading...</div>;
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black text-white">
-      Loading...
-    </div>
-  );
-}
+    <div className="mx-auto w-full max-w-[1250px]">
+      <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
+        <div className="grid lg:grid-cols-[44%_56%]">
+          {/* LEFT */}
 
-return (
-  <div className="mx-auto w-full max-w-[1250px]">
-    <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
-      <div className="grid lg:grid-cols-[44%_56%]">
+          <div className="bg-[#0d0d0d] px-10 py-8">
+            <h1 className="text-[2.20rem] font-black leading-[1.05] text-white">
+              Welcome to
+              <span className="mt-2 block text-[#B71C1C]">PYROS AI Creative</span>
+            </h1>
 
-        {/* LEFT */}
+            <p className="mt-6 max-w-sm text-[15px] leading-7 text-gray-400">
+              Join PYROS AI Creative to download free guides, unlock AI Guides and access future premium resources.
+            </p>
 
-        <div className="bg-[#0d0d0d] px-10 py-8">
-
-          <h1 className="text-[2.20rem] font-black leading-[1.05] text-white">
-            Welcome to
-            <span className="mt-2 block text-[#B71C1C]">
-              PYROS AI Creative
-            </span>
-          </h1>
-
-          <p className="mt-6 max-w-sm text-[15px] leading-7 text-gray-400">
-            Join PYROS AI Creative to download free guides,
-            unlock AI Guides and access future premium resources.
-          </p>
-
-          <div className="mt-10 space-y-5">
-
-            {[
-              "Download free workflow guides",
-              "Access AI Guides",
-              "Save your resources",
-              "Unlock premium content",
-            ].map((item) => (
-              <div className="flex items-center gap-3" key={item}>
-                <span className="text-[#8F6B3B]">✓</span>
-                <span className="text-[15px] text-gray-300">
-                  {item}
-                </span>
-              </div>
-            ))}
-
+            <div className="mt-10 space-y-5">
+              {[
+                'Download free workflow guides',
+                'Access AI Guides',
+                'Save your resources',
+                'Unlock premium content',
+              ].map((item) => (
+                <div className="flex items-center gap-3" key={item}>
+                  <span className="text-[#8F6B3B]">✓</span>
+                  <span className="text-[15px] text-gray-300">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-        </div>
+          {/* RIGHT */}
 
-        {/* RIGHT */}
+          <div className="px-10 py-8">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+            >
+              {/* Tabs */}
 
-        <div className="px-10 py-8">
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit();
-            }}
-          >
-
-            {/* Tabs */}
-
-            <div className="flex rounded-xl bg-[#1b1b1b] p-1">
-
-              <button
-  type="button"
-  disabled={loading}
-  onClick={() => {
-    setMode("signin");
-    setMessage("");
-    setMessageType("error");
-    setConfirmPassword("");
-  }}
-                className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
-                  mode === "signin"
-                    ? "bg-[#8F6B3B] text-white"
-                    : "text-gray-400"
-                }`}
-              >
-                Sign In
-              </button>
-
-              <button
-  type="button"
-  disabled={loading}
-  onClick={() => {
-    setMode("signup");
-    setMessage("");
-    setMessageType("error");
-  }}
-                className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
-                  mode === "signup"
-                    ? "bg-[#8F6B3B] text-white"
-                    : "text-gray-400"
-                }`}
-              >
-                Create Account
-              </button>
-
-            </div>
-
-            {/* Email */}
-
-            <div className="mt-8">
-
-              <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
-                Email
-              </label>
-
-              <input
-                type="email"
-                disabled={loading}
-                autoComplete="email"
-                placeholder="you@example.com"
-                value={email}
-                onInput={(e) =>
-                  setEmail((e.target as HTMLInputElement).value)
-                }
-                className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
-              />
-
-            </div>
-
-            {/* Password */}
-
-            <div className="mt-5">
-
-              <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
-                Password
-              </label>
-
-              <div className="relative">
-
-  <input
-    type={showPassword ? "text" : "password"}
-    disabled={loading}
-    autoComplete={
-      mode === "signin"
-        ? "current-password"
-        : "new-password"
-    }
-    placeholder="••••••••"
-    value={password}
-    onInput={(e) =>
-      setPassword((e.target as HTMLInputElement).value)
-    }
-    className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
-  />
-
-  <button
-    type="button"
-    onClick={() => setShowPassword(!showPassword)}
-    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
-  >
-    {showPassword ? (
-  <EyeOff size={18} />
-) : (
-  <Eye size={18} />
-)}
-  </button>
-
-</div>
-</div>
-
-  {/* Confirm Password */}
-
-{mode === "signup" && (
-  <>
-    <p className="mt-2 text-xs text-gray-500">
-      Minimum 8 characters.
-    </p>
-
-    <div className="mt-5">
-
-      <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
-        Confirm Password
-      </label>
-
-      <div className="relative">
-
-        <input
-          type={showConfirmPassword ? "text" : "password"}
-          disabled={loading}
-          autoComplete="new-password"
-          placeholder="••••••••"
-          value={confirmPassword}
-          onInput={(e) =>
-            setConfirmPassword(
-              (e.target as HTMLInputElement).value
-            )
-          }
-          className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
-        />
-
-        <button
-          type="button"
-          disabled={loading}
-          onClick={() =>
-            setShowConfirmPassword(!showConfirmPassword)
-          }
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
-        >
-          {showConfirmPassword ? (
-            <EyeOff size={18} />
-          ) : (
-            <Eye size={18} />
-          )}
-        </button>
-
-      </div>
-
-    </div>
-  </>
-)}
-
-            {/* Forgot */}
-
-            {mode === "signin" && (
-
-              <div className="mt-3 text-right">
+              <div className="flex rounded-xl bg-[#1b1b1b] p-1">
+                <button
+                  type="button"
+                  disabled={loading}
+                  onClick={() => {
+                    setMode('signin');
+                    setMessage('');
+                    setMessageType('error');
+                    setConfirmPassword('');
+                  }}
+                  className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
+                    mode === 'signin' ? 'bg-[#8F6B3B] text-white' : 'text-gray-400'
+                  }`}
+                >
+                  Sign In
+                </button>
 
                 <button
                   type="button"
                   disabled={loading}
-                  onClick={forgotPassword}
-                  className="text-xs text-gray-500 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  onClick={() => {
+                    setMode('signup');
+                    setMessage('');
+                    setMessageType('error');
+                  }}
+                  className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
+                    mode === 'signup' ? 'bg-[#8F6B3B] text-white' : 'text-gray-400'
+                  }`}
                 >
-                  Forgot password?
+                  Create Account
                 </button>
-
               </div>
 
-            )}
-{mode === "signup" && (
-  <label className="mt-5 flex cursor-pointer items-start gap-3">
-    <input
-      type="checkbox"
-      checked={newsletterConsent}
-      disabled={loading}
-      onChange={(e) =>
-        setNewsletterConsent(
-          (e.target as HTMLInputElement).checked
-        )
-      }
-      className="mt-1 h-4 w-4 accent-[#8F6B3B]"
-    />
+              {/* Email */}
 
-    <span className="text-[12px] leading-5 text-gray-400">
-      Send me AI filmmaking tutorials, new guides and PYROS updates by email.
-    </span>
-  </label>
-)}
-            {/* Submit */}
+              <div className="mt-8">
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                  Email
+                </label>
 
-            <button
-  type="submit"
-  disabled={loading}
-  className="mt-5 flex h-9 w-full items-center justify-center rounded-xl bg-[#8F6B3B] text-[15px] font-semibold text-white transition hover:bg-[#9A7A49] disabled:cursor-not-allowed disabled:opacity-60"
->
-  {loading ? (
-    <>
-      <svg
-        className="mr-2 h-4 w-4 animate-spin"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <circle
-          cx="12"
-          cy="12"
-          r="9"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="opacity-25"
-        />
+                <input
+                  type="email"
+                  disabled={loading}
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
+                  className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
+                />
+              </div>
 
-        <path
-          d="M21 12a9 9 0 0 1-9 9"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </svg>
+              {/* Password */}
 
-      {mode === "signin"
-        ? "Signing in..."
-        : "Creating account..."}
-    </>
-  ) : (
-    mode === "signin"
-      ? "Sign In"
-      : "Create Account"
-  )}
-</button>
+              <div className="mt-5">
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                  Password
+                </label>
 
-            {/* Message */}
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    disabled={loading}
+                    autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
+                    placeholder="••••••••"
+                    value={password}
+                    onInput={(e) => setPassword((e.target as HTMLInputElement).value)}
+                    className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
+                  />
 
-            {message && (
-  <p
-    className={`mt-4 text-center text-sm ${
-      messageType === "success"
-        ? "text-green-400"
-        : "text-red-400"
-    }`}
-  >
-    {message}
-  </p>
-)}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
 
-            {/* Footer */}
+              {/* Confirm Password */}
 
-            <p className="mt-5 text-center text-[12px] leading-6 text-gray-500">
+              {mode === 'signup' && (
+                <>
+                  <p className="mt-2 text-xs text-gray-500">Minimum 8 characters.</p>
 
-              By continuing you agree to our{" "}
+                  <div className="mt-5">
+                    <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                      Confirm Password
+                    </label>
 
-              <a
-                href="/terms"
-                className="text-white transition hover:text-[#8F6B3B]"
+                    <div className="relative">
+                      <input
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        disabled={loading}
+                        autoComplete="new-password"
+                        placeholder="••••••••"
+                        value={confirmPassword}
+                        onInput={(e) => setConfirmPassword((e.target as HTMLInputElement).value)}
+                        className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
+                      />
+
+                      <button
+                        type="button"
+                        disabled={loading}
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
+                      >
+                        {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* Forgot */}
+
+              {mode === 'signin' && (
+                <div className="mt-3 text-right">
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={forgotPassword}
+                    className="text-xs text-gray-500 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+              )}
+              {mode === 'signup' && (
+                <label className="mt-5 flex cursor-pointer items-start gap-3">
+                  <input
+                    type="checkbox"
+                    checked={newsletterConsent}
+                    disabled={loading}
+                    onChange={(e) => setNewsletterConsent((e.target as HTMLInputElement).checked)}
+                    className="mt-1 h-4 w-4 accent-[#8F6B3B]"
+                  />
+
+                  <span className="text-[12px] leading-5 text-gray-400">
+                    Send me AI filmmaking tutorials, new guides and PYROS updates by email.
+                  </span>
+                </label>
+              )}
+              {/* Submit */}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="mt-5 flex h-9 w-full items-center justify-center rounded-xl bg-[#8F6B3B] text-[15px] font-semibold text-white transition hover:bg-[#9A7A49] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Terms
-              </a>
+                {loading ? (
+                  <>
+                    <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" className="opacity-25" />
 
-              {" "}and{" "}
+                      <path d="M21 12a9 9 0 0 1-9 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
 
-              <a
-                href="/privacy"
-                className="text-white transition hover:text-[#8F6B3B]"
-              >
-                Privacy Policy
-              </a>
+                    {mode === 'signin' ? 'Signing in...' : 'Creating account...'}
+                  </>
+                ) : mode === 'signin' ? (
+                  'Sign In'
+                ) : (
+                  'Create Account'
+                )}
+              </button>
 
-              .
+              {/* Message */}
 
-            </p>
+              {message && (
+                <p
+                  className={`mt-4 text-center text-sm ${
+                    messageType === 'success' ? 'text-green-400' : 'text-red-400'
+                  }`}
+                >
+                  {message}
+                </p>
+              )}
 
-          </form>
+              {/* Footer */}
 
+              <p className="mt-5 text-center text-[12px] leading-6 text-gray-500">
+                By continuing you agree to our{' '}
+                <a href="/terms" className="text-white transition hover:text-[#8F6B3B]">
+                  Terms
+                </a>{' '}
+                and{' '}
+                <a href="/privacy" className="text-white transition hover:text-[#8F6B3B]">
+                  Privacy Policy
+                </a>
+                .
+              </p>
+            </form>
+          </div>
         </div>
-
       </div>
     </div>
-  </div>
-);
+  );
 }

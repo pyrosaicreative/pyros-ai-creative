@@ -67,24 +67,24 @@
   duration-300
   cursor-pointer;
 
-  background-color: #8F6B3B;
-  border-color: rgba(255,255,255,.08);
+  background-color: #8f6b3b;
+  border-color: rgba(255, 255, 255, 0.08);
 
   padding: 0.9rem 1.8rem;
   min-height: 52px;
 
   box-shadow:
-    0 8px 30px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .btn-primary:hover {
-  background-color: #B38F4E;
-  border-color: rgba(255,255,255,.15);
+  background-color: #b38f4e;
+  border-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-1px);
   box-shadow:
-    0 12px 35px rgba(0,0,0,.35),
-    0 0 24px rgba(198,161,91,.25);
+    0 12px 35px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(198, 161, 91, 0.25);
 }
 
 @utility btn-secondary {
@@ -98,14 +98,14 @@
 #header.scroll > div:first-child {
   background: rgba(9, 9, 9, 0.85);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none;
 }
 
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
   background: rgba(9, 9, 9, 0.85);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none;
 }
 
@@ -159,7 +159,6 @@
 }
 
 @layer components {
-
   .hero-home {
     @apply relative overflow-hidden bg-black h-[500px];
   }
@@ -167,5 +166,4 @@
   .hero-page {
     @apply relative overflow-hidden bg-[#090909] h-[440px];
   }
-
 }

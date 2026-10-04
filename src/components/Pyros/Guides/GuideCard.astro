@@ -9,7 +9,6 @@ const { guide } = Astro.props;
 ---
 
 <article class="group">
-
   <!-- COVER -->
 
   <div
@@ -20,72 +19,67 @@ const { guide } = Astro.props;
            group-hover:shadow-2xl
            group-hover:shadow-black/40"
   >
-
-    {guide.type === 'free' ? (
-      <button
-        type="button"
-        data-guide-access
-        data-guide-id={guide.id}
-        data-shop-url={guide.shopUrl}
-        aria-label={`Get ${guide.title}`}
-        class="block w-full cursor-pointer text-left"
-      >
+    {
+      guide.type === 'free' ? (
+        <button
+          type="button"
+          data-guide-access
+          data-guide-id={guide.id}
+          data-shop-url={guide.shopUrl}
+          aria-label={`Get ${guide.title}`}
+          class="block w-full cursor-pointer text-left"
+        >
+          <div class="aspect-[210/297] w-full overflow-hidden leading-none">
+            <img
+              src={guide.cover}
+              alt={guide.title}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+          </div>
+        </button>
+      ) : (
         <div class="aspect-[210/297] w-full overflow-hidden leading-none">
-
           <img
             src={guide.cover}
             alt={guide.title}
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             loading="lazy"
           />
-
         </div>
-      </button>
-    ) : (
-      <div class="aspect-[210/297] w-full overflow-hidden leading-none">
-
-        <img
-          src={guide.cover}
-          alt={guide.title}
-          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          loading="lazy"
-        />
-
-      </div>
-    )}
-
+      )
+    }
   </div>
-
 
   <!-- INFORMATION -->
 
   <div class="-mt-3 relative z-10">
-
     <!-- BADGES -->
 
     <div class="flex flex-wrap items-center gap-2">
-
-      {guide.type === 'free' ? (
-        <span
-          class="inline-flex shrink-0 items-center rounded-full
+      {
+        guide.type === 'free' ? (
+          <span
+            class="inline-flex shrink-0 items-center rounded-full
                  border border-emerald-500/30
                  bg-[#090909] px-3 py-2
                  text-[10px] font-semibold uppercase
                  tracking-[0.15em] text-emerald-400"
-        >
-          Free
-        </span>
-      ) : (
-        <span
-          class="inline-flex shrink-0 items-center rounded-full
+          >
+            Free
+          </span>
+        ) : (
+          <span
+            class="inline-flex shrink-0 items-center rounded-full
                  border border-[#8F6B3B]/40
                  bg-[#090909] px-3 py-2
                  text-[10px] font-semibold uppercase
                  tracking-[0.15em] text-[#C9A66B]"
-        >
-          Premium
-        </span>
-      )}
+          >
+            Premium
+          </span>
+        )
+      }
 
       <span
         class="inline-flex shrink-0 items-center rounded-full
@@ -98,18 +92,11 @@ const { guide } = Astro.props;
         <span class="mx-1.5 text-white/20">•</span>
         {guide.pages} Pages
       </span>
-
     </div>
-
 
     <!-- FREE ACCESS NOTE -->
 
-    {guide.type === 'free' && (
-      <p class="mt-3 text-[11px] font-medium text-gray-500">
-        Free · No card required
-      </p>
-    )}
-
+    {guide.type === 'free' && <p class="mt-3 text-[11px] font-medium text-gray-500">Free · No card required</p>}
 
     <!-- TITLE -->
 
@@ -117,22 +104,16 @@ const { guide } = Astro.props;
       {guide.title}
     </h3>
 
-
     <!-- WORKFLOW -->
 
     <p class="mt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8F6B3B]">
       {guide.workflow}
     </p>
 
-
     <!-- DESCRIPTION -->
 
     <div class="relative mt-3 max-w-md">
-
-      <p
-        data-guide-description
-        class="text-sm leading-6 text-gray-400"
-      >
+      <p data-guide-description class="text-sm leading-6 text-gray-400">
         {guide.description}
       </p>
 
@@ -149,87 +130,71 @@ const { guide } = Astro.props;
       >
         <span data-guide-more-label>More →</span>
       </button>
-
     </div>
-
 
     <!-- GET GUIDE -->
 
-    {guide.type === 'free' ? (
-
-      <button
-        type="button"
-        data-guide-access
-        data-guide-id={guide.id}
-        data-shop-url={guide.shopUrl}
-        class="mt-5 inline-flex items-center rounded-full
+    {
+      guide.type === 'free' ? (
+        <button
+          type="button"
+          data-guide-access
+          data-guide-id={guide.id}
+          data-shop-url={guide.shopUrl}
+          class="mt-5 inline-flex items-center rounded-full
                bg-[#8F6B3B] px-5 py-2.5
                text-xs font-semibold text-white
                transition duration-300
                hover:bg-[#9A7A49]"
-      >
-        Get Free Guide
-        <span class="ml-2 text-white/60">→</span>
-      </button>
-
-    ) : (
-
-      <span
-        class="mt-5 inline-flex items-center rounded-full
+        >
+          Get Free Guide
+          <span class="ml-2 text-white/60">→</span>
+        </button>
+      ) : (
+        <span
+          class="mt-5 inline-flex items-center rounded-full
                border border-white/10
                bg-[#090909] px-5 py-2.5
                text-xs font-semibold text-gray-500"
-      >
-        Coming Soon
-      </span>
-
-    )}
-
+        >
+          Coming Soon
+        </span>
+      )
+    }
 
     <!-- TUTORIAL -->
 
-    {guide.tutorialUrl && (
-      <a
-        href={guide.tutorialUrl}
-        class="mt-5 flex w-fit items-center gap-2
+    {
+      guide.tutorialUrl && (
+        <a
+          href={guide.tutorialUrl}
+          class="mt-5 flex w-fit items-center gap-2
                text-xs font-semibold uppercase
                tracking-[0.18em] text-[#C9A66B]
                transition duration-300 hover:text-white"
-      >
-        Watch the Tutorial
-        <span aria-hidden="true">→</span>
-      </a>
-    )}
-
+        >
+          Watch the Tutorial
+          <span aria-hidden="true">→</span>
+        </a>
+      )
+    }
   </div>
-
 </article>
-
 
 <script>
   const setupGuideDescriptions = () => {
-    const descriptions = document.querySelectorAll<HTMLElement>(
-      '[data-guide-description]'
-    );
+    const descriptions = document.querySelectorAll<HTMLElement>('[data-guide-description]');
 
     descriptions.forEach((description) => {
-      const moreButton =
-        description.parentElement?.querySelector<HTMLButtonElement>(
-          '[data-guide-more]'
-        );
+      const moreButton = description.parentElement?.querySelector<HTMLButtonElement>('[data-guide-more]');
 
-      const moreLabel =
-        moreButton?.querySelector<HTMLElement>(
-          '[data-guide-more-label]'
-        );
+      const moreLabel = moreButton?.querySelector<HTMLElement>('[data-guide-more-label]');
 
       if (!moreButton || !moreLabel) return;
 
       const fullHeight = description.scrollHeight;
 
-      const lineHeight = parseFloat(
-        window.getComputedStyle(description).lineHeight
-      );
+      const lineHeight = parseFloat(window.getComputedStyle(description).lineHeight);
 
       const maxHeight = lineHeight * 3;
 
@@ -242,8 +207,7 @@ const { guide } = Astro.props;
         moreButton.classList.remove('hidden');
 
         moreButton.addEventListener('click', () => {
-          const expanded =
-            moreButton.getAttribute('aria-expanded') === 'true';
+          const expanded = moreButton.getAttribute('aria-expanded') === 'true';
 
           if (expanded) {
             description.style.display = '-webkit-box';

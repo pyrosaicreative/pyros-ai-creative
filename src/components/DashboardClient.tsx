@@ -1,8 +1,8 @@
-import { useEffect, useState } from "preact/hooks";
-import { supabase } from "~/lib/supabase";
+import { useEffect, useState } from 'preact/hooks';
+import { supabase } from '~/lib/supabase';
 
 export default function DashboardClient() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     async function loadUser() {
@@ -11,11 +11,11 @@ export default function DashboardClient() {
       } = await supabase.auth.getSession();
 
       if (!session) {
-        window.location.replace("/account");
+        window.location.replace('/account');
         return;
       }
 
-      setEmail(session.user.email ?? "");
+      setEmail(session.user.email ?? '');
     }
 
     loadUser();
@@ -23,14 +23,12 @@ export default function DashboardClient() {
 
   async function handleLogout() {
     await supabase.auth.signOut();
-    window.location.replace("/");
+    window.location.replace('/');
   }
 
   return (
     <>
-      <p className="mt-4 text-gray-400">
-        {email ? `Signed in as ${email}` : "Loading account..."}
-      </p>
+      <p className="mt-4 text-gray-400">{email ? `Signed in as ${email}` : 'Loading account...'}</p>
 
       <button
         onClick={handleLogout}

@@ -1,12 +1,10 @@
 ---
-import Layout from "~/layouts/PageLayout.astro";
-import AuthForm from "../components/Pyros/AuthForm.tsx";
+import Layout from '~/layouts/PageLayout.astro';
+import AuthForm from '../components/Pyros/AuthForm.tsx';
 ---
 
 <Layout>
-
   <section class="flex min-h-screen justify-center bg-black px-6 pt-4 pb-20">
     <AuthForm client:load />
   </section>
-
 </Layout>
