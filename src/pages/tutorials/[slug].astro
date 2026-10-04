@@ -18,16 +18,9 @@ export function getStaticPaths() {
 
 const { tutorial } = Astro.props;
 
-const guide =
-  guides.find(
-    (item) => item.id === tutorial.guideId
-  ) ?? null;
+const guide = guides.find((item) => item.id === tutorial.guideId) ?? null;
 
-const relatedTutorials = tutorials.filter(
-  (item) =>
-    item.slug !== tutorial.slug &&
-    item.category === tutorial.category
-);
+const relatedTutorials = tutorials.filter((item) => item.slug !== tutorial.slug && item.category === tutorial.category);
 
 const metadata = {
   title: tutorial.title,
@@ -47,28 +40,21 @@ const videoSchema = {
 ---
 
 <Layout metadata={metadata}>
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify(videoSchema)}
-  />
+  <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
 
   <main class="bg-black pb-24">
-
     <!-- ===================================================== -->
     <!-- VIDEO -->
     <!-- ===================================================== -->
 
     <section class="pt-5 lg:pt-6">
       <Container>
-
         <div
           class="mx-auto max-w-2xl overflow-hidden rounded-2xl
                  border border-white/10 bg-[#0D0D0D]
                  shadow-2xl shadow-black/50"
         >
-
           <div class="aspect-video w-full">
-
             <iframe
               class="h-full w-full"
               src={`https://www.youtube.com/embed/${tutorial.youtubeId}`}
@@ -77,16 +63,11 @@ const videoSchema = {
               allow="accelerometer; autoplay; clipboard-write;
                      encrypted-media; gyroscope; picture-in-picture;
                      web-share"
-              allowfullscreen
-            ></iframe>
-
+              allowfullscreen></iframe>
           </div>
-
         </div>
-
       </Container>
     </section>
-
 
     <!-- ===================================================== -->
     <!-- YOUTUBE ACTIONS -->
@@ -94,12 +75,8 @@ const videoSchema = {
 
     <section class="pt-3 pb-2">
       <Container>
-
-        <div
-          class="mx-auto flex max-w-2xl flex-wrap items-center
-                 justify-center gap-2"
-        >
-
+        <div class="mx-auto flex max-w-2xl flex-wrap items-center
+                 justify-center gap-2">
           <a
             href={`https://www.youtube.com/watch?v=${tutorial.youtubeId}`}
             target="_blank"
@@ -140,12 +117,9 @@ const videoSchema = {
           >
             Subscribe to PYROS
           </a>
-
         </div>
-
       </Container>
     </section>
-
 
     <!-- ===================================================== -->
     <!-- GUIDE + WHAT YOU'LL LEARN -->
@@ -153,22 +127,16 @@ const videoSchema = {
 
     <section class="pt-10">
       <Container>
-
-        <div
-          class="mx-auto grid max-w-5xl gap-12
-                 lg:grid-cols-2 lg:items-start"
-        >
-
+        <div class="mx-auto grid max-w-5xl gap-12
+                 lg:grid-cols-2 lg:items-start">
           <!-- ================================================= -->
           <!-- GUIDE -->
           <!-- ================================================= -->
 
           {
             guide && (
-
               <div>
-
-                <!-- SECTION LABEL -->
+                {/* SECTION LABEL */}
 
                 <p
                   class="text-[10px] font-semibold uppercase
@@ -177,12 +145,10 @@ const videoSchema = {
                   FREE GUIDE
                 </p>
 
-
-                <!-- GUIDE CONTENT -->
+                {/* GUIDE CONTENT */}
 
                 <div class="mt-6 flex gap-6">
-
-                  <!-- COVER -->
+                  {/* COVER */}
 
                   <button
                     type="button"
@@ -197,7 +163,6 @@ const videoSchema = {
                            hover:-translate-y-1
                            hover:shadow-2xl hover:shadow-black/60"
                   >
-
                     <img
                       src={guide.cover}
                       alt={guide.title}
@@ -208,7 +173,7 @@ const videoSchema = {
                              group-hover:scale-[1.025]"
                     />
 
-                    <!-- COVER HOVER -->
+                    {/* COVER HOVER */}
 
                     <div
                       class="absolute inset-0 flex items-center
@@ -216,7 +181,6 @@ const videoSchema = {
                              bg-black/0 transition duration-300
                              group-hover:bg-black/35"
                     >
-
                       <span
                         class="translate-y-2 rounded-full
                                bg-[#8F6B3B] px-4 py-2
@@ -227,16 +191,12 @@ const videoSchema = {
                       >
                         GET GUIDE
                       </span>
-
                     </div>
-
                   </button>
 
-
-                  <!-- GUIDE INFO -->
+                  {/* GUIDE INFO */}
 
                   <div class="flex min-w-0 flex-1 flex-col">
-
                     <h2
                       class="text-xl font-bold leading-tight
                              tracking-tight text-white"
@@ -251,17 +211,11 @@ const videoSchema = {
                       {guide.workflow}
                     </p>
 
-                    <p
-                      class="mt-4 text-sm leading-6 text-white/50"
-                    >
-                      {guide.description}
-                    </p>
+                    <p class="mt-4 text-sm leading-6 text-white/50">{guide.description}</p>
 
-
-                    <!-- META -->
+                    {/* META */}
 
                     <div class="mt-5 flex flex-wrap gap-2">
-
                       <span
                         class="rounded-full border border-white/10
                                px-3 py-1.5 text-[10px]
@@ -279,18 +233,13 @@ const videoSchema = {
                       >
                         {guide.pages} PAGES
                       </span>
-
                     </div>
 
+                    {/* FREE NOTE */}
 
-                    <!-- FREE NOTE -->
+                    <p class="mt-4 text-[11px] font-medium text-white/40">Free · No card required</p>
 
-                    <p class="mt-4 text-[11px] font-medium text-white/40">
-                      Free · No card required
-                    </p>
-
-
-                    <!-- GUIDE BUTTON -->
+                    {/* GUIDE BUTTON */}
 
                     <button
                       type="button"
@@ -306,21 +255,14 @@ const videoSchema = {
                              hover:bg-[#9A7A49]"
                     >
                       Get Free Guide
-
-                      <span class="ml-2 text-white/60">
-                        →
-                      </span>
+                      <span class="ml-2 text-white/60">→</span>
                     </button>
-
                   </div>
-
                 </div>
 
-
-                <!-- SUPPORT -->
+                {/* SUPPORT */}
 
                 <div class="mt-8">
-
                   <p
                     class="text-[10px] font-semibold uppercase
                            tracking-[0.3em] text-[#8F6B3B]"
@@ -328,13 +270,10 @@ const videoSchema = {
                     SUPPORT THE PROJECT
                   </p>
 
-                  <h3 class="mt-2 text-lg font-semibold text-white">
-                    Support PYROS AI Creative
-                  </h3>
+                  <h3 class="mt-2 text-lg font-semibold text-white">Support PYROS AI Creative</h3>
 
                   <p class="mt-2 max-w-md text-sm leading-6 text-white/45">
-                    Help us create more free AI filmmaking guides,
-                    tutorials and creative resources.
+                    Help us create more free AI filmmaking guides, tutorials and creative resources.
                   </p>
 
                   <a
@@ -348,88 +287,58 @@ const videoSchema = {
                   >
                     Contribute
                   </a>
-
                 </div>
-
               </div>
-
             )
           }
-
 
           <!-- ================================================= -->
           <!-- WHAT YOU'LL LEARN -->
           <!-- ================================================= -->
 
           <div class="lg:pt-0">
-
-            <p
-              class="text-[10px] font-semibold uppercase
-                     tracking-[0.35em] text-[#8F6B3B]"
-            >
+            <p class="text-[10px] font-semibold uppercase
+                     tracking-[0.35em] text-[#8F6B3B]">
               WHAT YOU'LL LEARN
             </p>
 
-            <p
-  class="mt-4 max-w-xl text-sm leading-6 text-white/45"
->
-  {tutorial.learnIntro}
-</p>
-
+            <p class="mt-4 max-w-xl text-sm leading-6 text-white/45">
+              {tutorial.learnIntro}
+            </p>
 
             <!-- CHECKLIST -->
 
             <div class="mt-7 space-y-5">
-
-              {tutorial.whatYoullLearn.map((item) => (
-
-                <div class="flex items-start gap-4">
-
-                  <div
-                    class="mt-0.5 flex h-7 w-7 shrink-0
+              {
+                tutorial.whatYoullLearn.map((item) => (
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="mt-0.5 flex h-7 w-7 shrink-0
                            items-center justify-center rounded-full
                            bg-[#8F6B3B]/15"
-                  >
-
-                    <svg
-                      class="h-3.5 w-3.5 text-[#B89563]"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
                     >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
+                      <svg class="h-3.5 w-3.5 text-[#B89563]" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
 
+                    <div>
+                      <h3 class="text-sm font-semibold text-white">{item.title}</h3>
+
+                      <p class="mt-1 text-xs leading-5 text-white/40">{item.description}</p>
+                    </div>
                   </div>
-
-                  <div>
-
-                    <h3 class="text-sm font-semibold text-white">
-                      {item.title}
-                    </h3>
-
-                    <p class="mt-1 text-xs leading-5 text-white/40">
-                      {item.description}
-                    </p>
-
-                  </div>
-
-                </div>
-
-              ))}
-
+                ))
+              }
             </div>
-
           </div>
-
         </div>
-
       </Container>
     </section>
-
 
     <!-- ===================================================== -->
     <!-- RELATED TUTORIALS -->
@@ -437,14 +346,10 @@ const videoSchema = {
 
     {
       relatedTutorials.length > 0 && (
-
         <section class="pt-20">
           <Container>
-
             <div class="mx-auto max-w-5xl">
-
               <div class="mb-8">
-
                 <p
                   class="text-[10px] font-semibold uppercase
                          tracking-[0.3em] text-[#8F6B3B]"
@@ -458,34 +363,24 @@ const videoSchema = {
                 >
                   Related Tutorials
                 </h2>
-
               </div>
 
               <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-
                 {relatedTutorials.map((related) => (
-
                   <TutorialCard
                     title={related.title}
                     image={related.thumbnail}
                     href={`/tutorials/${related.slug}`}
                     badge={related.badge}
                   />
-
                 ))}
-
               </div>
-
             </div>
-
           </Container>
         </section>
-
       )
     }
-
   </main>
-
 
   <!-- ===================================================== -->
   <!-- AUTHENTICATED GUIDE ACCESS -->
@@ -494,24 +389,16 @@ const videoSchema = {
   <script>
     import { supabase } from '~/lib/supabase';
 
-    const guideButtons =
-      document.querySelectorAll<HTMLButtonElement>(
-        '[data-guide-access]'
-      );
+    const guideButtons = document.querySelectorAll<HTMLButtonElement>('[data-guide-access]');
 
     guideButtons.forEach((button) => {
-
       button.addEventListener('click', async () => {
-
         const shopUrl = button.dataset.shopUrl;
 
         if (!shopUrl) {
-          console.error(
-            'Fourthwall guide URL is missing.'
-          );
+          console.error('Fourthwall guide URL is missing.');
           return;
         }
-
 
         /*
          * CHECK PYROS ACCOUNT
@@ -521,44 +408,24 @@ const videoSchema = {
           data: { session },
         } = await supabase.auth.getSession();
 
-
         /*
          * ALREADY SIGNED IN
          */
 
         if (session) {
-  window.open(
-    shopUrl,
-    '_blank',
-    'noopener,noreferrer'
-  );
+          window.open(shopUrl, '_blank', 'noopener,noreferrer');
 
-  return;
-}
-
-const encodedRedirect =
-  encodeURIComponent(shopUrl);
-
-window.open(
-  `/account?redirect=${encodedRedirect}`,
-  '_blank',
-  'noopener,noreferrer'
-);
-
+          return;
+        }
 
         /*
          * SIGN IN / CREATE ACCOUNT FIRST
          */
 
-        const redirect =
-          encodeURIComponent(shopUrl);
+        const encodedRedirect = encodeURIComponent(shopUrl);
 
-        window.location.href =
-          `/account?redirect=${redirect}`;
-
+        window.location.href = `/account?redirect=${encodedRedirect}`;
       });
-
     });
   </script>
-
 </Layout>

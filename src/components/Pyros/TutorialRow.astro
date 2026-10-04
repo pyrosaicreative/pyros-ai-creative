@@ -1,9 +1,16 @@
 ---
 import TutorialCard from './TutorialCard.astro';
 
+interface Tutorial {
+  title: string;
+  thumbnail: string;
+  slug: string;
+  badge?: 'FREE' | 'PREMIUM';
+}
+
 interface Props {
   title: string;
-  tutorials: any[];
+  tutorials: Tutorial[];
 }
 
 const { title, tutorials } = Astro.props;
@@ -15,17 +22,14 @@ const rowId = `tutorial-row-${title
 ---
 
 <div class="mb-16">
-
   <!-- Header -->
   <div class="mb-5 flex items-center justify-between">
-
     <h2 class="text-3xl font-bold text-white">
       {title}
     </h2>
 
     <!-- Navigation -->
     <div class="flex items-center gap-2">
-
       <button
         type="button"
         aria-label="Previous tutorials"
@@ -41,7 +45,7 @@ const rowId = `tutorial-row-${title
           stroke-width="1.5"
           class="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"></path>
         </svg>
       </button>
 
@@ -60,12 +64,10 @@ const rowId = `tutorial-row-${title
           stroke-width="1.5"
           class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"></path>
         </svg>
       </button>
-
     </div>
-
   </div>
 
   <!-- Cards -->
@@ -74,7 +76,6 @@ const rowId = `tutorial-row-${title
     class="tutorial-scroll flex gap-6 overflow-x-auto px-2 py-4 scroll-smooth"
     style="scrollbar-width: none;"
   >
-
     {
       tutorials.map((tutorial) => (
         <div class="w-[340px] min-w-[340px]">
@@ -87,9 +88,7 @@ const rowId = `tutorial-row-${title
         </div>
       ))
     }
-
   </div>
-
 </div>
 
 <style>

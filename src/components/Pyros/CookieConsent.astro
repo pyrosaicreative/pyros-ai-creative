@@ -6,20 +6,12 @@
     class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
   >
     <div class="max-w-3xl">
-      <p class="text-sm font-semibold text-white">
-        Cookies & Analytics
-      </p>
+      <p class="text-sm font-semibold text-white">Cookies & Analytics</p>
 
       <p class="mt-1 text-xs leading-5 text-gray-400 sm:text-sm">
-        PYROS AI Creative uses essential technologies to operate the website
-        and, with your permission, Google Analytics to understand how the site
-        is used and improve the experience.
-        <a
-          href="/privacy"
-          class="text-gray-200 underline underline-offset-2 hover:text-white"
-        >
-          Privacy Policy
-        </a>
+        PYROS AI Creative uses essential technologies to operate the website and, with your permission, Google Analytics
+        to understand how the site is used and improve the experience.
+        <a href="/privacy" class="text-gray-200 underline underline-offset-2 hover:text-white"> Privacy Policy </a>
       </p>
     </div>
 
@@ -45,10 +37,10 @@
 
 <script is:inline>
   (() => {
-    const CONSENT_KEY = "pyros_cookie_consent";
+    const CONSENT_KEY = 'pyros_cookie_consent';
 
     function getBanner() {
-      return document.getElementById("cookie-consent");
+      return document.getElementById('cookie-consent');
     }
 
     function loadGoogleAnalytics() {
@@ -56,77 +48,70 @@
 
       window.__pyrosGaLoaded = true;
 
-      const measurementId = "G-BZ1LQDY4Z5";
+      const measurementId = 'G-BZ1LQDY4Z5';
 
-      const script = document.createElement("script");
+      const script = document.createElement('script');
       script.async = true;
-      script.src =
-        "https://www.googletagmanager.com/gtag/js?id=" +
-        measurementId;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
 
       document.head.appendChild(script);
 
       window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-        window.dataLayer.push(arguments);
+      function gtag(...args) {
+        window.dataLayer.push(args);
       }
 
       window.gtag = gtag;
 
-      gtag("js", new Date());
+      gtag('js', new Date());
 
-      gtag("consent", "default", {
-        analytics_storage: "granted",
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
+      gtag('consent', 'default', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
       });
 
-      gtag("config", measurementId);
+      gtag('config', measurementId);
     }
 
     function initialiseCookieConsent() {
       const banner = getBanner();
-      const acceptButton =
-        document.getElementById("cookie-accept");
-      const rejectButton =
-        document.getElementById("cookie-reject");
+      const acceptButton = document.getElementById('cookie-accept');
+      const rejectButton = document.getElementById('cookie-reject');
 
       if (!banner || !acceptButton || !rejectButton) return;
 
       const consent = localStorage.getItem(CONSENT_KEY);
 
-      if (consent === "accepted") {
-        banner.classList.add("hidden");
+      if (consent === 'accepted') {
+        banner.classList.add('hidden');
         loadGoogleAnalytics();
         return;
       }
 
-      if (consent === "rejected") {
-        banner.classList.add("hidden");
+      if (consent === 'rejected') {
+        banner.classList.add('hidden');
         return;
       }
 
-      banner.classList.remove("hidden");
+      banner.classList.remove('hidden');
 
       acceptButton.onclick = () => {
-        localStorage.setItem(CONSENT_KEY, "accepted");
-        banner.classList.add("hidden");
+        localStorage.setItem(CONSENT_KEY, 'accepted');
+        banner.classList.add('hidden');
         loadGoogleAnalytics();
       };
 
       rejectButton.onclick = () => {
-        localStorage.setItem(CONSENT_KEY, "rejected");
-        banner.classList.add("hidden");
+        localStorage.setItem(CONSENT_KEY, 'rejected');
+        banner.classList.add('hidden');
       };
     }
 
     initialiseCookieConsent();
 
-    document.addEventListener(
-      "astro:page-load",
-      initialiseCookieConsent
-    );
+    document.addEventListener('astro:page-load', initialiseCookieConsent);
   })();
 </script>
