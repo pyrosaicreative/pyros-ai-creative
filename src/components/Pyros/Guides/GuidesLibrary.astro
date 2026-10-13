@@ -79,11 +79,14 @@ import { guides } from '~/data/guides';
       </div>
 
       {
-        guides.slice().reverse().map((guide) => (
-          <div class="guide-item" data-type={guide.type}>
-            <GuideCard guide={guide} />
-          </div>
-        ))
+        guides
+          .slice()
+          .reverse()
+          .map((guide) => (
+            <div class="guide-item" data-type={guide.type}>
+              <GuideCard guide={guide} />
+            </div>
+          ))
       }
     </div>
   </div>

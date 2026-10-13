@@ -230,50 +230,46 @@ export const tutorials: Tutorial[] = [
     ],
   },
 
-{
-  title: 'How I Turned a Horror Scene into an AI Commercial',
-  slug: 'halloween-ai-commercial',
-  description:
-    'Go behind the scenes of a cinematic Halloween AI commercial. Discover how I developed the story, created consistent characters and visual references, generated and extended scenes with Seedance 2.5, and completed the final edit.',
-  thumbnail: '/images/tutorials/halloween26.png',
-  badge: 'FREE',
-  category: 'AI Filmmaking',
-  youtubeId: 'as_RdF7ftok',
-  uploadDate: '2026-10-13',
-  guideId: 'halloween-ai-commercial',
-  guide: {
-    title: 'Behind the Scenes — My Halloween AI Commercial',
-    file: '',
+  {
+    title: 'How I Turned a Horror Scene into an AI Commercial',
+    slug: 'halloween-ai-commercial',
+    description:
+      'Go behind the scenes of a cinematic Halloween AI commercial. Discover how I developed the story, created consistent characters and visual references, generated and extended scenes with Seedance 2.5, and completed the final edit.',
+    thumbnail: '/images/tutorials/halloween26.png',
+    badge: 'FREE',
+    category: 'AI Filmmaking',
+    youtubeId: 'as_RdF7ftok',
+    uploadDate: '2026-10-13',
+    guideId: 'halloween-ai-commercial',
+    guide: {
+      title: 'Behind the Scenes — My Halloween AI Commercial',
+      file: '',
+    },
+    learnIntro:
+      'Follow the real creative process behind a Halloween horror-comedy commercial, from the initial concept to the finished video, including the mistakes and corrections made along the way.',
+    whatYoullLearn: [
+      {
+        title: 'Develop a story-driven AI commercial',
+        description: 'Turn a horror concept into a product commercial with a surprising comedic reveal.',
+      },
+      {
+        title: 'Create characters and visual references',
+        description: 'Prepare consistent characters, locations, clothing and props using ChatGPT.',
+      },
+      {
+        title: 'Plan and generate cinematic scenes',
+        description:
+          'Use structured prompts, storyboards and Seedance 2.5 to generate the commercial in two connected sequences.',
+      },
+      {
+        title: 'Maintain continuity across video extensions',
+        description: 'Connect generated scenes while preserving character identities, voices, wardrobe and props.',
+      },
+      {
+        title: 'Edit and polish the final commercial',
+        description:
+          'Correct generation mistakes, refine dialogue timing, adjust the visual atmosphere and add music in CapCut.',
+      },
+    ],
   },
-  learnIntro:
-    'Follow the real creative process behind a Halloween horror-comedy commercial, from the initial concept to the finished video, including the mistakes and corrections made along the way.',
-  whatYoullLearn: [
-    {
-      title: 'Develop a story-driven AI commercial',
-      description:
-        'Turn a horror concept into a product commercial with a surprising comedic reveal.',
-    },
-    {
-      title: 'Create characters and visual references',
-      description:
-        'Prepare consistent characters, locations, clothing and props using ChatGPT.',
-    },
-    {
-      title: 'Plan and generate cinematic scenes',
-      description:
-        'Use structured prompts, storyboards and Seedance 2.5 to generate the commercial in two connected sequences.',
-    },
-    {
-      title: 'Maintain continuity across video extensions',
-      description:
-        'Connect generated scenes while preserving character identities, voices, wardrobe and props.',
-    },
-    {
-      title: 'Edit and polish the final commercial',
-      description:
-        'Correct generation mistakes, refine dialogue timing, adjust the visual atmosphere and add music in CapCut.',
-    },
-  ],
-},
-
 ];

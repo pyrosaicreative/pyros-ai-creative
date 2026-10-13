@@ -64,19 +64,17 @@ export const guides: Guide[] = [
     tutorialUrl: 'https://youtu.be/-_omF8KmqUE',
     shopUrl: 'https://shop.pyrosaicreative.com/products/google-flow-music-ai-filmmaking-guide',
   },
-  
-{
-  id: 'halloween-ai-commercial',
-  title: 'Behind the Scenes — My Halloween AI Commercial',
-  workflow: 'AI COMMERCIAL WORKFLOW & PROMPTS',
-  description:
-    'Explore the making of a Halloween horror-comedy commercial, from story development and visual references to Seedance 2.5 video generation, scene extensions, music and final editing. Includes the featured prompts.',
-  cover: '/images/ai-guides/Behind-the-Scenes-Halloween-AI-Commercial.png',
-  pages: 24,
-  type: 'free',
-  tutorialUrl: '/tutorials/halloween-ai-commercial/',
-  shopUrl:
-    'https://shop.pyrosaicreative.com/products/behind-the-scenes-my-halloween-ai-commercial-workflow-prompts',
-},
 
+  {
+    id: 'halloween-ai-commercial',
+    title: 'Behind the Scenes — My Halloween AI Commercial',
+    workflow: 'AI COMMERCIAL WORKFLOW & PROMPTS',
+    description:
+      'Explore the making of a Halloween horror-comedy commercial, from story development and visual references to Seedance 2.5 video generation, scene extensions, music and final editing. Includes the featured prompts.',
+    cover: '/images/ai-guides/Behind-the-Scenes-Halloween-AI-Commercial.png',
+    pages: 24,
+    type: 'free',
+    tutorialUrl: '/tutorials/halloween-ai-commercial/',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/behind-the-scenes-my-halloween-ai-commercial-workflow-prompts',
+  },
 ];
