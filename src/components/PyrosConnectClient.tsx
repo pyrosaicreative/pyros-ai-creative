@@ -302,6 +302,12 @@ export default function PyrosConnectClient() {
     }
   }
 
+  useEffect(() => {
+    if (access !== 'allowed') return;
+    void loadActivity(activityPage, statusFilter, automationFilter)
+      .catch(() => setError('Could not load activity log.'));
+  }, [access, activityPage, statusFilter, automationFilter]);
+
   if (access === 'loading') {
     return <p className="text-gray-400">Checking PYROS Connect access…</p>;
   }
@@ -326,12 +332,6 @@ export default function PyrosConnectClient() {
       </div>
     );
   }
-
-  useEffect(() => {
-    if (access !== 'allowed') return;
-    void loadActivity(activityPage, statusFilter, automationFilter)
-      .catch(() => setError('Could not load activity log.'));
-  }, [access, activityPage, statusFilter, automationFilter]);
 
   const activeCount = automations.filter((item) => item.is_active).length;
 
