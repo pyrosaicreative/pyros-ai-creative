@@ -1,0 +1,10 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import PyrosConnectClient from '~/components/PyrosConnectClient.tsx';
+---
+
+<Layout>
+  <section class="mx-auto min-h-[70vh] max-w-6xl px-6 pb-20 pt-10">
+    <PyrosConnectClient client:load />
+  </section>
+</Layout>
