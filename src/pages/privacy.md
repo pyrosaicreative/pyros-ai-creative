@@ -3,7 +3,7 @@ title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Last updated_: October 1, 2026
+_Last updated_: October 14, 2026
 
 This Privacy Policy explains how **PYROS AI Creative** collects, uses, stores, and protects information when you visit or use **www.pyrosaicreative.com** and related services.
 
@@ -230,6 +230,36 @@ Examples currently include or may include:
 These providers may process information in different countries and according to their own privacy and data-processing terms.
 
 Only information reasonably necessary for the relevant service is intended to be provided to these service providers.
+
+### 11.1. Instagram Interactions and PYROS Connect
+
+PYROS AI Creative may use PYROS Connect, an internal application connected to the Instagram API provided by Meta, to manage interactions with its official Instagram account.
+
+When you comment on our Instagram content or interact with our account, PYROS Connect may process information made available through the Instagram API, including:
+
+- Instagram account identifiers
+- Comment identifiers and comment text
+- Associated Instagram content identifiers
+- Information necessary to respond to your interaction
+
+This information may be used to:
+
+- Identify resources requested through Instagram comments
+- Send automated public replies or private messages in response to eligible comments
+- Prevent duplicate responses
+- Maintain service security and troubleshoot technical issues
+
+PYROS Connect uses Supabase as part of its technical infrastructure. Relevant interaction data may be processed or stored only as reasonably necessary to operate these features.
+
+**Data Deletion Requests**
+
+To request access to or deletion of personal information processed by PYROS Connect, please contact us using the privacy email address provided in this policy and include the subject line:
+
+**PYROS Connect – Data Deletion Request**
+
+Requests will be reviewed and handled in accordance with applicable privacy laws. Certain information may be retained where legally required or otherwise permitted.
+
+Your use of Instagram remains subject to Meta's applicable terms and privacy policies.
 
 ## 12. International Data Transfers
 
