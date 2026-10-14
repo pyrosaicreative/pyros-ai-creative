@@ -100,7 +100,9 @@ export default function DashboardClient() {
             <strong className="block text-sm text-white">PYROS Connect</strong>
             <span className="mt-1 block text-xs text-gray-400">Manage Instagram automations</span>
           </span>
-          <span aria-hidden="true" className="text-lg text-[#C49A58]">→</span>
+          <span aria-hidden="true" className="text-lg text-[#C49A58]">
+            →
+          </span>
         </a>
       )}
 
