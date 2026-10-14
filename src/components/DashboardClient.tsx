@@ -3,6 +3,7 @@ import { supabase } from '~/lib/supabase';
 
 export default function DashboardClient() {
   const [email, setEmail] = useState('');
+  const [isPyrosAdmin, setIsPyrosAdmin] = useState(false);
   const [confirmingDelete, setConfirmingDelete] = useState(false);
   const [confirmation, setConfirmation] = useState('');
   const [busy, setBusy] = useState(false);
@@ -21,9 +22,20 @@ export default function DashboardClient() {
       }
 
       setEmail(session.user.email ?? '');
+
+      // RLS exposes the administrator record only to its owner.
+      const { data, error: adminError } = await supabase
+        .from('pyros_connect_admins')
+        .select('user_id')
+        .eq('user_id', session.user.id)
+        .maybeSingle();
+
+      if (!adminError && data) {
+        setIsPyrosAdmin(true);
+      }
     }
 
-    loadUser();
+    void loadUser();
   }, []);
 
   async function handleLogout() {
@@ -78,6 +90,19 @@ export default function DashboardClient() {
   return (
     <>
       <p className="mt-4 text-gray-400">{email ? `Signed in as ${email}` : 'Loading account...'}</p>
+
+      {isPyrosAdmin && (
+        <a
+          href="/pyros-connect"
+          className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-[#8F6B3B]/50 bg-[#8F6B3B]/10 px-4 py-3 transition hover:border-[#C49A58] hover:bg-[#8F6B3B]/20"
+        >
+          <span>
+            <strong className="block text-sm text-white">PYROS Connect</strong>
+            <span className="mt-1 block text-xs text-gray-400">Manage Instagram automations</span>
+          </span>
+          <span aria-hidden="true" className="text-lg text-[#C49A58]">→</span>
+        </a>
+      )}
 
       <button
         type="button"
