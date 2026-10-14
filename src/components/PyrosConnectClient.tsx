@@ -23,6 +23,21 @@ type AutomationForm = {
   is_active: boolean;
 };
 
+type CommentEvent = {
+  id: string;
+  reel_id: string;
+  keyword: string | null;
+  status: string;
+  private_reply_sent: boolean;
+  public_reply_sent: boolean;
+  error_message: string | null;
+  created_at: string;
+  automation_id: string | null;
+};
+
+type Stats = { total: number; sent: number; publicReplies: number; skipped: number; failed: number };
+const PAGE_SIZE = 20;
+
 const DEFAULT_DM = `Here's your guide!
 
 It's completely FREE — no credit card required.
@@ -76,7 +91,16 @@ export default function PyrosConnectClient() {
   const [access, setAccess] = useState<'loading' | 'signed-out' | 'denied' | 'allowed'>('loading');
   const [email, setEmail] = useState('');
   const [automations, setAutomations] = useState<Automation[]>([]);
-  const [events, setEvents] = useState<{ automation_id: string | null; private_reply_sent: boolean; public_reply_sent: boolean }[]>([]);
+  const [stats, setStats] = useState<Stats>({ total: 0, sent: 0, publicReplies: 0, skipped: 0, failed: 0 });
+  const [activity, setActivity] = useState<CommentEvent[]>([]);
+  const [activityCount, setActivityCount] = useState(0);
+  const [activityPage, setActivityPage] = useState(0);
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [automationFilter, setAutomationFilter] = useState('all');
+  const [reelLink, setReelLink] = useState('');
+  const [resolvedLink, setResolvedLink] = useState('');
+  const [lookupBusy, setLookupBusy] = useState(false);
+  const [lookupError, setLookupError] = useState('');
   const [form, setForm] = useState<AutomationForm>({ ...EMPTY_FORM });
   const [editingId, setEditingId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -84,14 +108,75 @@ export default function PyrosConnectClient() {
   const [notice, setNotice] = useState('');
 
   async function refresh() {
-    const [automationsResult, eventsResult] = await Promise.all([
+    const [automationsResult, all, sent, publicReplies, skipped, failed] = await Promise.all([
       supabase.from('instagram_automations').select('*').order('created_at', { ascending: false }),
-      supabase.from('instagram_comment_events').select('automation_id,private_reply_sent,public_reply_sent').limit(1000),
+      supabase.from('instagram_comment_events').select('id', { head: true, count: 'exact' }),
+      supabase.from('instagram_comment_events').select('id', { head: true, count: 'exact' }).eq('private_reply_sent', true),
+      supabase.from('instagram_comment_events').select('id', { head: true, count: 'exact' }).eq('public_reply_sent', true),
+      supabase.from('instagram_comment_events').select('id', { head: true, count: 'exact' }).eq('status', 'skipped'),
+      supabase.from('instagram_comment_events').select('id', { head: true, count: 'exact' }).eq('status', 'failed'),
     ]);
-    if (automationsResult.error) throw automationsResult.error;
-    if (eventsResult.error) throw eventsResult.error;
+    for (const result of [automationsResult, all, sent, publicReplies, skipped, failed]) {
+      if (result.error) throw result.error;
+    }
     setAutomations((automationsResult.data ?? []) as Automation[]);
-    setEvents(eventsResult.data ?? []);
+    setStats({
+      total: all.count ?? 0,
+      sent: sent.count ?? 0,
+      publicReplies: publicReplies.count ?? 0,
+      skipped: skipped.count ?? 0,
+      failed: failed.count ?? 0,
+    });
+  }
+
+  async function loadActivity(page: number, status: string, automationId: string) {
+    let query = supabase.from('instagram_comment_events')
+      .select('id,reel_id,keyword,status,private_reply_sent,public_reply_sent,error_message,created_at,automation_id', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
+    if (status !== 'all') query = query.eq('status', status);
+    if (automationId !== 'all') query = query.eq('automation_id', automationId);
+    const { data, count, error: activityError } = await query;
+    if (activityError) throw activityError;
+    setActivity((data ?? []) as CommentEvent[]);
+    setActivityCount(count ?? 0);
+  }
+
+  async function resolveReel() {
+    setLookupError('');
+    setError('');
+    setNotice('');
+    const candidate = reelLink.trim();
+    if (!candidate) { setLookupError('Paste the link to your Instagram Reel.'); return; }
+    setLookupBusy(true);
+    try {
+      const { data, error: lookupError } = await supabase.functions.invoke('pyros-connect-reel', {
+        body: { url: candidate },
+      });
+      if (lookupError || !data?.reel_id) {
+        let message = data?.error || 'Could not find this Reel on @pyrosaicreative.';
+        if (lookupError && typeof lookupError === 'object' && 'context' in lookupError) {
+          const response = (lookupError as { context?: Response }).context;
+          if (response && typeof response.json === 'function') {
+            const details = await response.json().catch(() => null);
+            message = details?.error || message;
+          }
+        }
+        throw new Error(message);
+      }
+      if (reelLink.trim() !== candidate) {
+        throw new Error('The link changed while searching. Resolve the latest link again.');
+      }
+      setForm((previous) => ({ ...previous, reel_id: String(data.reel_id) }));
+      setResolvedLink(candidate);
+      setNotice('Reel verified: numeric media ID retrieved.');
+    } catch (err) {
+      setResolvedLink('');
+      setForm((previous) => ({ ...previous, reel_id: '' }));
+      setLookupError(err instanceof Error ? err.message : 'Instagram lookup failed.');
+    } finally {
+      setLookupBusy(false);
+    }
   }
 
   useEffect(() => {
@@ -130,6 +215,9 @@ export default function PyrosConnectClient() {
   }, []);
 
   function resetForm() {
+    setReelLink('');
+    setResolvedLink('');
+    setLookupError('');
     setEditingId(null);
     setForm({ ...EMPTY_FORM });
     setError('');
@@ -137,6 +225,9 @@ export default function PyrosConnectClient() {
   }
 
   function startEditing(item: Automation) {
+    setReelLink('');
+    setResolvedLink('');
+    setLookupError('');
     setEditingId(item.id);
     setForm({
       reel_id: item.reel_id,
@@ -157,6 +248,10 @@ export default function PyrosConnectClient() {
     if (busy) return;
     setError('');
     setNotice('');
+    if (reelLink.trim() && (resolvedLink !== reelLink.trim() || !form.reel_id)) {
+      setError('Resolve the current Instagram link before saving.');
+      return;
+    }
     const validationError = validateForm(form);
     if (validationError) {
       setError(validationError);
@@ -232,7 +327,12 @@ export default function PyrosConnectClient() {
     );
   }
 
-  const sentCount = events.filter((item) => item.private_reply_sent).length;
+  useEffect(() => {
+    if (access !== 'allowed') return;
+    void loadActivity(activityPage, statusFilter, automationFilter)
+      .catch(() => setError('Could not load activity log.'));
+  }, [access, activityPage, statusFilter, automationFilter]);
+
   const activeCount = automations.filter((item) => item.is_active).length;
 
   return (
@@ -253,7 +353,10 @@ export default function PyrosConnectClient() {
         {[
           { label: 'Automations', value: automations.length },
           { label: 'Active', value: activeCount },
-          { label: 'Private replies recorded', value: sentCount },
+          { label: 'DM confirmed', value: stats.sent },
+          { label: 'Public replies', value: stats.publicReplies },
+          { label: 'Duplicates skipped', value: stats.skipped },
+          { label: 'Failed events', value: stats.failed },
         ].map((stat) => (
           <div key={stat.label} className="rounded-2xl border border-white/10 bg-[#111111] p-5">
             <p className="text-sm text-gray-400">{stat.label}</p>
@@ -265,16 +368,30 @@ export default function PyrosConnectClient() {
       <section className="mb-8 rounded-2xl border border-white/10 bg-[#111111] p-6">
         <h2 className="text-xl font-semibold">{editingId ? 'Edit automation' : 'New automation'}</h2>
         <p className="mt-2 text-sm text-gray-400">
-          New automations start disabled. Activate them when you are ready. The Reel ID is the numeric media ID from an Instagram webhook.
+          Paste the Instagram Reel link and select Find Reel ID. New automations start disabled.
         </p>
 
         <form className="mt-6 grid gap-4 md:grid-cols-2" onSubmit={(event) => void save(event)}>
-          <label className={labelClass}>
-            Reel ID (numeric)
-            <input className={inputClass} required value={form.reel_id}
-              onInput={(event) => setForm({ ...form, reel_id: event.currentTarget.value })}
-              placeholder="18087912782181466" />
-          </label>
+          <div className="md:col-span-2">
+            <label className={labelClass} htmlFor="reel-link">Instagram Reel link</label>
+            <div className="flex flex-wrap items-end gap-3">
+              <input id="reel-link" className={inputClass + ' min-w-[230px] flex-1'} type="url" value={reelLink}
+                onInput={(event) => {
+                  setReelLink(event.currentTarget.value);
+                  setResolvedLink('');
+                  setLookupError('');
+                  setForm((previous) => ({ ...previous, reel_id: '' }));
+                }}
+                placeholder="https://www.instagram.com/reel/..." />
+              <button type="button" className={buttonClass} disabled={lookupBusy || busy}
+                onClick={() => void resolveReel()}>{lookupBusy ? 'Finding…' : 'Find Reel ID'}</button>
+            </div>
+            {lookupError && <p role="alert" className="mt-2 text-sm text-red-400">{lookupError}</p>}
+            <p className="mt-2 text-sm text-gray-400">
+              {form.reel_id ? `Verified Reel ID: ${form.reel_id}` : 'Paste the link and click Find Reel ID. Only your account’s published media can be resolved.'}
+            </p>
+            {editingId && !reelLink && <p className="mt-1 text-xs text-gray-500">Existing Reel ID retained until you paste a new link.</p>}
+          </div>
           <label className={labelClass}>
             Keyword
             <input className={inputClass} required value={form.keyword}
@@ -321,7 +438,6 @@ export default function PyrosConnectClient() {
         {automations.length === 0 && <p className="mt-4 text-gray-400">No automations yet. Create your first one above.</p>}
         <div className="mt-5 space-y-3">
           {automations.map((item) => {
-            const deliveries = events.filter((e) => e.automation_id === item.id && e.private_reply_sent).length;
             return (
               <div key={item.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/40 p-4">
                 <div className="min-w-0">
@@ -330,7 +446,6 @@ export default function PyrosConnectClient() {
                     <span className={item.is_active ? 'text-sm text-green-400' : 'text-sm text-gray-400'}>{item.is_active ? 'Active' : 'Disabled'}</span>
                   </div>
                   <p className="mt-1 text-sm text-gray-400">Keyword: <strong className="text-white">{item.keyword}</strong> · Reel: {item.reel_id}</p>
-                  <p className="mt-1 text-xs text-gray-500">Recorded private replies: {deliveries}</p>
                 </div>
                 <div className="flex gap-2">
                   <button type="button" disabled={busy} onClick={() => startEditing(item)}
@@ -344,6 +459,70 @@ export default function PyrosConnectClient() {
             );
           })}
         </div>
+      </section>
+
+      <section className="mt-8 rounded-2xl border border-white/10 bg-[#111111] p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-semibold">Activity log</h2>
+            <p className="mt-1 text-sm text-gray-400">{activityCount} matching event(s) · {stats.total} total recorded events</p>
+          </div>
+          <button type="button" className="rounded-lg border border-white/20 px-4 py-2 text-sm"
+            onClick={() => void Promise.all([refresh(), loadActivity(activityPage, statusFilter, automationFilter)]).catch(() => setError('Could not refresh activities.'))}>
+            Refresh activity
+          </button>
+        </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <label className={labelClass}>
+            Status
+            <select className={inputClass} value={statusFilter} onChange={(event) => { setActivityPage(0); setStatusFilter(event.currentTarget.value); }}>
+              <option value="all">All statuses</option>
+              <option value="completed">Completed</option>
+              <option value="skipped">Duplicate skipped</option>
+              <option value="failed">Failed</option>
+              <option value="pending">Pending</option>
+              <option value="processing">Processing</option>
+            </select>
+          </label>
+          <label className={labelClass}>
+            Automation
+            <select className={inputClass} value={automationFilter} onChange={(event) => { setActivityPage(0); setAutomationFilter(event.currentTarget.value); }}>
+              <option value="all">All automations</option>
+              {automations.map((item) => <option key={item.id} value={item.id}>{item.guide_name} — {item.keyword}</option>)}
+            </select>
+          </label>
+        </div>
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-[720px] text-left text-sm">
+            <thead><tr className="border-b border-white/20 text-gray-400">
+              <th className="px-2 py-3 font-medium">Date / time</th>
+              <th className="px-2 py-3 font-medium">Keyword / Reel</th>
+              <th className="px-2 py-3 font-medium">Status</th>
+              <th className="px-2 py-3 font-medium">DM</th>
+              <th className="px-2 py-3 font-medium">Public reply</th>
+              <th className="px-2 py-3 font-medium">Details</th>
+            </tr></thead>
+            <tbody>
+              {activity.map((event) => <tr key={event.id} className="border-b border-white/10 align-top">
+                <td className="px-2 py-3 whitespace-nowrap">{new Date(event.created_at).toLocaleString()}</td>
+                <td className="px-2 py-3"><div>{event.keyword ?? '—'}</div><div className="text-xs text-gray-500">{event.reel_id}</div></td>
+                <td className="px-2 py-3 capitalize">{event.status}</td>
+                <td className="px-2 py-3">{event.private_reply_sent ? 'Sent' : '—'}</td>
+                <td className="px-2 py-3">{event.public_reply_sent ? 'Sent' : '—'}</td>
+                <td className="max-w-[260px] break-words px-2 py-3 text-xs text-gray-400">{event.error_message ?? '—'}</td>
+              </tr>)}
+            </tbody>
+          </table>
+          {activity.length === 0 && <p className="py-6 text-sm text-gray-400">No matching events.</p>}
+        </div>
+        <div className="mt-5 flex items-center justify-between gap-4">
+          <button type="button" className="rounded-lg border border-white/20 px-4 py-2 disabled:opacity-40"
+            disabled={activityPage === 0} onClick={() => setActivityPage((page) => Math.max(0, page - 1))}>Previous</button>
+          <span className="text-sm text-gray-400">Page {activityPage + 1} of {Math.max(1, Math.ceil(activityCount / PAGE_SIZE))}</span>
+          <button type="button" className="rounded-lg border border-white/20 px-4 py-2 disabled:opacity-40"
+            disabled={(activityPage + 1) * PAGE_SIZE >= activityCount} onClick={() => setActivityPage((page) => page + 1)}>Next</button>
+        </div>
+        <p className="mt-4 text-xs text-gray-500">Counts reflect database events. They do not measure Fourthwall clicks or downloads.</p>
       </section>
     </div>
   );
