@@ -106,6 +106,8 @@ export default function PyrosConnectClient() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [activityOpen, setActivityOpen] = useState(false);
 
   async function refresh() {
     const [automationsResult, all, sent, publicReplies, skipped, failed] = await Promise.all([
@@ -219,6 +221,7 @@ export default function PyrosConnectClient() {
     setResolvedLink('');
     setLookupError('');
     setEditingId(null);
+    setEditorOpen(false);
     setForm({ ...EMPTY_FORM });
     setError('');
     setNotice('');
@@ -229,6 +232,7 @@ export default function PyrosConnectClient() {
     setResolvedLink('');
     setLookupError('');
     setEditingId(item.id);
+    setEditorOpen(true);
     setForm({
       reel_id: item.reel_id,
       keyword: item.keyword,
@@ -336,11 +340,11 @@ export default function PyrosConnectClient() {
   const activeCount = automations.filter((item) => item.is_active).length;
 
   return (
-    <div className="text-white">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+    <div className="text-sm text-white">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C49A58]">Private dashboard</p>
-          <h1 className="mt-2 text-4xl font-bold">PYROS Connect</h1>
+          <h1 className="mt-1 text-2xl font-bold">PYROS Connect</h1>
           <p className="mt-2 text-gray-400">Instagram comment-to-DM automations · {email}</p>
         </div>
         <button type="button" className="rounded-lg border border-white/20 px-4 py-2 text-sm hover:bg-white/10" onClick={() => void refresh().catch(() => setError('Could not refresh data.'))}>Refresh</button>
@@ -349,7 +353,7 @@ export default function PyrosConnectClient() {
       {error && <p role="alert" className="mb-4 rounded-lg border border-red-500/30 bg-red-950/40 p-3 text-red-300">{error}</p>}
       {notice && <p role="status" className="mb-4 rounded-lg border border-green-500/30 bg-green-950/30 p-3 text-green-300">{notice}</p>}
 
-      <div className="mb-8 grid gap-4 sm:grid-cols-3">
+      <div className="mb-5 grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-6">
         {[
           { label: 'Automations', value: automations.length },
           { label: 'Active', value: activeCount },
@@ -358,20 +362,30 @@ export default function PyrosConnectClient() {
           { label: 'Duplicates skipped', value: stats.skipped },
           { label: 'Failed events', value: stats.failed },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-white/10 bg-[#111111] p-5">
+          <div key={stat.label} className="rounded-lg border border-white/10 bg-[#111111] p-3">
             <p className="text-sm text-gray-400">{stat.label}</p>
-            <p className="mt-2 text-3xl font-bold">{stat.value}</p>
+            <p className="mt-1 text-xl font-semibold">{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <section className="mb-8 rounded-2xl border border-white/10 bg-[#111111] p-6">
-        <h2 className="text-xl font-semibold">{editingId ? 'Edit automation' : 'New automation'}</h2>
-        <p className="mt-2 text-sm text-gray-400">
-          Paste the Instagram Reel link and select Find Reel ID. New automations start disabled.
+      <section className="mb-4 rounded-xl border border-white/10 bg-[#111111] p-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-base font-semibold">{editingId ? 'Edit automation' : 'New automation'}</h2>
+          <button type="button" aria-expanded={editorOpen} onClick={() => {
+            if (editorOpen) resetForm();
+            else setEditorOpen(true);
+          }} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10">
+            {editorOpen ? 'Close editor' : '+ New automation'}
+          </button>
+        </div>
+        {editorOpen && (
+        <>
+        <p className="mt-2 text-xs text-gray-400">
+          Paste an Instagram Reel link to find its ID. New automations start disabled.
         </p>
 
-        <form className="mt-6 grid gap-4 md:grid-cols-2" onSubmit={(event) => void save(event)}>
+        <form className="mt-4 grid gap-3 md:grid-cols-2" onSubmit={(event) => void save(event)}>
           <div className="md:col-span-2">
             <label className={labelClass} htmlFor="reel-link">Instagram Reel link</label>
             <div className="flex flex-wrap items-end gap-3">
@@ -431,15 +445,17 @@ export default function PyrosConnectClient() {
             {editingId && <button type="button" disabled={busy} onClick={resetForm} className="rounded-lg border border-white/20 px-4 py-2.5">Cancel editing</button>}
           </div>
         </form>
+        </>
+        )}
       </section>
 
-      <section className="rounded-2xl border border-white/10 bg-[#111111] p-6">
+      <section className="rounded-xl border border-white/10 bg-[#111111] p-4">
         <h2 className="text-xl font-semibold">Your automations</h2>
         {automations.length === 0 && <p className="mt-4 text-gray-400">No automations yet. Create your first one above.</p>}
-        <div className="mt-5 space-y-3">
+        <div className="mt-3 space-y-2">
           {automations.map((item) => {
             return (
-              <div key={item.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/40 p-4">
+              <div key={item.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/10 bg-black/40 px-3 py-2.5">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="font-semibold">{item.guide_name}</h3>
@@ -461,18 +477,26 @@ export default function PyrosConnectClient() {
         </div>
       </section>
 
-      <section className="mt-8 rounded-2xl border border-white/10 bg-[#111111] p-6">
+      <section className="mt-4 rounded-xl border border-white/10 bg-[#111111] p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-xl font-semibold">Activity log</h2>
             <p className="mt-1 text-sm text-gray-400">{activityCount} matching event(s) · {stats.total} total recorded events</p>
           </div>
-          <button type="button" className="rounded-lg border border-white/20 px-4 py-2 text-sm"
-            onClick={() => void Promise.all([refresh(), loadActivity(activityPage, statusFilter, automationFilter)]).catch(() => setError('Could not refresh activities.'))}>
-            Refresh activity
-          </button>
+          <div className="flex gap-2">
+            {activityOpen && <button type="button" className="rounded-lg border border-white/20 px-3 py-1.5 text-xs"
+              onClick={() => void Promise.all([refresh(), loadActivity(activityPage, statusFilter, automationFilter)]).catch(() => setError('Could not refresh activities.'))}>
+              Refresh
+            </button>}
+            <button type="button" aria-expanded={activityOpen} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold"
+              onClick={() => setActivityOpen((opened) => !opened)}>
+              {activityOpen ? 'Hide activity' : 'View activity'}
+            </button>
+          </div>
         </div>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {activityOpen && (
+        <>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
           <label className={labelClass}>
             Status
             <select className={inputClass} value={statusFilter} onChange={(event) => { setActivityPage(0); setStatusFilter(event.currentTarget.value); }}>
@@ -523,6 +547,8 @@ export default function PyrosConnectClient() {
             disabled={(activityPage + 1) * PAGE_SIZE >= activityCount} onClick={() => setActivityPage((page) => page + 1)}>Next</button>
         </div>
         <p className="mt-4 text-xs text-gray-500">Counts reflect database events. They do not measure Fourthwall clicks or downloads.</p>
+        </>
+        )}
       </section>
     </div>
   );
