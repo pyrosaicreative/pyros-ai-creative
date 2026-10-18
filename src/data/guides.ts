@@ -77,4 +77,17 @@ export const guides: Guide[] = [
     tutorialUrl: '/tutorials/halloween-ai-commercial/',
     shopUrl: 'https://shop.pyrosaicreative.com/products/behind-the-scenes-my-halloween-ai-commercial-workflow-prompts',
   },
+
+  {
+    id: 'higgsfield-api-references-to-video',
+    title: 'Higgsfield API: From References to Video',
+    workflow: 'HIGGSFIELD API REFERENCE WORKFLOW',
+    description:
+      'Learn how to use image and audio references in Higgsfield API without a tagging menu. Map your reference files, generate cinematic scenes with Seedance 2.5, extend videos with new characters, and maintain visual and voice consistency.',
+    cover: '/images/ai-guides/Higgsfield_API_R2V.png',
+    pages: 24,
+    type: 'free',
+    tutorialUrl: '/tutorials/higgsfield-api-references-to-video/',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/higgsfield-api-from-references-to-video',
+  },
 ];

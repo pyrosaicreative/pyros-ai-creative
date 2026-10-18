@@ -272,4 +272,50 @@ export const tutorials: Tutorial[] = [
       },
     ],
   },
+
+  {
+    title: 'No @? How to Use References in Higgsfield API',
+    slug: 'higgsfield-api-references-to-video',
+    description:
+      'Learn how to use image and audio references in Higgsfield API even without an @ tagging menu. Follow a complete cinematic workflow using Seedance 2.5, from mapping character, environment, prop and voice references to generating and extending a scene.',
+    thumbnail: '/images/tutorials/higgsfield-API-R2V.png',
+    badge: 'FREE',
+    category: 'AI Filmmaking',
+    youtubeId: 'zWaDmcfCuk0',
+    uploadDate: '2026-10-19',
+    guideId: 'higgsfield-api-references-to-video',
+    guide: {
+      title: 'Higgsfield API: From References to Video',
+      file: '',
+    },
+    learnIntro:
+      'Discover how to connect your images and voice samples to a cinematic video prompt in Higgsfield API, even when the interface does not provide a traditional @ reference tagging menu.',
+    whatYoullLearn: [
+      {
+        title: 'Set Up Your Higgsfield API Workflow',
+        description:
+          'Create an API key, connect the generation interface, and understand how the separate pay-as-you-go balance works.',
+      },
+      {
+        title: 'Map Image and Audio References',
+        description:
+          'Learn how @Image and @Audio tags correspond to uploaded files, and why reference order matters for characters, locations, props and voices.',
+      },
+      {
+        title: 'Generate a Cinematic Scene with Seedance 2.5',
+        description:
+          'Build a structured prompt with reference maps, dialogue, camera directions and a timeline to generate a cinematic thriller scene.',
+      },
+      {
+        title: 'Extend Videos While Maintaining Continuity',
+        description:
+          'Use Seedance 2.5 Extend to introduce a new character, voice and prop while preserving the original scene and its visual continuity.',
+      },
+      {
+        title: 'Troubleshoot and Finish Your Video',
+        description:
+          'Review reference consistency, check generation requests after interface errors, connect the clips and add a cinematic soundtrack.',
+      },
+    ],
+  },
 ];
