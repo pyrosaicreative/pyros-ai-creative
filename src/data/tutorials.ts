@@ -274,11 +274,11 @@ export const tutorials: Tutorial[] = [
   },
 
   {
-    title: 'No @? How to Use References in Higgsfield API',
+    title: 'How to Use Character & Voice References in Higgsfield API',
     slug: 'higgsfield-api-references-to-video',
     description:
       'Learn how to use image and audio references in Higgsfield API even without an @ tagging menu. Follow a complete cinematic workflow using Seedance 2.5, from mapping character, environment, prop and voice references to generating and extending a scene.',
-    thumbnail: '/images/tutorials/higgsfield-API-R2V.png',
+    thumbnail: '/images/tutorials/higgsfield-API.png',
     badge: 'FREE',
     category: 'AI Filmmaking',
     youtubeId: 'zWaDmcfCuk0',
