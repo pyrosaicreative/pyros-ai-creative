@@ -790,8 +790,7 @@ html {
   padding: 32px;
   position: relative;
   overflow: hidden;
-  background:
-    url('/redesign/HCC.png') 72% center/cover;
+  background: url('/redesign/HCC.png') 72% center/cover;
   border-radius: 3px;
   display: flex;
   flex-direction: column;

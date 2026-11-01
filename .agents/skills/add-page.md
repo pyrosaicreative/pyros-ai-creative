@@ -26,7 +26,7 @@ const metadata = {
     title="Page Heading"
     subtitle="Supporting text"
     image={{
-      src: '~/assets/images/hero.png',
+      src: '~/assets/images/about-hero.png',
       alt: 'Hero image description',
     }}
   />
