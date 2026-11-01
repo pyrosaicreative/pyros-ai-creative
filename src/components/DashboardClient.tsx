@@ -89,7 +89,9 @@ export default function DashboardClient() {
 
   return (
     <>
-      <p className="mt-4 text-gray-400">{email ? `Signed in as ${email}` : 'Loading account...'}</p>
+      <p className="mt-4 break-words text-sm leading-6 text-gray-300">
+        {email ? `Signed in as ${email}` : 'Loading account...'}
+      </p>
 
       {isPyrosAdmin && (
         <a
@@ -110,12 +112,12 @@ export default function DashboardClient() {
         type="button"
         disabled={busy || !email}
         onClick={handleLogout}
-        className="mt-8 rounded-xl bg-[#171717] px-5 py-3 font-semibold text-white transition hover:bg-[#202020] disabled:opacity-50"
+        className="mt-6 rounded-md border border-[#B08A57]/60 bg-transparent px-5 py-3 font-semibold text-[#D0AF81] transition hover:bg-[#B08A57]/10 disabled:opacity-50"
       >
         Sign Out
       </button>
 
-      <div className="mt-8 border-t border-white/10 pt-6">
+      <div className="mt-6 border-t border-white/10 pt-5">
         {!confirmingDelete ? (
           <button
             type="button"

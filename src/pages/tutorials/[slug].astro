@@ -42,7 +42,9 @@ const videoSchema = {
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
 
-  <main class="bg-black pb-24">
+  <div class="tutorial-detail bg-black pb-10">
+  </Container>
+</header>
     <!-- ===================================================== -->
     <!-- VIDEO -->
     <!-- ===================================================== -->
@@ -127,7 +129,7 @@ const videoSchema = {
 
     <section class="pt-10">
       <Container>
-        <div class="mx-auto grid max-w-5xl gap-12
+        <div class="mx-auto grid max-w-5xl gap-8
                  lg:grid-cols-2 lg:items-start">
           <!-- ================================================= -->
           <!-- GUIDE -->
@@ -346,7 +348,7 @@ const videoSchema = {
 
     {
       relatedTutorials.length > 0 && (
-        <section class="pt-20">
+        <section class="pt-10">
           <Container>
             <div class="mx-auto max-w-5xl">
               <div class="mb-8">
@@ -380,7 +382,7 @@ const videoSchema = {
         </section>
       )
     }
-  </main>
+  </div>
 
   <!-- ===================================================== -->
   <!-- AUTHENTICATED GUIDE ACCESS -->

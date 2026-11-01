@@ -147,34 +147,29 @@ export default function AuthForm() {
   }
 
   if (checkingSession) {
-    return <div className="flex min-h-screen items-center justify-center bg-black text-white">Loading...</div>;
+    return <div className="flex min-h-[360px] items-center justify-center bg-black text-white">Loading...</div>;
   }
 
   return (
-    <div className="mx-auto w-full max-w-[1250px]">
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
-        <div className="grid lg:grid-cols-[44%_56%]">
+    <div className="mx-auto w-full max-w-[1000px]">
+      <div className="overflow-hidden rounded-md border border-white/10 bg-[#111111] shadow-2xl shadow-black/60">
+        <div className="grid lg:grid-cols-[42%_58%]">
           {/* LEFT */}
 
-          <div className="bg-[#0d0d0d] px-10 py-8">
-            <h1 className="text-[2.20rem] font-black leading-[1.05] text-white">
+          <div className="border-b border-white/10 bg-[#0d0d0d] px-6 py-7 sm:px-8 lg:border-r lg:border-b-0">
+            <h1 className="text-3xl font-semibold leading-tight text-white">
               Welcome to
-              <span className="mt-2 block text-[#B71C1C]">PYROS AI Creative</span>
+              <span className="mt-2 block text-[#D0AF81]">PYROS AI Creative</span>
             </h1>
 
-            <p className="mt-6 max-w-sm text-[15px] leading-7 text-gray-400">
-              Join PYROS AI Creative to download free guides, unlock AI Guides and access future premium resources.
+            <p className="mt-4 max-w-sm text-[15px] leading-7 text-gray-400">
+              Sign in or create an account to access free AI filmmaking guides.
             </p>
 
-            <div className="mt-10 space-y-5">
-              {[
-                'Download free workflow guides',
-                'Access AI Guides',
-                'Save your resources',
-                'Unlock premium content',
-              ].map((item) => (
+            <div className="mt-6 space-y-3">
+              {['Unlock free content'].map((item) => (
                 <div className="flex items-center gap-3" key={item}>
-                  <span className="text-[#8F6B3B]">✓</span>
+                  <span className="text-[#B08A57]">✓</span>
                   <span className="text-[15px] text-gray-300">{item}</span>
                 </div>
               ))}
@@ -183,7 +178,7 @@ export default function AuthForm() {
 
           {/* RIGHT */}
 
-          <div className="px-10 py-8">
+          <div className="px-6 py-7 sm:px-8">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -192,7 +187,7 @@ export default function AuthForm() {
             >
               {/* Tabs */}
 
-              <div className="flex rounded-xl bg-[#1b1b1b] p-1">
+              <div className="flex rounded-md bg-[#1b1b1b] p-1">
                 <button
                   type="button"
                   disabled={loading}
@@ -202,8 +197,8 @@ export default function AuthForm() {
                     setMessageType('error');
                     setConfirmPassword('');
                   }}
-                  className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
-                    mode === 'signin' ? 'bg-[#8F6B3B] text-white' : 'text-gray-400'
+                  className={`flex-1 rounded-lg py-3 text-sm font-semibold transition disabled:cursor-not-allowed ${
+                    mode === 'signin' ? 'bg-[#B08A57] text-[#090909]' : 'text-gray-400'
                   }`}
                 >
                   Sign In
@@ -217,8 +212,8 @@ export default function AuthForm() {
                     setMessage('');
                     setMessageType('error');
                   }}
-                  className={`flex-1 rounded-lg py-1.5 text-sm font-semibold transition disabled:cursor-not-allowed ${
-                    mode === 'signup' ? 'bg-[#8F6B3B] text-white' : 'text-gray-400'
+                  className={`flex-1 rounded-lg py-3 text-sm font-semibold transition disabled:cursor-not-allowed ${
+                    mode === 'signup' ? 'bg-[#B08A57] text-[#090909]' : 'text-gray-400'
                   }`}
                 >
                   Create Account
@@ -228,7 +223,7 @@ export default function AuthForm() {
               {/* Email */}
 
               <div className="mt-8">
-                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                   Email
                 </label>
 
@@ -239,14 +234,14 @@ export default function AuthForm() {
                   placeholder="you@example.com"
                   value={email}
                   onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-                  className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
+                  className="h-12 w-full rounded-md border border-white/10 bg-black px-4 text-[15px] text-white outline-none transition focus:border-[#B08A57] focus:ring-2 focus:ring-[#B08A57]/30 disabled:opacity-60"
                 />
               </div>
 
               {/* Password */}
 
               <div className="mt-5">
-                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                   Password
                 </label>
 
@@ -258,13 +253,13 @@ export default function AuthForm() {
                     placeholder="••••••••"
                     value={password}
                     onInput={(e) => setPassword((e.target as HTMLInputElement).value)}
-                    className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
+                    className="h-12 w-full rounded-md border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#B08A57] focus:ring-2 focus:ring-[#B08A57]/30 disabled:opacity-60"
                   />
 
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-white"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -275,10 +270,10 @@ export default function AuthForm() {
 
               {mode === 'signup' && (
                 <>
-                  <p className="mt-2 text-xs text-gray-500">Minimum 8 characters.</p>
+                  <p className="mt-2 text-xs text-gray-400">Minimum 8 characters.</p>
 
                   <div className="mt-5">
-                    <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                    <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">
                       Confirm Password
                     </label>
 
@@ -290,14 +285,14 @@ export default function AuthForm() {
                         placeholder="••••••••"
                         value={confirmPassword}
                         onInput={(e) => setConfirmPassword((e.target as HTMLInputElement).value)}
-                        className="h-9 w-full rounded-xl border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#8F6B3B] focus:ring-2 focus:ring-[#8F6B3B]/30 disabled:opacity-60"
+                        className="h-12 w-full rounded-md border border-white/10 bg-black px-4 pr-12 text-[15px] text-white outline-none transition focus:border-[#B08A57] focus:ring-2 focus:ring-[#B08A57]/30 disabled:opacity-60"
                       />
 
                       <button
                         type="button"
                         disabled={loading}
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 transition hover:text-white"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-white"
                       >
                         {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                       </button>
@@ -314,7 +309,7 @@ export default function AuthForm() {
                     type="button"
                     disabled={loading}
                     onClick={forgotPassword}
-                    className="text-xs text-gray-500 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+                    className="text-xs text-gray-400 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     Forgot password?
                   </button>
@@ -327,7 +322,7 @@ export default function AuthForm() {
                     checked={newsletterConsent}
                     disabled={loading}
                     onChange={(e) => setNewsletterConsent((e.target as HTMLInputElement).checked)}
-                    className="mt-1 h-4 w-4 accent-[#8F6B3B]"
+                    className="mt-1 h-4 w-4 accent-[#B08A57]"
                   />
 
                   <span className="text-[12px] leading-5 text-gray-400">
@@ -340,7 +335,7 @@ export default function AuthForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-5 flex h-9 w-full items-center justify-center rounded-xl bg-[#8F6B3B] text-[15px] font-semibold text-white transition hover:bg-[#9A7A49] disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-5 flex h-12 w-full items-center justify-center rounded-md bg-[#B08A57] text-[15px] font-semibold text-[#090909] transition hover:bg-[#C6A16A] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? (
                   <>
@@ -373,13 +368,13 @@ export default function AuthForm() {
 
               {/* Footer */}
 
-              <p className="mt-5 text-center text-[12px] leading-6 text-gray-500">
+              <p className="mt-5 text-center text-[12px] leading-6 text-gray-400">
                 By continuing you agree to our{' '}
-                <a href="/terms" className="text-white transition hover:text-[#8F6B3B]">
+                <a href="/terms" className="text-white transition hover:text-[#B08A57]">
                   Terms
                 </a>{' '}
                 and{' '}
-                <a href="/privacy" className="text-white transition hover:text-[#8F6B3B]">
+                <a href="/privacy" className="text-white transition hover:text-[#B08A57]">
                   Privacy Policy
                 </a>
                 .

@@ -1,15 +1,103 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
-import AboutHero from '~/components/Pyros/AboutHero.astro';
-
-const metadata = {
-  title: 'About',
-  description:
-    'Discover PYROS AI Creative and learn how AI filmmaking, cinematic workflows and AI storytelling are changing the way stories are created.',
-};
 ---
 
-<Layout metadata={metadata}>
-  <AboutHero />
-</Layout>
+<Layout metadata={{ title: 'About' }}
+  ><div class="design-content">
+    <section
+  class="page-intro page-hero about-page-hero"
+  style="--page-art:url(/redesign/about-hero.png)"
+>
+  <div class="wrap">
+    <p class="editorial-kicker">ABOUT</p>
+    <h1>We Are<br />PYROS AI Creative.</h1>
+    <p>
+      PYROS AI Creative is an educational platform for creators who want
+      to learn AI filmmaking and use artificial intelligence to tell
+      better stories. We teach cinematic workflows, AI storytelling
+      and practical production techniques—helping creators turn ideas
+      into characters, worlds, scenes and complete stories.
+    </p>
+  </div>
+</section><section class="editorial-section">
+      <div class="wrap editorial-row">
+        <div class="editorial-number">01</div><div class="editorial-copy">
+          <p class="editorial-kicker">OUR MISSION</p><h2>Make Cinematic Storytelling<br />More Accessible.</h2><p>
+            Filmmaking has traditionally required large teams, expensive equipment, locations and production budgets
+            that put ambitious ideas beyond the reach of many creators.
+          </p><p>AI is changing that.</p><p>
+            Our mission is to give creators the knowledge, workflows and practical resources they need to transform
+            ideas into cinematic productions.
+          </p><p>
+            We believe the future of filmmaking will not belong only to large studios. It will also belong to creators
+            who know how to combine technology, visual storytelling and creative direction.
+          </p>
+        </div>
+      </div>
+    </section><section class="editorial-section">
+      <div class="wrap editorial-row">
+        <div class="editorial-number">02</div><div class="editorial-copy">
+          <p class="editorial-kicker">OUR PHILOSOPHY</p><h2>
+            Technology Is the Tool.<br />Storytelling Is the Craft.
+          </h2><p>AI can generate an image, create a character, build a location or produce an entire scene.</p><p>
+            But technology alone does not create a great story.
+          </p><p>
+            At PYROS AI Creative, we believe the creator remains at the center of the process. AI should expand creative
+            possibilities, accelerate production and remove unnecessary barriers—not replace imagination, taste or
+            storytelling.
+          </p><p>The tools will change.<br />The models will evolve.<br />The craft remains.</p>
+        </div>
+      </div>
+    </section><section class="editorial-section">
+      <div class="wrap editorial-row">
+        <div class="editorial-number">03</div><div class="editorial-copy">
+          <p class="editorial-kicker">WHAT WE DO</p><h2>Learn. Create. Tell Stories.</h2><p>
+            PYROS AI Creative focuses on the practical craft of AI filmmaking.
+          </p><p>
+            We create tutorials, AI Guides, workflows and production resources designed to help creators build real
+            projects—not simply experiment with AI tools.
+          </p><p>
+            From character consistency and visual development to cinematic generation, scene creation and storytelling
+            workflows, everything we create is built around one goal:
+          </p><p>Turn ideas into finished stories.</p>
+        </div>
+      </div>
+    </section><section class="editorial-section">
+      <div class="wrap editorial-row">
+        <div class="editorial-number">04</div><div class="editorial-copy">
+          <p class="editorial-kicker">OUR VISION</p><h2>A New Generation<br />of Filmmakers.</h2><p>
+            We are building toward a future where filmmaking is no longer defined by the size of a production team or
+            the size of a budget.
+          </p><p>
+            A future where a creator can develop an idea, build an entire visual world and produce a cinematic story
+            with the help of AI.
+          </p><p>
+            PYROS AI Creative aims to become a leading educational platform for this new generation of
+            filmmakers—helping creators develop the creative and technical skills needed to shape the future of
+            storytelling.
+          </p>
+        </div>
+      </div>
+    </section><section class="editorial-end">
+      <div class="wrap">
+        <div class="editorial-end-inner">
+          <p class="editorial-kicker">CREATE CINEMATIC STORIES</p><h2>Your Story Starts Here.</h2><p>
+            Every production begins with an idea.
+          </p><p>PYROS AI Creative exists to help you take that idea further.</p><p>
+            Learn the workflows. Develop your creative skills. Build your stories.
+          </p><div class="actions">
+            <a data-astro-reload class="btn" href="/tutorials">Explore Tutorials →</a><a
+              data-astro-reload
+              class="btn secondary"
+              href="/ai-guides">Browse AI Guides →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section><div class="wrap related-about">
+      <span class="eyebrow">Explore the possibilities</span><a data-astro-reload href="/why-ai-filmmaking"
+        >Why AI Filmmaking <span>↗</span></a
+      >
+    </div>
+  </div></Layout
+>

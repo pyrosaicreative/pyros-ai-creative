@@ -1,26 +1,234 @@
 ---
+import { tutorials as sourceTutorials } from '~/data/tutorials';
+const tutorials = sourceTutorials
+  .slice()
+  .reverse()
+  .map((t) => ({
+    title: t.title,
+    image: t.thumbnail,
+    slug: t.slug,
+    category: t.category === 'AI Characters' ? 'characters' : /music|higgsfield/.test(t.slug) ? 'sound' : 'filmmaking',
+    label: t.category,
+    meta: 'Practical tutorial',
+  }));
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/Pyros/Hero.astro';
-import TutorialSections from '~/components/Pyros/TutorialSections.astro';
-
-const metadata = {
-  title: 'AI Filmmaking Tutorials & Cinematic AI Workflows',
-  description:
-    'Learn AI filmmaking with practical tutorials, cinematic AI workflows, consistent AI characters, and production-ready guides.',
-};
 ---
 
-<Layout metadata={metadata}>
-  <Hero />
-  <TutorialSections />
-</Layout>
-
-<script type="module">
-  import { supabase } from '/src/lib/supabase.ts';
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  console.log('SESSION:', session);
+<Layout metadata={{ title: 'Learn AI Filmmaking. Build AI Stories.' }}
+  ><div class="design-content">
+    <section class="hero">
+      <img class="hero-bg" src="/redesign/home-hero.png" alt="PYROS cinematic AI filmmaking world" /><div class="wrap">
+        <div class="eyebrow"><span class="dot"></span> Learn AI Filmmaking. Build AI Stories.</div><h1>
+          Your next film<br />starts <span>with you.</span>
+        </h1><p>
+          Turn your ideas into cinematic stories. Learn to create consistent characters, build worlds, and bring every
+          scene to life with AI.
+        </p><div class="actions">
+          <a data-astro-reload href="/courses" class="btn">Start creating <span>↗</span></a><a
+            data-astro-reload
+            href="/tutorials"
+            class="btn secondary">Explore tutorials <span>→</span></a
+          >
+        </div><div class="hero-note">Courses. Tutorials. AI Guide. One creative step at a time.</div><div
+          class="hero-caption"
+        >
+          <b>IDEA → SCREENPLAY → VISUAL STORYTELLING</b>YOUR CREATIVE PROCESS
+        </div>
+      </div>
+    </section><section>
+      <div class="wrap">
+        <div class="section-top">
+          <div><div class="eyebrow">01 / Learn the craft</div><h2>A stronger foundation. A better film.</h2></div><a
+            data-astro-reload
+            class="text-link"
+            href="/courses">Explore Courses <span>→</span></a
+          >
+        </div><div class="feature-course">
+          <div class="course-art"></div><div>
+            <div class="badges"><span class="badge free">Free course</span><span class="badge">Beginner</span></div><h2>
+              AI Filmmaking: How Cinema Communicates
+            </h2><p class="muted">
+              Understand how films work before you build your own. Begin with visual storytelling, film structure and
+              the four elements that shape a cinematic experience.
+            </p><p class="notice">First episode: Introduction to Visual Storytelling · Coming soon</p><a
+              data-astro-reload
+              class="btn"
+              href="/courses/ai-filmmaking-basics">Explore the course <span>→</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </section><section class="tutorials">
+      <div class="wrap">
+        <div class="section-top">
+          <div><div class="eyebrow">02 / Put it into practice</div><h2>Inside the creative process.</h2></div><a
+            data-astro-reload
+            class="text-link"
+            href="/tutorials">All Tutorials <span>→</span></a
+          >
+        </div><div class="pyros-grid" id="latest"></div>
+      </div>
+    </section><section class="guides home-guides">
+      <div class="wrap">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">03 / Your creative reference</div><h2>Your next workflow. In your hands.</h2>
+          </div><a data-astro-reload class="text-link" href="/ai-guides">Explore AI Guide <span>→</span></a>
+        </div><div class="home-guide-grid">
+          <a data-astro-reload class="home-guide-card" href="/ai-guides#guide-higgsfield-api-references-to-video"
+            ><div class="home-guide-image">
+              <img
+                src="/redesign/Higgsfield_API_R2V.png"
+                alt="Higgsfield API: From References to Video cover"
+                loading="lazy"
+              />
+            </div><div class="home-guide-content">
+              <span class="category">Free · PDF · 24 pages</span><h3>Higgsfield API: From References to Video</h3><span
+                class="text-link">Explore guide <span>→</span></span
+              >
+            </div></a
+          ><a data-astro-reload class="home-guide-card" href="/ai-guides#guide-halloween-ai-commercial"
+            ><div class="home-guide-image">
+              <img
+                src="/redesign/Behind-the-Scenes-Halloween-AI-Commercial.png"
+                alt="Behind the Scenes — My Halloween AI Commercial cover"
+                loading="lazy"
+              />
+            </div><div class="home-guide-content">
+              <span class="category">Free · PDF · 24 pages</span><h3>
+                Behind the Scenes — My Halloween AI Commercial
+              </h3><span class="text-link">Explore guide <span>→</span></span>
+            </div></a
+          ><a data-astro-reload class="home-guide-card" href="/ai-guides#guide-google-flow-music-ai-filmmaking"
+            ><div class="home-guide-image">
+              <img
+                src="/redesign/google-flow-music-ai-filmmaking-guide.png"
+                alt="Google Flow Music Guide cover"
+                loading="lazy"
+              />
+            </div><div class="home-guide-content">
+              <span class="category">Free · PDF · 16 pages</span><h3>Google Flow Music Guide</h3><span class="text-link"
+                >Explore guide <span>→</span></span
+              >
+            </div></a
+          ><a data-astro-reload class="home-guide-card" href="/ai-guides#guide-google-flow-storyboard-studio"
+            ><div class="home-guide-image">
+              <img
+                src="/redesign/google-flow-storyboard-studio-guide.png"
+                alt="Storyboard Studio Guide cover"
+                loading="lazy"
+              />
+            </div><div class="home-guide-content">
+              <span class="category">Free · PDF · 15 pages</span><h3>Storyboard Studio Guide</h3><span class="text-link"
+                >Explore guide <span>→</span></span
+              >
+            </div></a
+          ><a data-astro-reload class="home-guide-card" href="/ai-guides#guide-character-consistency-express-video"
+            ><div class="home-guide-image">
+              <img
+                src="/redesign/character-consistency-express-video-workflow-guide.png"
+                alt="Character Consistency — Video Workflow cover"
+                loading="lazy"
+              />
+            </div><div class="home-guide-content">
+              <span class="category">Free · PDF · 27 pages</span><h3>Character Consistency — Video Workflow</h3><span
+                class="text-link">Explore guide <span>→</span></span
+              >
+            </div></a
+          ><a data-astro-reload class="home-guide-card" href="/ai-guides#guide-character-consistency-express"
+            ><div class="home-guide-image">
+              <img
+                src="/redesign/character-consistency-express-image-workflow-guide.png"
+                alt="Character Consistency — Image Workflow cover"
+                loading="lazy"
+              />
+            </div><div class="home-guide-content">
+              <span class="category">Free · PDF · 24 pages</span><h3>Character Consistency — Image Workflow</h3><span
+                class="text-link">Explore guide <span>→</span></span
+              >
+            </div></a
+          >
+        </div>
+      </div>
+    </section><section class="home-shop">
+      <div class="wrap">
+        <div class="section-top">
+          <div><div class="eyebrow">04 / The PYROS collection</div><h2>Made for your creative life.</h2></div><a
+            data-astro-reload
+            class="text-link"
+            href="https://shop.pyrosaicreative.com/">Explore the Shop <span>↗</span></a
+          >
+        </div><p class="shop-intro">Signature apparel. Studio essentials. Make PYROS part of your everyday.</p><div
+          class="product-grid"
+        >
+          <a
+            data-astro-reload
+            class="product-card"
+            href="https://shop.pyrosaicreative.com/products/pyros-signature-t-shirt"
+            ><div class="product-image">
+              <img src="/redesign/signature-tee.webp" alt="PYROS Signature T-Shirt" loading="lazy" /><span
+                class="product-arrow"
+                aria-hidden="true">↗</span
+              >
+            </div><h3>PYROS Signature T-Shirt</h3><span class="product-action">View product ↗</span></a
+          ><a
+            data-astro-reload
+            class="product-card"
+            href="https://shop.pyrosaicreative.com/products/pyros-signature-hoodie"
+            ><div class="product-image">
+              <img src="/redesign/signature-hoodie.webp" alt="PYROS Signature Hoodie" loading="lazy" /><span
+                class="product-arrow"
+                aria-hidden="true">↗</span
+              >
+            </div><h3>PYROS Signature Hoodie</h3><span class="product-action">View product ↗</span></a
+          ><a
+            data-astro-reload
+            class="product-card"
+            href="https://shop.pyrosaicreative.com/products/pyros-signature-mug"
+            ><div class="product-image">
+              <img src="/redesign/signature-mug.webp" alt="PYROS Signature Mug" loading="lazy" /><span
+                class="product-arrow"
+                aria-hidden="true">↗</span
+              >
+            </div><h3>PYROS Signature Mug</h3><span class="product-action">View product ↗</span></a
+          ><a
+            data-astro-reload
+            class="product-card"
+            href="https://shop.pyrosaicreative.com/products/pyros-creative-studio-desk-mat-2"
+            ><div class="product-image">
+              <img src="/redesign/studio-mat.webp" alt="PYROS Creative Studio Desk Mat" loading="lazy" /><span
+                class="product-arrow"
+                aria-hidden="true">↗</span
+              >
+            </div><h3>PYROS Creative Studio Desk Mat</h3><span class="product-action">View product ↗</span></a
+          >
+        </div>
+      </div>
+    </section><section class="contribute-section">
+      <div class="wrap">
+        <div class="contribute-box">
+          <div>
+            <div class="eyebrow">SUPPORT THE PROJECT</div><h2>Help the next story take shape.</h2><p>
+              Your contribution supports more free AI filmmaking tutorials, guides and creative resources.
+            </p>
+          </div><a
+            data-astro-reload
+            class="btn contribute-btn"
+            href="https://shop.pyrosaicreative.com/pages/contribute"
+            target="_blank"
+            rel="noopener noreferrer"><span aria-hidden="true">♡</span> Contribute <span>↗</span></a
+          >
+        </div>
+      </div>
+    </section>
+  </div></Layout
+>
+<script is:inline define:vars={{ tutorials }}>
+  document.querySelector('#latest').innerHTML = tutorials
+    .slice(0, 3)
+    .map(
+      (t) =>
+        `<a data-astro-reload class="card" href="/tutorials/${t.slug}"><div class="thumb"><img src="${t.image}" alt="${t.title}" loading="lazy"><span class="play" aria-hidden="true">▶</span></div><div class="category">${t.label}</div><h3>${t.title}</h3><div class="meta">${t.meta} ↗</div></a>`
+    )
+    .join('');
 </script>

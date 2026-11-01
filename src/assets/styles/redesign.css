@@ -1,0 +1,2244 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+.pyros-site {
+  --bg: #0b0b0d;
+  --panel: #151517;
+  --text: #f4f2ed;
+  --muted: #a4a3a6;
+  --red: #c82c2c;
+  --line: #2b2b2e;
+}
+.pyros-site * {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+.pyros-site {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
+  font-size: 14px;
+}
+.pyros-site a {
+  color: inherit;
+  text-decoration: none;
+}
+.pyros-site button,
+.pyros-site input {
+  font: inherit;
+}
+.pyros-site button,
+.pyros-site a {
+  -webkit-tap-highlight-color: transparent;
+}
+.pyros-site button {
+  cursor: pointer;
+}
+.pyros-site a:focus-visible,
+.pyros-site button:focus-visible,
+.pyros-site input:focus-visible {
+  outline: 2px solid #ef6565;
+  outline-offset: 5px;
+}
+.pyros-site .wrap {
+  max-width: 1320px;
+  margin: auto;
+  padding: 0 48px;
+}
+.pyros-site header {
+  height: 88px;
+  border-bottom: 1px solid #ffffff15;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  background: #0b0b0d55;
+}
+.pyros-site header .wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pyros-site .brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.pyros-site .brand img {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+.pyros-site .brand small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 3.4px;
+  margin-top: 4px;
+  color: #aaa;
+}
+.pyros-site nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  font-size: 12px;
+}
+.pyros-site nav a:hover,
+.pyros-site .footer a:hover {
+  color: #ef6565;
+}
+.pyros-site .nav-cta {
+  border: 1px solid #ffffff50;
+  padding: 11px 17px;
+  border-radius: 4px;
+}
+.pyros-site .menu {
+  display: none;
+}
+.pyros-site .hero {
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #141318;
+}
+.pyros-site .hero-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0.65;
+}
+.pyros-site .hero:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #0b0b0df5 0%, #0b0b0ddd 26%, #0b0b0d30 75%), linear-gradient(0deg, #0b0b0d, transparent 32%);
+}
+.pyros-site .hero .wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 115px;
+  padding-bottom: 80px;
+}
+.pyros-site .eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #b8b5b5;
+}
+.pyros-site .dot {
+  width: 6px;
+  height: 6px;
+  background: #e74a49;
+  display: inline-block;
+  border-radius: 50%;
+}
+.pyros-site .hero h1 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(64px, 7.5vw, 105px);
+  line-height: 0.96;
+  letter-spacing: -1px;
+  margin: 25px 0;
+  max-width: 680px;
+  font-weight: 700;
+}
+.pyros-site .hero h1 span {
+  color: #e04a43;
+}
+.pyros-site .hero p {
+  max-width: 440px;
+  line-height: 1.8;
+  color: #bbb9bd;
+  font-size: 15px;
+}
+.pyros-site .actions {
+  display: flex;
+  gap: 12px;
+  margin: 30px 0 23px;
+}
+.pyros-site .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 15px 22px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--red);
+  border: 1px solid var(--red);
+  color: white;
+  transition: 0.2s;
+}
+.pyros-site .btn:hover {
+  background: #df3a3a;
+  transform: translateY(-2px);
+}
+.pyros-site .btn.secondary {
+  background: #12121599;
+  border-color: #ffffff35;
+}
+.pyros-site .hero-note {
+  font-size: 10px;
+  color: #939096;
+  letter-spacing: 0.5px;
+}
+.pyros-site .hero-caption {
+  position: absolute;
+  right: 48px;
+  bottom: 70px;
+  text-align: right;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #bab8b9;
+}
+.pyros-site .hero-caption b {
+  display: block;
+  color: white;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+.pyros-site .ribbon {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.pyros-site .ribbon .wrap {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  color: #a9a6a8;
+  font-size: 11px;
+  gap: 16px;
+}
+.pyros-site .ribbon strong {
+  color: #eee;
+  font-weight: 500;
+}
+.pyros-site :where(.design-content) section {
+  padding: 75px 0;
+}
+.pyros-site .section-top {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.pyros-site .design-content h2 {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-weight: 600;
+  font-size: 43px;
+  letter-spacing: 0.1px;
+  margin: 12px 0 0;
+  text-transform: uppercase;
+}
+.pyros-site .section-top p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 310px;
+  margin: 0;
+}
+.pyros-site .path {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pyros-site .path a {
+  padding: 30px;
+  position: relative;
+  background: #121214;
+  transition: 0.2s;
+}
+.pyros-site .path a + a {
+  border-left: 1px solid var(--line);
+}
+.pyros-site .path a:hover {
+  background: #1d1819;
+}
+.pyros-site .step {
+  color: #a27c52;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.pyros-site .path h3 {
+  font-size: 19px;
+  margin: 22px 0 12px;
+}
+.pyros-site .path p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0 0 25px;
+  max-width: 270px;
+}
+.pyros-site .text-link {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.pyros-site .text-link span {
+  color: #e34b46;
+}
+.pyros-site .tutorials {
+  padding-top: 5px;
+}
+.pyros-site .toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 27px;
+}
+.pyros-site .filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pyros-site .filter {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: #aaa;
+  padding: 9px 15px;
+  border-radius: 30px;
+  font-size: 11px;
+}
+.pyros-site .filter.active {
+  color: white;
+  background: #b82b2b;
+  border-color: #b82b2b;
+}
+.pyros-site .search {
+  background: #151517;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 11px 14px;
+  color: white;
+  width: 220px;
+  font-size: 11px;
+}
+.pyros-site .pyros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 24px;
+}
+.pyros-site .card {
+  display: block;
+}
+.pyros-site .thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #222;
+}
+.pyros-site .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.pyros-site .card:hover .thumb img {
+  transform: scale(1.04);
+}
+.pyros-site .play {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ffffff70;
+  background: #0009;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+}
+.pyros-site .category {
+  color: #a78660;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+.pyros-site .card h3 {
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 500;
+  margin: 9px 0;
+}
+.pyros-site .card .meta {
+  font-size: 10px;
+  color: #89868c;
+}
+.pyros-site .empty {
+  padding: 30px;
+  color: #aaa;
+}
+.pyros-site .guides {
+  background: #131315;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.pyros-site .guide-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: center;
+}
+.pyros-site .guide-copy h2 {
+  font-size: 54px;
+  max-width: 380px;
+  line-height: 1.03;
+}
+.pyros-site .guide-copy p {
+  line-height: 1.9;
+  color: #aaa;
+  max-width: 360px;
+  font-size: 13px;
+}
+.pyros-site .guide-list {
+  display: grid;
+  gap: 0;
+}
+.pyros-site .guide-row {
+  padding: 23px 0;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-bottom: 1px solid #ffffff15;
+}
+.pyros-site .guide-row:first-child {
+  border-top: 1px solid #ffffff15;
+}
+.pyros-site .book {
+  width: 53px;
+  height: 69px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #782423, #231214);
+  border: 1px solid #9b5550;
+  box-shadow: 4px 3px 0 #080808;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  font-size: 6px;
+  letter-spacing: 0.6px;
+}
+.pyros-site .book b {
+  font-size: 9px;
+}
+.pyros-site .guide-row:nth-child(2) .book {
+  background: linear-gradient(135deg, #756347, #211d18);
+  border-color: #8f7958;
+}
+.pyros-site .guide-row:nth-child(3) .book {
+  background: linear-gradient(135deg, #444c66, #12151f);
+  border-color: #59647b;
+}
+.pyros-site .guide-row h3 {
+  font-size: 14px;
+  margin: 0 0 9px;
+  font-weight: 500;
+}
+.pyros-site .guide-row p {
+  font-size: 10px;
+  color: #969398;
+  margin: 0;
+}
+.pyros-site .guide-row .arrow {
+  margin-left: auto;
+  color: #c4a27d;
+  font-size: 23px;
+}
+.pyros-site .about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 75px;
+  align-items: center;
+}
+.pyros-site .about-art {
+  height: 300px;
+  background: url('/redesign/hero.jpg') 82% center/cover;
+  border-radius: 5px;
+  position: relative;
+}
+.pyros-site .about-art:after {
+  content: 'THE CREATOR BEHIND THE WORKFLOW';
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  font-size: 8px;
+  letter-spacing: 2px;
+  background: #0009;
+  padding: 9px;
+}
+.pyros-site .about p {
+  color: #aaa;
+  line-height: 1.9;
+  font-size: 13px;
+}
+.pyros-site .closing {
+  border: 1px solid #61302d;
+  border-radius: 6px;
+  background: radial-gradient(ellipse at top right, #49201e, #181213 70%);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 70px;
+}
+.pyros-site .closing h2 {
+  font-size: 36px;
+  margin-top: 0;
+}
+.pyros-site .closing p {
+  color: #b7a4a5;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.pyros-site .footer {
+  border-top: 1px solid var(--line);
+  padding: 35px 0 25px;
+}
+.pyros-site .footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.pyros-site .footer-links {
+  display: flex;
+  gap: 25px;
+  font-size: 11px;
+  color: #a6a2a5;
+}
+.pyros-site .copyright {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ffffff0c;
+  padding-top: 25px;
+  margin-top: 30px;
+  font-size: 9px;
+  color: #6f6b72;
+}
+.pyros-site .hidden {
+  display: none !important;
+}
+@media (min-width: 1500px) {
+  .pyros-site .hero {
+    min-height: 780px;
+  }
+}
+@media (max-width: 800px) {
+  .pyros-site .wrap {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .pyros-site nav {
+    gap: 17px;
+  }
+  .pyros-site .hero h1 {
+    font-size: 78px;
+  }
+  .pyros-site .hero-bg {
+    object-position: 70%;
+  }
+  .pyros-site .hero-caption {
+    display: none;
+  }
+  .pyros-site .pyros-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pyros-site .path a {
+    padding: 22px;
+  }
+  .pyros-site .guide-layout {
+    gap: 35px;
+  }
+  .pyros-site .guide-copy h2 {
+    font-size: 43px;
+  }
+  .pyros-site .about {
+    gap: 30px;
+  }
+  .pyros-site .ribbon .wrap {
+    flex-wrap: wrap;
+  }
+  .pyros-site .closing {
+    padding: 28px;
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site header {
+    height: 72px;
+  }
+  .pyros-site .menu {
+    display: block;
+    border: 1px solid #555;
+    background: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 3px;
+  }
+  .pyros-site nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #111;
+    padding: 25px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pyros-site nav.open {
+    display: flex;
+  }
+  .pyros-site .hero {
+    min-height: 670px;
+  }
+  .pyros-site .hero .wrap {
+    padding-top: 130px;
+  }
+  .pyros-site .hero h1 {
+    font-size: 68px;
+  }
+  .pyros-site .hero-bg {
+    opacity: 0.45;
+    object-position: 73%;
+  }
+  .pyros-site .hero p {
+    font-size: 14px;
+  }
+  .pyros-site .hero:after {
+    background: linear-gradient(90deg, #0b0b0ddd, #0b0b0d66), linear-gradient(0deg, #0b0b0d, transparent);
+  }
+  .pyros-site .actions {
+    gap: 8px;
+  }
+  .pyros-site .btn {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .pyros-site .ribbon .wrap {
+    gap: 15px;
+    font-size: 10px;
+  }
+  .pyros-site .ribbon .wrap > span:first-child {
+    width: 100%;
+  }
+  .pyros-site :where(.design-content) section {
+    padding: 50px 0;
+  }
+  .pyros-site .section-top {
+    display: block;
+  }
+  .pyros-site .section-top p {
+    margin-top: 14px;
+  }
+  .pyros-site .path,
+  .pyros-site .pyros-grid,
+  .pyros-site .guide-layout,
+  .pyros-site .about {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .path a + a {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .pyros-site .path p {
+    max-width: 100%;
+  }
+  .pyros-site .path h3 {
+    margin-top: 15px;
+  }
+  .pyros-site .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .pyros-site .search {
+    width: 100%;
+  }
+  .pyros-site .pyros-grid {
+    gap: 30px;
+  }
+  .pyros-site .guide-layout {
+    gap: 30px;
+  }
+  .pyros-site .guide-copy h2 {
+    font-size: 48px;
+  }
+  .pyros-site .about-art {
+    height: 280px;
+  }
+  .pyros-site .about {
+    gap: 30px;
+  }
+  .pyros-site .closing {
+    display: block;
+    margin-bottom: 45px;
+  }
+  .pyros-site .closing .btn {
+    margin-top: 15px;
+  }
+  .pyros-site .footer-top {
+    align-items: start;
+    flex-direction: column;
+  }
+  .pyros-site .footer-links {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .pyros-site .copyright {
+    gap: 20px;
+    line-height: 1.7;
+  }
+  .pyros-site .eyebrow {
+    font-size: 9px;
+  }
+  .pyros-site .design-content h2 {
+    font-size: 37px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .pyros-site * {
+    transition: none !important;
+  }
+}
+
+.pyros-site header {
+  position: relative;
+  background: #0b0b0d;
+}
+.pyros-site nav a[aria-current='page'] {
+  color: #f1635b;
+}
+.pyros-site nav .shop-link {
+  background: #b71c1c;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 4px;
+}
+.pyros-site .hero {
+  min-height: 620px;
+}
+.pyros-site .hero .wrap {
+  padding-top: 65px;
+}
+.pyros-site .page-intro {
+  padding: 65px 0 42px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 45px;
+}
+.pyros-site .page-intro h1 {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  margin: 20px 0;
+  text-transform: uppercase;
+}
+.pyros-site .page-intro p {
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 620px;
+}
+.pyros-site .breadcrumb {
+  font-size: 10px;
+  color: #999;
+  margin-bottom: 28px;
+}
+.pyros-site .breadcrumb a:hover {
+  color: white;
+}
+.pyros-site .feature-course {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 28px;
+  background: #121214;
+}
+.pyros-site .course-art {
+  min-height: 300px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  background:
+    url('/redesign/HCC.png') 72% center/cover;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pyros-site .course-art strong {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 63px;
+  text-transform: uppercase;
+  line-height: 1.03;
+  max-width: 320px;
+  position: relative;
+}
+.pyros-site .course-art small {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.pyros-site .course-art .film-label {
+  color: #f36d5c;
+  letter-spacing: 3px;
+  font-size: 10px;
+}
+.pyros-site .badges {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.pyros-site .badge {
+  font-size: 9px;
+  letter-spacing: 1px;
+  border: 1px solid #454044;
+  border-radius: 3px;
+  padding: 7px 10px;
+  text-transform: uppercase;
+}
+.pyros-site .badge.free {
+  color: #d4bea2;
+  border-color: #69523b;
+}
+.pyros-site .muted {
+  color: #aaa;
+  line-height: 1.9;
+  font-size: 13px;
+}
+.pyros-site .feature-course h2 {
+  font-size: 45px;
+  line-height: 1.06;
+  margin-bottom: 18px;
+}
+.pyros-site .feature-course .btn {
+  margin-top: 15px;
+}
+.pyros-site .shop-feature {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  padding: 45px;
+  background: radial-gradient(ellipse at top right, #652a25, #211416 70%);
+  border: 1px solid #713730;
+  border-radius: 5px;
+}
+.pyros-site .shop-feature h2 {
+  font-size: 52px;
+  line-height: 1.04;
+}
+.pyros-site .shop-feature p {
+  color: #c7b8b8;
+  line-height: 1.9;
+  max-width: 420px;
+}
+.pyros-site .shop-stamp {
+  border: 1px solid #aa6d60;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  min-height: 230px;
+}
+.pyros-site .shop-stamp strong {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 58px;
+  line-height: 1;
+}
+.pyros-site .shop-stamp span {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #cfa99b;
+  margin-bottom: 20px;
+}
+.pyros-site .guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 25px;
+}
+.pyros-site .guide-card {
+  border: 1px solid var(--line);
+  background: #131315;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.pyros-site .guide-cover {
+  height: 280px;
+  background: #242224;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+.pyros-site .guide-cover img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(9px 10px 8px #0007);
+}
+.pyros-site .guide-info {
+  padding: 24px;
+}
+.pyros-site .guide-info h2 {
+  font-family: Inter, Arial, sans-serif;
+  text-transform: none;
+  font-size: 19px;
+  line-height: 1.4;
+  margin: 14px 0;
+}
+.pyros-site .guide-info p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #aaa;
+  min-height: 65px;
+}
+.pyros-site .guide-info .btn {
+  width: 100%;
+  margin-top: 12px;
+}
+.pyros-site .guide-info .text-link {
+  margin-top: 20px;
+}
+.pyros-site .detail-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 45px;
+  padding-bottom: 65px;
+}
+.pyros-site .video-pending {
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #282026, #0e0e10);
+  border: 1px solid #47343a;
+  border-radius: 5px;
+}
+.pyros-site .video-pending .round {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #91625c;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #d59e8e;
+  margin-bottom: 20px;
+}
+.pyros-site .video-pending h2 {
+  font-size: 31px;
+}
+.pyros-site .lesson {
+  padding: 25px;
+  border: 1px solid #6e3e36;
+  background: #201716;
+  border-radius: 5px;
+}
+.pyros-site .lesson h3 {
+  line-height: 1.6;
+  font-size: 17px;
+}
+.pyros-site .lesson small {
+  color: #bbb;
+  font-size: 10px;
+}
+.pyros-site .learning-points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 25px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pyros-site .learning-points li {
+  background: #171719;
+  border-left: 2px solid #976a49;
+  padding: 18px;
+  line-height: 1.7;
+  font-size: 12px;
+}
+.pyros-site .about-long {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 65px;
+}
+.pyros-site .about-long h2 {
+  margin-top: 45px;
+}
+.pyros-site .about-long p {
+  font-size: 15px;
+  line-height: 1.95;
+  color: #aaa;
+}
+.pyros-site .account-link {
+  font-size: 11px;
+  color: #aaa;
+}
+.pyros-site .catalog {
+  padding-top: 0;
+}
+.pyros-site .notice {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #aaa;
+  margin-top: 25px;
+}
+.pyros-site .footer-links {
+  flex-wrap: wrap;
+}
+.pyros-site .eyebrow {
+  line-height: 1.7;
+}
+@media (max-width: 800px) {
+  .pyros-site nav {
+    gap: 15px;
+  }
+  .pyros-site .feature-course {
+    gap: 25px;
+  }
+  .pyros-site .guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pyros-site .shop-feature {
+    gap: 25px;
+    padding: 30px;
+  }
+  .pyros-site .detail-layout {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .page-intro h1 {
+    font-size: 65px;
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site .hero {
+    min-height: 610px;
+  }
+  .pyros-site .hero .wrap {
+    padding-top: 50px;
+  }
+  .pyros-site .feature-course,
+  .pyros-site .shop-feature {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 25px;
+  }
+  .pyros-site .course-art {
+    min-height: 260px;
+    padding: 25px;
+  }
+  .pyros-site .course-art strong {
+    font-size: 56px;
+  }
+  .pyros-site .feature-course h2 {
+    font-size: 39px;
+  }
+  .pyros-site .shop-feature h2 {
+    font-size: 45px;
+  }
+  .pyros-site .shop-stamp {
+    min-height: 180px;
+  }
+  .pyros-site .page-intro {
+    padding: 40px 0 25px;
+    margin-bottom: 30px;
+  }
+  .pyros-site .page-intro h1 {
+    font-size: 60px;
+  }
+  .pyros-site .guide-grid {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .guide-cover {
+    height: 320px;
+  }
+  .pyros-site .learning-points {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .detail-layout {
+    gap: 25px;
+  }
+  .pyros-site .footer-links {
+    gap: 20px;
+  }
+  .pyros-site .hero-caption {
+    display: none;
+  }
+}
+
+.pyros-site .hero h1 {
+  font-size: clamp(50px, 6.3vw, 86px);
+  line-height: 1.06;
+  max-width: 800px;
+  text-transform: none;
+  letter-spacing: -1.2px;
+}
+.pyros-site .hero-caption {
+  font-size: 8px;
+  right: 48px;
+}
+.pyros-site .hero-caption b {
+  font-size: 9px;
+  letter-spacing: 1.6px;
+}
+.pyros-site .home-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+.pyros-site .home-guide-card {
+  border: 1px solid #333033;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #171719;
+  transition: border-color 0.2s;
+}
+.pyros-site .home-guide-card:hover {
+  border-color: #9a7b59;
+}
+.pyros-site .home-guide-image {
+  height: 250px;
+  padding: 24px;
+  background: radial-gradient(ellipse at center, #3b3532, #211f21);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pyros-site .home-guide-image img {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(7px 9px 5px #0007);
+  transition: transform 0.3s;
+}
+.pyros-site .home-guide-card:hover img {
+  transform: translateY(-4px);
+}
+.pyros-site .home-guide-content {
+  padding: 22px;
+}
+.pyros-site .home-guide-content .category {
+  margin: 0;
+  display: block;
+  font-size: 9px;
+}
+.pyros-site .home-guide-content h3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+  min-height: 47px;
+  margin: 12px 0 20px;
+}
+.pyros-site .shop-intro {
+  color: #a9a4a5;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: -12px 0 30px;
+}
+.pyros-site .product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 23px;
+}
+.pyros-site .product-image {
+  aspect-ratio: 1/1.15;
+  background: #f1f0ee;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.pyros-site .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s;
+}
+.pyros-site .product-card:hover img {
+  transform: scale(1.04);
+}
+.pyros-site .product-arrow {
+  position: absolute;
+  bottom: 13px;
+  right: 13px;
+  background: #fff;
+  color: #111;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.pyros-site .product-card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 16px 0 8px;
+}
+.pyros-site .product-action {
+  font-size: 11px;
+  color: #b8a48b;
+}
+.pyros-site .home-shop {
+  padding-bottom: 85px;
+}
+@media (max-width: 900px) {
+  .pyros-site .hero h1 {
+    font-size: 65px;
+    max-width: 640px;
+  }
+  .pyros-site .home-guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pyros-site .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pyros-site .hero-caption {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site .hero h1 {
+    font-size: clamp(39px, 10vw, 60px);
+    line-height: 1.12;
+    letter-spacing: -0.7px;
+  }
+  .pyros-site .hero {
+    min-height: 570px;
+  }
+  .pyros-site .home-guide-grid {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .home-guide-card {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+  }
+  .pyros-site .home-guide-image {
+    height: 190px;
+    padding: 16px;
+  }
+  .pyros-site .home-guide-content {
+    padding: 20px 15px;
+  }
+  .pyros-site .home-guide-content h3 {
+    font-size: 14px;
+    min-height: 0;
+    margin: 12px 0 17px;
+  }
+  .pyros-site .product-grid {
+    gap: 25px 14px;
+  }
+  .pyros-site .product-card h3 {
+    font-size: 12px;
+  }
+  .pyros-site .product-image {
+    aspect-ratio: 1/1.15;
+  }
+  .pyros-site .home-shop {
+    padding-bottom: 50px;
+  }
+  .pyros-site .section-top .text-link {
+    margin-top: 18px;
+  }
+}
+
+.pyros-site .hero h1 {
+  font-size: clamp(64px, 7.5vw, 105px);
+  line-height: 0.96;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  max-width: 720px;
+}
+.pyros-site .newsletter-band {
+  background: #181617;
+  border-top: 1px solid #3b3030;
+  border-bottom: 1px solid #3b3030;
+  padding: 43px 0;
+}
+.pyros-site .newsletter-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 55px;
+  align-items: center;
+}
+.pyros-site .newsletter-band h2 {
+  font-size: 35px;
+  margin-top: 8px;
+}
+.pyros-site .newsletter-band p {
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 12px 0 0;
+}
+.pyros-site .newsletter-form {
+  width: 100%;
+  min-width: 0;
+}
+.pyros-site .newsletter-form .formkit-form {
+  width: 100% !important;
+  max-width: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+.pyros-site .newsletter-form .formkit-fields {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.pyros-site .newsletter-form .formkit-field {
+  flex: 1 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+.pyros-site .newsletter-form .formkit-input {
+  background: #0d0d0f !important;
+  color: #fff !important;
+  border: 1px solid #494043 !important;
+  border-radius: 4px !important;
+  min-height: 48px !important;
+  width: 100% !important;
+  padding: 12px 15px !important;
+  font-family: Inter, Arial, sans-serif !important;
+  font-size: 13px !important;
+}
+.pyros-site .newsletter-form .formkit-input::placeholder {
+  color: #aaa !important;
+}
+.pyros-site .newsletter-form .formkit-submit {
+  background: #b71c1c !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  min-height: 48px !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+  font-size: 12px !important;
+  min-width: 110px !important;
+}
+.pyros-site .newsletter-form .formkit-submit span {
+  padding: 13px 18px !important;
+}
+.pyros-site .newsletter-form .formkit-powered-by-convertkit-container {
+  display: none !important;
+}
+.pyros-site .newsletter-form .formkit-alert-success {
+  background: #1c322a !important;
+  color: #e7fff0 !important;
+  border-color: #526f5f !important;
+}
+.pyros-site .newsletter-form .formkit-alert-error {
+  color: #ffb5b5 !important;
+}
+.pyros-site .footer {
+  padding: 45px 0 25px;
+}
+.pyros-site .footer-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 0.7fr 1fr;
+  gap: 35px;
+}
+.pyros-site .footer-grid h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: #bd9a6d;
+  margin: 4px 0 20px;
+}
+.pyros-site .footer-tagline {
+  color: #8f8a90;
+  font-size: 11px;
+  line-height: 1.9;
+  margin: 18px 0 0;
+}
+.pyros-site .contact-emails,
+.pyros-site .footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  font-size: 11px;
+  color: #aaa;
+}
+.pyros-site .social-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pyros-site .social-icons a {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #3b363b;
+  border-radius: 4px;
+  color: #bdb8be;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.pyros-site .social-icons a:hover {
+  color: white;
+  border-color: #b71c1c;
+}
+.pyros-site .social-icons svg {
+  width: 19px;
+  height: 19px;
+}
+.pyros-site .contribute-section {
+  padding: 0 0 65px;
+}
+.pyros-site .contribute-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+  align-items: center;
+  border-top: 1px solid #373137;
+  padding-top: 35px;
+}
+.pyros-site .contribute-box h2 {
+  font-size: 32px;
+}
+.pyros-site .contribute-box p {
+  color: #a8a1a8;
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 620px;
+}
+.pyros-site .contribute-btn {
+  background: #ac895a;
+  border-color: #ac895a;
+  color: #0b0b0d;
+  flex-shrink: 0;
+}
+.pyros-site .contribute-btn:hover {
+  background: #c5a477;
+  border-color: #c5a477;
+}
+.pyros-site .contribute-btn span:first-child {
+  font-size: 22px;
+}
+.pyros-site .home-shop {
+  padding-bottom: 45px;
+}
+@media (max-width: 900px) {
+  .pyros-site .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+  .pyros-site .newsletter-layout {
+    gap: 30px;
+  }
+  .pyros-site .hero h1 {
+    font-size: 78px;
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site .hero h1 {
+    font-size: clamp(55px, 13vw, 68px);
+  }
+  .pyros-site .newsletter-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .pyros-site .newsletter-band {
+    padding: 32px 0;
+  }
+  .pyros-site .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .pyros-site .footer-grid h3 {
+    margin-bottom: 15px;
+  }
+  .pyros-site .social-icons {
+    gap: 12px;
+  }
+  .pyros-site .social-icons a {
+    width: 40px;
+    height: 40px;
+  }
+  .pyros-site .contribute-box {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pyros-site .contribute-section {
+    padding-bottom: 40px;
+  }
+  .pyros-site .newsletter-form .formkit-fields {
+    flex-wrap: nowrap !important;
+  }
+  .pyros-site .newsletter-form .formkit-submit {
+    min-width: 85px !important;
+  }
+  .pyros-site .newsletter-form .formkit-submit span {
+    padding: 13px 10px !important;
+  }
+}
+
+.pyros-site .product-image img[src='/redesign/signature-tee.webp'],
+.pyros-site .product-image img[src='/redesign/signature-hoodie.webp'] {
+  object-position: center top;
+  transform-origin: center top;
+}
+
+.pyros-site {
+  --gold: #b08a57;
+  --gold-hover: #c6a16a;
+}
+.pyros-site .btn {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #090909;
+}
+.pyros-site .btn:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+.pyros-site .btn.secondary {
+  background: transparent;
+  border-color: var(--gold);
+  color: #d0af81;
+}
+.pyros-site .btn.secondary:hover {
+  background: #b08a571a;
+  color: #e8c99d;
+}
+.pyros-site .filter.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #090909;
+}
+.pyros-site .text-link span {
+  color: #b08a57;
+}
+.pyros-site .newsletter-form .formkit-submit {
+  background: #b08a57 !important;
+  color: #090909 !important;
+}
+.pyros-site .newsletter-form .formkit-submit:hover {
+  background: #c6a16a !important;
+}
+.pyros-site .product-arrow {
+  background: #b08a57;
+  color: #090909;
+}
+.pyros-site .menu {
+  border-color: #b08a57;
+  color: #d0af81;
+}
+.pyros-site .guide-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+  row-gap: 0;
+}
+.pyros-site .guide-info {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 5;
+  row-gap: 0;
+}
+.pyros-site .guide-info .badge {
+  justify-self: start;
+  align-self: start;
+}
+.pyros-site .guide-info h2 {
+  min-height: 2.8em;
+  margin: 14px 0;
+}
+.pyros-site .guide-info p {
+  margin: 0 0 18px;
+  min-height: 65px;
+}
+.pyros-site .guide-info .btn {
+  align-self: end;
+  margin-top: 0;
+}
+.pyros-site .guide-info .text-link {
+  align-self: end;
+  margin-top: 20px;
+}
+.pyros-site .home-guide-card {
+  display: flex;
+  flex-direction: column;
+}
+.pyros-site .home-guide-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.pyros-site .home-guide-content h3 {
+  flex: 1;
+  min-height: 2.9em;
+}
+.pyros-site .home-guide-content > .text-link {
+  margin-top: auto;
+}
+@media (max-width: 600px) {
+  .pyros-site .home-guide-card {
+    display: grid;
+  }
+  .pyros-site .guide-info h2 {
+    min-height: 2.8em;
+  }
+}
+
+.pyros-site .about-menu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 4px;
+}
+.pyros-site .about-toggle {
+  color: #c4a16e;
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  padding: 7px;
+  line-height: 1;
+}
+.pyros-site .about-submenu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: -18px;
+  min-width: 245px;
+  background: #191719;
+  border: 1px solid #4b3d30;
+  box-shadow: 0 15px 40px #0009;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 30;
+}
+.pyros-site .about-submenu a {
+  display: block;
+  padding: 13px 12px;
+  line-height: 1.5;
+  font-size: 12px;
+}
+.pyros-site .about-submenu a:hover {
+  background: #282321;
+  color: #d4b17e;
+}
+.pyros-site .about-submenu[hidden] {
+  display: none;
+}
+.pyros-site .editorial-hero {
+  padding: 75px 0;
+  border-bottom: 1px solid #29252a;
+}
+.pyros-site .editorial-split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.pyros-site .editorial-kicker {
+  font-size: 10px !important;
+  letter-spacing: 2.4px;
+  color: #b49160 !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 0 !important;
+}
+.pyros-site .editorial-hero h1 {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 75px;
+  line-height: 1.03;
+  text-transform: uppercase;
+  margin: 23px 0;
+}
+.pyros-site .editorial-hero p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: #aaa;
+}
+.pyros-site .editorial-photo {
+  height: 430px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.pyros-site .editorial-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 80% center;
+}
+.pyros-site .editorial-section {
+  padding: 65px 0;
+}
+.pyros-site .editorial-row {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 60px;
+}
+.pyros-site .editorial-number {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 100px;
+  color: #493a2b;
+  line-height: 1;
+}
+.pyros-site .editorial-copy h2 {
+  font-size: 47px;
+  line-height: 1.08;
+  margin: 15px 0 28px;
+}
+.pyros-site .editorial-copy p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: #b5afb5;
+  max-width: 770px;
+  margin: 17px 0;
+}
+.pyros-site .editorial-copy h3 {
+  font-size: 19px;
+  line-height: 1.5;
+  color: #d2b17d;
+  margin: 30px 0 12px;
+}
+.pyros-site .editorial-section + .editorial-section .editorial-row {
+  border-top: 1px solid #29252a;
+  padding-top: 48px;
+}
+.pyros-site .editorial-divider-image {
+  height: 320px;
+  background:
+    linear-gradient(90deg, #09090988, #09090911),
+    url('/redesign/hero.jpg') center 40% / cover;
+  border-radius: 4px;
+}
+.pyros-site .editorial-end {
+  background: #151315;
+  border-top: 1px solid #3b3026;
+}
+.pyros-site .editorial-end-inner {
+  max-width: 800px;
+}
+.pyros-site .editorial-end h2 {
+  font-size: 48px;
+  line-height: 1.1;
+}
+.pyros-site .editorial-end p {
+  line-height: 1.95;
+  color: #aaa;
+  font-size: 14px;
+}
+.pyros-site .related-about {
+  padding-top: 35px;
+  padding-bottom: 45px;
+}
+.pyros-site .related-about > a {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 40px;
+  margin-top: 15px;
+}
+.pyros-site .related-about > a span {
+  color: #b08a57;
+}
+@media (max-width: 800px) {
+  .pyros-site .editorial-split {
+    gap: 30px;
+  }
+  .pyros-site .editorial-hero h1 {
+    font-size: 60px;
+  }
+  .pyros-site .editorial-row {
+    grid-template-columns: 70px 1fr;
+    gap: 30px;
+  }
+  .pyros-site .editorial-number {
+    font-size: 70px;
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site .about-menu {
+    flex-wrap: wrap;
+  }
+  .pyros-site .about-submenu {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+    min-width: 0;
+  }
+  .pyros-site .editorial-split {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .editorial-hero {
+    padding: 40px 0;
+  }
+  .pyros-site .editorial-hero h1 {
+    font-size: 58px;
+  }
+  .pyros-site .editorial-photo {
+    height: 290px;
+  }
+  .pyros-site .editorial-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .pyros-site .editorial-number {
+    font-size: 45px;
+  }
+  .pyros-site .editorial-copy h2 {
+    font-size: 38px;
+  }
+  .pyros-site .editorial-section {
+    padding: 40px 0;
+  }
+  .pyros-site .editorial-divider-image {
+    height: 230px;
+  }
+  .pyros-site .editorial-end h2 {
+    font-size: 39px;
+  }
+}
+
+/* Compact rhythm and a consistent hero on every internal page. */
+.pyros-site :where(.design-content) section {
+  padding: 44px 0;
+}
+.pyros-site .section-top {
+  margin-bottom: 24px;
+}
+.pyros-site .tutorials {
+  padding-top: 12px;
+}
+.pyros-site .catalog {
+  padding-top: 0;
+  padding-bottom: 44px;
+}
+.pyros-site .home-shop {
+  padding-bottom: 32px;
+}
+.pyros-site .contribute-section {
+  padding-bottom: 36px;
+}
+.pyros-site .contribute-box {
+  padding-top: 26px;
+}
+.pyros-site .newsletter-band {
+  padding: 32px 0;
+}
+.pyros-site .footer {
+  padding-top: 32px;
+}
+.pyros-site .detail-layout {
+  padding-bottom: 44px;
+  gap: 32px;
+}
+.pyros-site nav {
+  gap: 28px;
+}
+.pyros-site nav > a,
+.pyros-site .about-toggle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.pyros-site .about-menu {
+  gap: 0;
+  align-self: stretch;
+  align-items: center;
+}
+.pyros-site .about-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+.pyros-site .about-toggle[aria-current='page'] {
+  color: #d0af81;
+}
+.pyros-site nav a[aria-current='page'] {
+  color: #d0af81;
+}
+.pyros-site .about-toggle:hover,
+.pyros-site nav a:hover {
+  color: #d0af81;
+}
+.pyros-site .about-submenu {
+  top: 100%;
+  left: -16px;
+  padding: 8px;
+  min-width: 235px;
+}
+.pyros-site .about-menu:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  right: -16px;
+  height: 8px;
+}
+.pyros-site header nav {
+  height: 100%;
+}
+.pyros-site .about-submenu a {
+  font-size: 12px;
+}
+.pyros-site .about-submenu a:hover {
+  color: #d0af81;
+}
+.pyros-site .page-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  padding: 36px 0;
+  margin-bottom: 32px;
+  background: #151315;
+  overflow: hidden;
+}
+.pyros-site .page-hero:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(90deg, #0b0b0d 0%, #0b0b0df5 32%, #0b0b0d80 66%, #0b0b0d22), var(--page-art);
+  background-size:
+    cover,
+    auto 100%;
+  background-position:
+    center,
+    right top;
+  background-repeat: no-repeat;
+}
+.pyros-site .page-hero .wrap {
+  width: 100%;
+}
+.pyros-site .page-hero h1 {
+  font-size: clamp(52px, 6vw, 76px);
+  max-width: 760px;
+  margin: 14px 0;
+}
+.pyros-site .page-hero p {
+  max-width: 560px;
+  line-height: 1.75;
+  margin-bottom: 0;
+  color: #c3bec1;
+}
+.pyros-site .page-hero .breadcrumb {
+  margin-bottom: 26px;
+}
+.pyros-site .page-hero .eyebrow {
+  color: #c7a779;
+}
+.pyros-site .editorial-hero {
+  padding: 40px 0;
+}
+.pyros-site .editorial-split {
+  gap: 44px;
+}
+.pyros-site .editorial-photo {
+  height: 350px;
+}
+.pyros-site .editorial-hero h1 {
+  font-size: clamp(48px, 5.3vw, 70px);
+  margin: 16px 0;
+}
+.pyros-site .editorial-section {
+  padding: 34px 0;
+}
+.pyros-site .editorial-section + .editorial-section .editorial-row {
+  padding-top: 28px;
+}
+.pyros-site .editorial-row {
+  gap: 40px;
+  grid-template-columns: 1fr 4fr;
+}
+.pyros-site .editorial-number {
+  font-size: 76px;
+}
+.pyros-site .editorial-copy h2 {
+  margin: 12px 0 20px;
+}
+.pyros-site .editorial-copy p {
+  margin: 13px 0;
+  line-height: 1.85;
+}
+.pyros-site .editorial-divider-image {
+  height: 240px;
+}
+.pyros-site .editorial-end {
+  padding: 36px 0;
+}
+.pyros-site .related-about {
+  padding-top: 26px;
+  padding-bottom: 30px;
+}
+.pyros-site .actions {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+@media (max-width: 800px) {
+  .pyros-site nav {
+    gap: 20px;
+  }
+  .pyros-site .editorial-row {
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+  }
+  .pyros-site .editorial-split {
+    gap: 28px;
+  }
+  .pyros-site .editorial-photo {
+    height: 320px;
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site :where(.design-content) section {
+    padding: 30px 0;
+  }
+  .pyros-site .page-hero {
+    min-height: 315px;
+    padding: 28px 0;
+    margin-bottom: 24px;
+  }
+  .pyros-site .page-hero:before {
+    background-image: linear-gradient(90deg, #0b0b0df5, #0b0b0dbb), var(--page-art);
+    background-size: cover, cover;
+  }
+  .pyros-site .page-hero h1 {
+    font-size: 49px;
+  }
+  .pyros-site .page-hero .breadcrumb {
+    margin-bottom: 20px;
+  }
+  .pyros-site .page-hero p {
+    font-size: 14px;
+  }
+  .pyros-site .editorial-hero {
+    padding: 28px 0;
+  }
+  .pyros-site .editorial-photo {
+    height: 250px;
+  }
+  .pyros-site .editorial-section {
+    padding: 26px 0;
+  }
+  .pyros-site .editorial-section + .editorial-section .editorial-row {
+    padding-top: 20px;
+  }
+  .pyros-site .editorial-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .pyros-site .editorial-number {
+    font-size: 40px;
+  }
+  .pyros-site .editorial-divider-image {
+    height: 200px;
+  }
+  .pyros-site .editorial-copy h2 {
+    margin-bottom: 16px;
+  }
+  .pyros-site .editorial-end {
+    padding: 30px 0;
+  }
+  .pyros-site .catalog {
+    padding-bottom: 30px;
+  }
+  .pyros-site header nav {
+    height: auto;
+  }
+  .pyros-site .about-menu {
+    display: block;
+    align-self: auto;
+    width: 100%;
+  }
+  .pyros-site .about-toggle {
+    font-size: inherit;
+    text-align: left;
+    width: 100%;
+    padding: 0;
+    line-height: inherit;
+  }
+  .pyros-site .about-submenu {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .pyros-site .about-menu:after {
+    display: none;
+  }
+  .pyros-site .detail-layout {
+    padding-bottom: 30px;
+  }
+  .pyros-site .newsletter-band {
+    padding: 28px 0;
+  }
+}
+
+.pyros-site {
+  min-height: 100vh;
+  background: #090909;
+  color: #f4f2ed;
+  letter-spacing: normal;
+}
+.pyros-site .page-intro h1,
+.pyros-site .editorial-hero h1 {
+  font-weight: 700;
+}
+.pyros-site .newsletter-band h2 {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.pyros-site .integrated-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 24px;
+}
+.pyros-site .guide-item:not(.hidden) {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+  row-gap: 0;
+}
+.pyros-site .integrated-guide-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+  row-gap: 0;
+  border: 1px solid #333;
+  background: #131315;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.pyros-site .integrated-guide-info {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 5;
+  row-gap: 0;
+  padding: 24px;
+}
+.pyros-site .integrated-guide-info .badge {
+  justify-self: start;
+}
+.pyros-site .integrated-guide-info h2 {
+  font:
+    600 19px/1.4 Inter,
+    Arial,
+    sans-serif;
+  text-transform: none;
+  margin: 15px 0;
+  min-height: 2.8em;
+}
+.pyros-site .integrated-guide-info h2 small {
+  display: block;
+  color: #b08a57;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.pyros-site .guide-cover button {
+  display: block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.pyros-site .guide-cover img {
+  margin: auto;
+}
+.pyros-site .guide-description {
+  position: relative;
+  min-height: 80px;
+  margin-bottom: 20px;
+}
+.pyros-site .guide-description p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #aaa;
+}
+.pyros-site [data-guide-more] {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #131315;
+  color: #d0af81;
+  padding-left: 8px;
+  font-size: 11px;
+}
+.pyros-site .integrated-guide-info .btn {
+  width: 100%;
+  align-self: end;
+}
+.pyros-site .integrated-guide-info .text-link {
+  margin-top: 20px;
+  align-self: end;
+}
+.pyros-site .guide-filter {
+  padding: 10px 18px;
+  border-radius: 24px;
+  border-width: 1px;
+  font-size: 12px;
+}
+.pyros-site .tutorial-detail h2 {
+  font-family: Inter, Arial, sans-serif;
+}
+@media (max-width: 900px) {
+  .pyros-site .integrated-guide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .pyros-site .integrated-guide-grid {
+    grid-template-columns: 1fr;
+  }
+  .pyros-site .actions {
+    flex-wrap: wrap;
+  }
+  .pyros-site .editorial-split > div {
+    min-width: 0;
+  }
+  .pyros-site .brand {
+    font-size: 14px;
+  }
+  .pyros-site .design-header nav.open {
+    z-index: 40;
+  }
+}

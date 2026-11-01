@@ -1,0 +1,77 @@
+---
+import { tutorials as sourceTutorials } from '~/data/tutorials';
+const tutorials = sourceTutorials
+  .slice()
+  .reverse()
+  .map((t) => ({
+    title: t.title,
+    image: t.thumbnail,
+    slug: t.slug,
+    category: t.category === 'AI Characters' ? 'characters' : /music|higgsfield/.test(t.slug) ? 'sound' : 'filmmaking',
+    label: t.category,
+    meta: 'Practical tutorial',
+  }));
+import Layout from '~/layouts/PageLayout.astro';
+---
+
+<Layout metadata={{ title: 'Tutorials' }}
+  ><div class="design-content">
+    <section class="page-intro page-hero" style="--page-art:url(/redesign/tutorials-hero.png)">
+      <div class="wrap">
+        <div class="breadcrumb"><a data-astro-reload href="/">Home</a> / Tutorials</div><div class="eyebrow">
+          <span class="dot"></span>Explore a workflow
+        </div><h1>Tutorials</h1><p>
+          Find a practical answer for your next creative challenge. Browse character, filmmaking and sound workflows.
+        </p>
+      </div>
+    </section><section class="catalog">
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="filters" role="group" aria-label="Filter tutorials">
+            <button class="filter active" data-filter="all" aria-pressed="true">All tutorials</button><button
+              class="filter"
+              data-filter="characters"
+              aria-pressed="false">AI Characters</button
+            ><button class="filter" data-filter="filmmaking" aria-pressed="false">AI Filmmaking</button><button
+              class="filter"
+              data-filter="sound"
+              aria-pressed="false">Sound & voice</button
+            >
+          </div><input class="search" type="search" aria-label="Search tutorials" placeholder="Search tutorials…" />
+        </div><div class="pyros-grid" id="cards"></div><p class="empty hidden" role="status">
+          No tutorials match your search. Try another topic.
+        </p>
+      </div>
+    </section>
+  </div></Layout
+>
+<script is:inline define:vars={{ tutorials }}>
+  let filter = 'all';
+  const search = document.querySelector('.search');
+  function render() {
+    const list = tutorials.filter(
+      (t) =>
+        (filter === 'all' || t.category === filter) &&
+        (t.title + ' ' + t.label).toLowerCase().includes(search.value.toLowerCase())
+    );
+    document.querySelector('#cards').innerHTML = list
+      .map(
+        (t) =>
+          `<a data-astro-reload class="card" href="/tutorials/${t.slug}"><div class="thumb"><img src="${t.image}" alt="${t.title}" loading="lazy"><span class="play" aria-hidden="true">▶</span></div><div class="category">${t.label}</div><h3>${t.title}</h3><div class="meta">${t.meta} &nbsp; ↗</div></a>`
+      )
+      .join('');
+    document.querySelector('.empty').classList.toggle('hidden', list.length > 0);
+  }
+  document.querySelectorAll('.filter').forEach((b) =>
+    b.addEventListener('click', () => {
+      filter = b.dataset.filter;
+      document.querySelectorAll('.filter').forEach((x) => {
+        x.classList.toggle('active', x === b);
+        x.setAttribute('aria-pressed', x === b);
+      });
+      render();
+    })
+  );
+  search.addEventListener('input', render);
+  render();
+</script>

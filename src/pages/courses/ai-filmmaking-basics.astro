@@ -1,0 +1,154 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+---
+
+<Layout metadata={{ title: 'AI Filmmaking: How Cinema Communicates' }}>
+  <div class="design-content">
+    <section class="course-heading">
+      <div class="wrap">
+        <div class="breadcrumb">
+          <a data-astro-reload href="/">Home</a> /
+          <a data-astro-reload href="/courses">Courses</a> /
+          AI Filmmaking: How Cinema Communicates
+        </div>
+
+        <div class="eyebrow">
+          <span class="dot"></span>Free course · Beginner
+        </div>
+
+        <h1>AI Filmmaking: How Cinema Communicates</h1>
+
+        <p class="muted">
+          A foundation in cinematic visual storytelling for creators working with AI.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap detail-layout">
+  <div>
+    <div class="course-video" id="lesson-01">
+      <iframe
+        src="https://www.youtube.com/embed/wZ0bl99-bXQ"
+        title="Introduction to Visual Storytelling — PYROS AI Creative"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <aside class="course-sidebar">
+    <div class="eyebrow">COURSE CONTENT</div>
+
+    <a class="episode-card" href="#lesson-01">
+      01 — Introduction to Visual Storytelling
+    </a>
+
+    <div class="episode-card episode-upcoming">
+      02 — Coming soon
+    </div>
+  </aside>
+</div>
+  </div>
+</Layout>
+
+<style>
+  .course-heading {
+    padding: 28px 0 24px;
+  }
+
+  .course-heading .eyebrow {
+    margin-top: 24px;
+  }
+
+  .course-heading h1 {
+    margin: 14px 0 12px;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+  }
+
+  .course-heading p {
+    max-width: 720px;
+  }
+
+  .detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 32px;
+    align-items: start;
+    padding-bottom: 40px;
+  }
+
+  .detail-layout > div,
+  .course-sidebar {
+    min-width: 0;
+  }
+
+  .course-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    scroll-margin-top: 100px;
+    border: 1px solid rgb(255 255 255 / 12%);
+    border-radius: 12px;
+    background: #000;
+  }
+
+  .course-video iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .course-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .course-sidebar > .eyebrow {
+    margin: 0 0 4px;
+  }
+
+  .course-sidebar .episode-card {
+    display: block;
+    margin: 0;
+    padding: 24px;
+    background: #202020;
+    border: 1px solid #363636;
+    border-radius: 10px;
+    color: #f5f5f5;
+    font-size: 18px;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .course-sidebar a.episode-card:hover {
+    border-color: #b89563;
+  }
+
+  .course-sidebar a.episode-card:focus-visible {
+    outline: 2px solid #b89563;
+    outline-offset: 4px;
+  }
+
+  .course-sidebar .episode-upcoming {
+    color: #aaa;
+  }
+
+  @media (max-width: 767px) {
+    .detail-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .course-sidebar .episode-card {
+      padding: 20px;
+      font-size: 16px;
+    }
+  }
+</style>

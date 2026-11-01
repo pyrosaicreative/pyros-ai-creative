@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  kicker?: string;
+  image?: string;
+}
+const { title, description, kicker = 'Learn with intention', image = '/redesign/ai-guides-hero.png' } = Astro.props;
+---
+
+<div class="design-content">
+  <section class="page-intro page-hero" style={`--page-art:url(${image})`}>
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/" data-astro-reload>Home</a> / {title}</div><div class="eyebrow">
+        {kicker}
+      </div><h1>{title}</h1><p>{description}</p>
+    </div>
+  </section>
+</div>
