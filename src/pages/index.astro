@@ -83,28 +83,26 @@ import Layout from '~/layouts/PageLayout.astro';
             <div class="eyebrow">03 / Your creative reference</div><h2>Your next workflow. In your hands.</h2>
           </div><a data-astro-reload class="text-link" href="/ai-guides">Explore AI Guide <span>→</span></a>
         </div><div class="home-guide-grid">
-          {latestGuides.map((guide) => (
-            <a
-              data-astro-reload
-              class="home-guide-card"
-              href={`/ai-guides#guide-${guide.id}`}
-            >
-              <div class="home-guide-image">
-                <img
-                  src={guide.cover}
-                  alt={`${guide.title} — ${guide.workflow} cover`}
-                  loading="lazy"
-                />
-              </div>
-              <div class="home-guide-content">
-                <span class="category">
-                  {guide.type === 'free' ? 'Free' : 'Premium'} · PDF · {guide.pages} pages
-                </span>
-                <h3>{guide.title} — {guide.workflow}</h3>
-                <span class="text-link">Explore guide <span>→</span></span>
-              </div>
-            </a>
-          ))}
+          {
+            latestGuides.map((guide) => (
+              <a data-astro-reload class="home-guide-card" href={`/ai-guides#guide-${guide.id}`}>
+                <div class="home-guide-image">
+                  <img src={guide.cover} alt={`${guide.title} — ${guide.workflow} cover`} loading="lazy" />
+                </div>
+                <div class="home-guide-content">
+                  <span class="category">
+                    {guide.type === 'free' ? 'Free' : 'Premium'} · PDF · {guide.pages} pages
+                  </span>
+                  <h3>
+                    {guide.title} — {guide.workflow}
+                  </h3>
+                  <span class="text-link">
+                    Explore guide <span>→</span>
+                  </span>
+                </div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section><section class="home-shop">

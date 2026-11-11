@@ -319,61 +319,60 @@ export const tutorials: Tutorial[] = [
     ],
   },
 
-{
-  title: 'The NEW Way to Create Consistent AI Characters (Realistic Skin & Outfits)',
+  {
+    title: 'The NEW Way to Create Consistent AI Characters (Realistic Skin & Outfits)',
 
-  slug: 'character-consistency-cinematic-workflow',
+    slug: 'character-consistency-cinematic-workflow',
 
-  description:
-    'Learn how to create photorealistic AI characters with natural skin textures, consistent outfits, and detailed cinematic character reference sheets. Discover a practical workflow for preserving facial identity, clothing, accessories, and distinctive features across AI-generated cinematic scenes.',
+    description:
+      'Learn how to create photorealistic AI characters with natural skin textures, consistent outfits, and detailed cinematic character reference sheets. Discover a practical workflow for preserving facial identity, clothing, accessories, and distinctive features across AI-generated cinematic scenes.',
 
-  thumbnail: '/images/tutorials/character-consistency-cinematic-workflow.png',
+    thumbnail: '/images/tutorials/character-consistency-cinematic-workflow.png',
 
-  badge: 'FREE',
+    badge: 'FREE',
 
-  category: 'AI Characters',
+    category: 'AI Characters',
 
-  youtubeId: 'qyssZCR21CE',
+    youtubeId: 'qyssZCR21CE',
 
-  uploadDate: '2026-11-11',
+    uploadDate: '2026-11-11',
 
-  guideId: 'character-consistency-cinematic',
+    guideId: 'character-consistency-cinematic',
 
-  guide: {
-    title: 'Character Consistency Guide — Cinematic Workflow',
-    file: '',
+    guide: {
+      title: 'Character Consistency Guide — Cinematic Workflow',
+      file: '',
+    },
+
+    learnIntro:
+      'Follow the PYROS Cinematic Workflow to turn a single character image into a detailed, photorealistic character reference system designed for cinematic storytelling. Learn how to preserve facial identity, realistic skin, costumes, and distinctive visual details across different shots and scenes.',
+
+    whatYoullLearn: [
+      {
+        title: 'Create Photorealistic AI Characters',
+        description:
+          'Create a new character from scratch or develop an existing reference image using AI image generation models, with a focus on natural facial features and believable human proportions.',
+      },
+      {
+        title: 'Achieve Realistic Skin & Facial Details',
+        description:
+          'Improve skin realism with natural pores, subtle imperfections, fine facial hair, realistic eyes, and authentic photographic textures without an artificial or airbrushed appearance.',
+      },
+      {
+        title: 'Build a Cinematic Character Reference Sheet',
+        description:
+          'Generate a professional five-view character sheet featuring front, side, three-quarter, back, and detailed facial close-up views.',
+      },
+      {
+        title: 'Maintain Consistent Outfits & Accessories',
+        description:
+          'Preserve clothing, materials, armor, tattoos, scars, hairstyles, and distinctive accessories across different character views and cinematic scenes.',
+      },
+      {
+        title: 'Bring Your Characters into Cinematic AI Video',
+        description:
+          'Use your character reference sheets to generate cinematic scenes with consistent identities, realistic skin details, and wardrobe continuity across different environments, lighting conditions, and camera angles.',
+      },
+    ],
   },
-
-  learnIntro:
-    'Follow the PYROS Cinematic Workflow to turn a single character image into a detailed, photorealistic character reference system designed for cinematic storytelling. Learn how to preserve facial identity, realistic skin, costumes, and distinctive visual details across different shots and scenes.',
-
-  whatYoullLearn: [
-    {
-      title: 'Create Photorealistic AI Characters',
-      description:
-        'Create a new character from scratch or develop an existing reference image using AI image generation models, with a focus on natural facial features and believable human proportions.',
-    },
-    {
-      title: 'Achieve Realistic Skin & Facial Details',
-      description:
-        'Improve skin realism with natural pores, subtle imperfections, fine facial hair, realistic eyes, and authentic photographic textures without an artificial or airbrushed appearance.',
-    },
-    {
-      title: 'Build a Cinematic Character Reference Sheet',
-      description:
-        'Generate a professional five-view character sheet featuring front, side, three-quarter, back, and detailed facial close-up views.',
-    },
-    {
-      title: 'Maintain Consistent Outfits & Accessories',
-      description:
-        'Preserve clothing, materials, armor, tattoos, scars, hairstyles, and distinctive accessories across different character views and cinematic scenes.',
-    },
-    {
-      title: 'Bring Your Characters into Cinematic AI Video',
-      description:
-        'Use your character reference sheets to generate cinematic scenes with consistent identities, realistic skin details, and wardrobe continuity across different environments, lighting conditions, and camera angles.',
-    },
-  ],
-},
-
 ];
