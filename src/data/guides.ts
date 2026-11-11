@@ -90,4 +90,18 @@ export const guides: Guide[] = [
     tutorialUrl: '/tutorials/higgsfield-api-references-to-video/',
     shopUrl: 'https://shop.pyrosaicreative.com/products/higgsfield-api-from-references-to-video',
   },
+
+{
+  id: 'character-consistency-cinematic',
+  title: 'Character Consistency Guide',
+  workflow: 'CINEMATIC WORKFLOW',
+  description:
+    'Create photorealistic AI characters with realistic skin, consistent outfits, and cinematic detail. Build professional multi-view character reference sheets and bring your characters to life across cinematic scenes.',
+  cover: '/images/ai-guides/character-consistency-cinematic-workflow.png',
+  pages: 37,
+  type: 'free',
+  tutorialUrl: '/tutorials/character-consistency-cinematic-workflow/',
+  shopUrl: 'https://shop.pyrosaicreative.com/products/character-consistency-guide-cinematic-workflow',
+},
+
 ];
