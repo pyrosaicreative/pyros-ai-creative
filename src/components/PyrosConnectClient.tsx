@@ -70,14 +70,19 @@ function validateForm(form: AutomationForm): string | null {
   if (!form.guide_name.trim() || form.guide_name.trim().length > 180) {
     return 'Enter a guide name (maximum 180 characters).';
   }
+
   try {
     const url = new URL(form.guide_url.trim());
-    if (url.protocol !== 'https:' || url.hostname !== 'shop.pyrosaicreative.com') {
-      return 'Guide URL must be an HTTPS link on shop.pyrosaicreative.com.';
+
+    const allowedHosts = ['pyrosaicreative.com', 'www.pyrosaicreative.com', 'shop.pyrosaicreative.com'];
+
+    if (url.protocol !== 'https:' || !allowedHosts.includes(url.hostname) || url.username || url.password) {
+      return 'Enter a valid HTTPS URL from PYROS AI Creative.';
     }
   } catch {
-    return 'Enter a valid Fourthwall guide URL.';
+    return 'Enter a valid destination URL.';
   }
+
   if (!form.dm_message.trim() || form.dm_message.length > 640) {
     return 'DM text must be between 1 and 640 characters.';
   }
@@ -491,14 +496,14 @@ export default function PyrosConnectClient() {
                 />
               </label>
               <label className={labelClass}>
-                Fourthwall guide URL
+                Destination URL
                 <input
                   className={inputClass}
                   required
                   type="url"
                   value={form.guide_url}
                   onInput={(event) => setForm({ ...form, guide_url: event.currentTarget.value })}
-                  placeholder="https://shop.pyrosaicreative.com/products/..."
+                  placeholder="https://pyrosaicreative.com/tutorials/..."
                 />
               </label>
               <label className={labelClass + ' md:col-span-2'}>
@@ -511,7 +516,7 @@ export default function PyrosConnectClient() {
                   onInput={(event) => setForm({ ...form, dm_message: event.currentTarget.value })}
                 />
                 <span className="mt-1 block text-xs font-normal text-gray-500">
-                  The button 🎁 Get Free Guide opens your Fourthwall link.
+                  The DM button opens the destination URL configured above.
                 </span>
               </label>
               <label className={labelClass + ' md:col-span-2'}>
