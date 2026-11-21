@@ -38,11 +38,9 @@ type CommentEvent = {
 type Stats = { total: number; sent: number; publicReplies: number; skipped: number; failed: number };
 const PAGE_SIZE = 20;
 
-const DEFAULT_DM = `Here's your guide!
+const DEFAULT_DM = `Here's your free resource!
 
-It's completely FREE — no credit card required.
-
-Tap the button below to get your guide.`;
+Tap the button below to open the guide or video tutorial.`;
 
 const EMPTY_FORM: AutomationForm = {
   reel_id: '',
@@ -62,7 +60,7 @@ const buttonClass =
 
 function validateForm(form: AutomationForm): string | null {
   if (!/^\d{8,30}$/.test(form.reel_id.trim())) {
-    return 'Enter the numeric Instagram Reel ID (not the Instagram URL).';
+    return 'Enter the numeric Instagram media ID (Reel or carousel), not its URL.';
   }
   if (!/^[A-Za-z0-9_-]{1,60}$/.test(form.keyword.trim())) {
     return 'Keyword: use 1–60 letters, numbers, hyphens or underscores.';
@@ -72,11 +70,11 @@ function validateForm(form: AutomationForm): string | null {
   }
   try {
     const url = new URL(form.guide_url.trim());
-    if (url.protocol !== 'https:' || url.hostname !== 'shop.pyrosaicreative.com') {
-      return 'Guide URL must be an HTTPS link on shop.pyrosaicreative.com.';
+    if (url.protocol !== 'https:' || !['shop.pyrosaicreative.com', 'pyrosaicreative.com', 'www.pyrosaicreative.com'].includes(url.hostname) || url.username || url.password) {
+      return 'Use an HTTPS resource URL on pyrosaicreative.com or shop.pyrosaicreative.com.';
     }
   } catch {
-    return 'Enter a valid Fourthwall guide URL.';
+    return 'Enter a valid resource URL.';
   }
   if (!form.dm_message.trim() || form.dm_message.length > 640) {
     return 'DM text must be between 1 and 640 characters.';
@@ -159,7 +157,7 @@ export default function PyrosConnectClient() {
     setNotice('');
     const candidate = reelLink.trim();
     if (!candidate) {
-      setLookupError('Paste the link to your Instagram Reel.');
+      setLookupError('Paste the link to your Instagram Reel or carousel.');
       return;
     }
     setLookupBusy(true);
@@ -168,7 +166,7 @@ export default function PyrosConnectClient() {
         body: { url: candidate },
       });
       if (lookupError || !data?.reel_id) {
-        let message = data?.error || 'Could not find this Reel on @pyrosaicreative.';
+        let message = data?.error || 'Could not find this Instagram post on @pyrosaicreative.';
         if (lookupError && typeof lookupError === 'object' && 'context' in lookupError) {
           const response = (lookupError as { context?: Response }).context;
           if (response && typeof response.json === 'function') {
@@ -183,7 +181,7 @@ export default function PyrosConnectClient() {
       }
       setForm((previous) => ({ ...previous, reel_id: String(data.reel_id) }));
       setResolvedLink(candidate);
-      setNotice('Reel verified: numeric media ID retrieved.');
+      setNotice('Instagram post verified: numeric media ID retrieved.');
     } catch (err) {
       setResolvedLink('');
       setForm((previous) => ({ ...previous, reel_id: '' }));
@@ -425,13 +423,13 @@ export default function PyrosConnectClient() {
         {editorOpen && (
           <>
             <p className="mt-2 text-xs text-gray-400">
-              Paste an Instagram Reel link to find its ID. New automations start disabled.
+              Paste an Instagram Reel or carousel link to find its media ID. Alternatively enter the numeric media ID manually. New automations start disabled.
             </p>
 
             <form className="mt-4 grid gap-3 md:grid-cols-2" onSubmit={(event) => void save(event)}>
               <div className="md:col-span-2">
                 <label className={labelClass} htmlFor="reel-link">
-                  Instagram Reel link
+                  Instagram Reel or carousel link
                 </label>
                 <div className="flex flex-wrap items-end gap-3">
                   <input
@@ -445,7 +443,7 @@ export default function PyrosConnectClient() {
                       setLookupError('');
                       setForm((previous) => ({ ...previous, reel_id: '' }));
                     }}
-                    placeholder="https://www.instagram.com/reel/..."
+                    placeholder="https://www.instagram.com/p/... or /reel/..."
                   />
                   <button
                     type="button"
@@ -453,7 +451,7 @@ export default function PyrosConnectClient() {
                     disabled={lookupBusy || busy}
                     onClick={() => void resolveReel()}
                   >
-                    {lookupBusy ? 'Finding…' : 'Find Reel ID'}
+                    {lookupBusy ? 'Finding…' : 'Find Media ID'}
                   </button>
                 </div>
                 {lookupError && (
@@ -463,12 +461,25 @@ export default function PyrosConnectClient() {
                 )}
                 <p className="mt-2 text-sm text-gray-400">
                   {form.reel_id
-                    ? `Verified Reel ID: ${form.reel_id}`
-                    : 'Paste the link and click Find Reel ID. Only your account’s published media can be resolved.'}
+                    ? `Instagram media ID: ${form.reel_id}`
+                    : 'Paste the link and click Find Media ID, or enter the numeric ID below. The lookup works only for published posts belonging to your account.'}
                 </p>
-                {editingId && !reelLink && (
-                  <p className="mt-1 text-xs text-gray-500">Existing Reel ID retained until you paste a new link.</p>
-                )}
+                <label className={labelClass + ' mt-3 block'} htmlFor="instagram-media-id">
+                  Instagram media ID (manual fallback)
+                  <input
+                    id="instagram-media-id"
+                    className={inputClass}
+                    inputMode="numeric"
+                    value={form.reel_id}
+                    onInput={(event) => {
+                      setForm((previous) => ({ ...previous, reel_id: event.currentTarget.value }));
+                      setReelLink('');
+                      setResolvedLink('');
+                      setLookupError('');
+                    }}
+                    placeholder="Numeric ID of your Reel or carousel"
+                  />
+                </label>
               </div>
               <label className={labelClass}>
                 Keyword
@@ -481,7 +492,7 @@ export default function PyrosConnectClient() {
                 />
               </label>
               <label className={labelClass}>
-                Guide name
+                Resource name
                 <input
                   className={inputClass}
                   required
@@ -491,14 +502,14 @@ export default function PyrosConnectClient() {
                 />
               </label>
               <label className={labelClass}>
-                Fourthwall guide URL
+                Guide or video tutorial URL
                 <input
                   className={inputClass}
                   required
                   type="url"
                   value={form.guide_url}
                   onInput={(event) => setForm({ ...form, guide_url: event.currentTarget.value })}
-                  placeholder="https://shop.pyrosaicreative.com/products/..."
+                  placeholder="https://pyrosaicreative.com/..."
                 />
               </label>
               <label className={labelClass + ' md:col-span-2'}>
@@ -511,7 +522,7 @@ export default function PyrosConnectClient() {
                   onInput={(event) => setForm({ ...form, dm_message: event.currentTarget.value })}
                 />
                 <span className="mt-1 block text-xs font-normal text-gray-500">
-                  The button 🎁 Get Free Guide opens your Fourthwall link.
+                  The Instagram DM button opens the resource URL. Supported destinations: PYROS AI Creative website and shop.
                 </span>
               </label>
               <label className={labelClass + ' md:col-span-2'}>
@@ -571,7 +582,7 @@ export default function PyrosConnectClient() {
                     </span>
                   </div>
                   <p className="mt-1 text-sm text-gray-400">
-                    Keyword: <strong className="text-white">{item.keyword}</strong> · Reel: {item.reel_id}
+                    Keyword: <strong className="text-white">{item.keyword}</strong> · Media ID: {item.reel_id}
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -679,7 +690,7 @@ export default function PyrosConnectClient() {
                 <thead>
                   <tr className="border-b border-white/20 text-gray-400">
                     <th className="px-2 py-3 font-medium">Date / time</th>
-                    <th className="px-2 py-3 font-medium">Keyword / Reel</th>
+                    <th className="px-2 py-3 font-medium">Keyword / Media</th>
                     <th className="px-2 py-3 font-medium">Status</th>
                     <th className="px-2 py-3 font-medium">DM</th>
                     <th className="px-2 py-3 font-medium">Public reply</th>
