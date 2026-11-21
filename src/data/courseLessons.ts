@@ -1,4 +1,3 @@
-
 export interface CourseLesson {
   number: string;
   title: string;

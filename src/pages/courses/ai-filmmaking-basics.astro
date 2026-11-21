@@ -1,13 +1,9 @@
-
-
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { lessons } from '~/data/courseLessons';
 
 const nextLessonNumber = String(lessons.length + 1).padStart(2, '0');
 ---
-
-
 
 <Layout metadata={{ title: 'AI Filmmaking: How Cinema Communicates' }}>
   <div class="design-content">
@@ -39,17 +35,15 @@ const nextLessonNumber = String(lessons.length + 1).padStart(2, '0');
             allowfullscreen></iframe>
         </div>
 
-        
-<div class="video-details">
-  <span class="lesson-label" id="current-number">
-    LESSON {lessons[0].number}
-  </span>
+        <div class="video-details">
+          <span class="lesson-label" id="current-number">
+            LESSON {lessons[0].number}
+          </span>
 
-  <h2 id="current-title">{lessons[0].title}</h2>
+          <h2 id="current-title">{lessons[0].title}</h2>
 
-  <span class="free-label">Free video lesson</span>
-</div>
-
+          <span class="free-label">Free video lesson</span>
+        </div>
 
         <!-- OPTIONAL COMPANION GUIDE -->
         <div class="companion-guide" id="companion-guide" hidden>
@@ -84,55 +78,47 @@ const nextLessonNumber = String(lessons.length + 1).padStart(2, '0');
           <span>{lessons.length} available</span>
         </div>
 
-        
+        <div class="playlist-items">
+          {
+            lessons.map((lesson, index) => (
+              <button
+                class:list={['playlist-item', { active: index === 0 }]}
+                type="button"
+                data-lesson-index={index}
+                data-video-id={lesson.videoId}
+                data-title={lesson.title}
+                data-number={lesson.number}
+                aria-pressed={index === 0 ? 'true' : 'false'}
+              >
+                <span class="playlist-number">{lesson.number}</span>
 
-<div class="playlist-items">
-  {
-    lessons.map((lesson, index) => (
-      <button
-        class:list={['playlist-item', { active: index === 0 }]}
-        type="button"
-        data-lesson-index={index}
-        data-video-id={lesson.videoId}
-        data-title={lesson.title}
-        data-number={lesson.number}
-        aria-pressed={index === 0 ? 'true' : 'false'}
-      >
-        <span class="playlist-number">{lesson.number}</span>
+                <span class="playlist-thumbnail">
+                  <img src={lesson.thumbnail} alt={`Thumbnail: ${lesson.title}`} loading="lazy" />
+                  <span class="thumbnail-play">▶</span>
+                </span>
 
-        <span class="playlist-thumbnail">
-          <img
-            src={lesson.thumbnail}
-            alt={`Thumbnail: ${lesson.title}`}
-            loading="lazy"
-          />
-          <span class="thumbnail-play">▶</span>
-        </span>
+                <span class="playlist-text">
+                  <strong>{lesson.title}</strong>
+                  <small>Free lesson</small>
+                </span>
+              </button>
+            ))
+          }
 
-        <span class="playlist-text">
-          <strong>{lesson.title}</strong>
-          <small>Free lesson</small>
-        </span>
-      </button>
-    ))
-  }
+          <!-- AUTOMATIC UPCOMING LESSON -->
+          <div class="playlist-item playlist-upcoming">
+            <span class="playlist-number">{nextLessonNumber}</span>
 
-  <!-- AUTOMATIC UPCOMING LESSON -->
-  <div class="playlist-item playlist-upcoming">
-    <span class="playlist-number">{nextLessonNumber}</span>
+            <span class="playlist-thumbnail playlist-placeholder">
+              <span class="placeholder-lock">🔒</span>
+            </span>
 
-    <span class="playlist-thumbnail playlist-placeholder">
-      <span class="placeholder-lock">🔒</span>
-    </span>
-
-    <span class="playlist-text">
-      <strong>Coming soon</strong>
-      <small>Upcoming lesson</small>
-    </span>
-  </div>
-</div>
-
-
+            <span class="playlist-text">
+              <strong>Coming soon</strong>
+              <small>Upcoming lesson</small>
+            </span>
+          </div>
+        </div>
       </aside>
     </div>
   </div>
@@ -148,8 +134,7 @@ const nextLessonNumber = String(lessons.length + 1).padStart(2, '0');
 
     const companion = document.querySelector<HTMLElement>('#companion-guide');
 
-const buttons = document.querySelectorAll<HTMLButtonElement>('button.playlist-item');
-
+    const buttons = document.querySelectorAll<HTMLButtonElement>('button.playlist-item');
 
     if (!player || !title || !number || !companion) return;
 
@@ -513,24 +498,23 @@ const buttons = document.querySelectorAll<HTMLButtonElement>('button.playlist-it
     }
   }
 
-/* AUTOMATIC UPCOMING LESSON */
+  /* AUTOMATIC UPCOMING LESSON */
 
-.pyros-site .playlist-upcoming {
-  opacity: 0.55;
-  cursor: default;
-  pointer-events: none;
-}
+  .pyros-site .playlist-upcoming {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
+  }
 
-.pyros-site .playlist-placeholder {
-  display: grid;
-  place-items: center;
-  background: #252527;
-  border: 1px solid #343235;
-}
+  .pyros-site .playlist-placeholder {
+    display: grid;
+    place-items: center;
+    background: #252527;
+    border: 1px solid #343235;
+  }
 
-.pyros-site .placeholder-lock {
-  font-size: 20px;
-  filter: grayscale(1);
-}
-
+  .pyros-site .placeholder-lock {
+    font-size: 20px;
+    filter: grayscale(1);
+  }
 </style>
