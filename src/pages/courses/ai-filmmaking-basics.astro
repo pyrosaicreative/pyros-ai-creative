@@ -85,37 +85,52 @@ const lessons = [
       <aside class="playlist-sidebar">
         <div class="playlist-header">
           <h2>Course Playlist</h2>
-          <span>{lessons.length} lessons</span>
+          <span>{lessons.length} available</span>
         </div>
 
-        <div class="playlist-items">
-          {
-            lessons.map((lesson, index) => (
-              <button
-                class:list={['playlist-item', { active: index === 0 }]}
-                type="button"
-                data-lesson-index={index}
-                data-video-id={lesson.videoId}
-                data-title={lesson.title}
-                data-number={lesson.number}
-                aria-pressed={index === 0 ? 'true' : 'false'}
-              >
-                <span class="playlist-number">{lesson.number}</span>
+        
+<div class="playlist-items">
+  {
+    lessons.map((lesson, index) => (
+      <button
+        class:list={['playlist-item', { active: index === 0 }]}
+        type="button"
+        data-lesson-index={index}
+        data-video-id={lesson.videoId}
+        data-title={lesson.title}
+        data-number={lesson.number}
+        aria-pressed={index === 0 ? 'true' : 'false'}
+      >
+        <span class="playlist-number">{lesson.number}</span>
 
-                <span class="playlist-thumbnail">
-                  <img src={lesson.thumbnail} alt={`Thumbnail: ${lesson.title}`} loading="lazy" />
+        <span class="playlist-thumbnail">
+          <img src={lesson.thumbnail} alt={`Thumbnail: ${lesson.title}`} loading="lazy" />
+          <span class="thumbnail-play">▶</span>
+        </span>
 
-                  <span class="thumbnail-play">▶</span>
-                </span>
+        <span class="playlist-text">
+          <strong>{lesson.title}</strong>
+          <small>Free lesson</small>
+        </span>
+      </button>
+    ))
+  }
 
-                <span class="playlist-text">
-                  <strong>{lesson.title}</strong>
-                  <small>Free lesson</small>
-                </span>
-              </button>
-            ))
-          }
-        </div>
+  <!-- LESSON 03 — COMING SOON -->
+  <div class="playlist-item playlist-upcoming">
+    <span class="playlist-number">03</span>
+
+    <span class="playlist-upcoming-icon">
+      <span>▶</span>
+    </span>
+
+    <span class="playlist-text">
+      <strong>Coming soon</strong>
+      <small>Upcoming lesson</small>
+    </span>
+  </div>
+</div>
+
       </aside>
     </div>
   </div>
@@ -494,4 +509,34 @@ const lessons = [
       width: 100%;
     }
   }
+
+/* UPCOMING LESSON */
+
+.pyros-site .playlist-upcoming {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.pyros-site .playlist-upcoming:hover {
+  background: transparent;
+}
+
+.pyros-site .playlist-upcoming-icon {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #252527;
+  color: #777;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .pyros-site .playlist-upcoming-icon {
+    width: 92px;
+  }
+}
+
 </style>
