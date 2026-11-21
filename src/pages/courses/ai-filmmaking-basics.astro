@@ -1,21 +1,13 @@
+
+
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { lessons } from '~/data/courseLessons';
 
-const lessons = [
-  {
-    number: '01',
-    title: 'Introduction to Visual Storytelling',
-    videoId: 'wZ0bl99-bXQ',
-    thumbnail: '/images/tutorials/lesson1.png',
-  },
-  {
-    number: '02',
-    title: '9 Camera Shot Sizes and When to Use Them',
-    videoId: 'ptiDRX7W7DY',
-    thumbnail: '/images/tutorials/lesson2.png',
-  },
-];
+const nextLessonNumber = String(lessons.length + 1).padStart(2, '0');
 ---
+
+
 
 <Layout metadata={{ title: 'AI Filmmaking: How Cinema Communicates' }}>
   <div class="design-content">
@@ -47,13 +39,17 @@ const lessons = [
             allowfullscreen></iframe>
         </div>
 
-        <div class="video-details">
-          <span class="lesson-label" id="current-number"> LESSON 01 </span>
+        
+<div class="video-details">
+  <span class="lesson-label" id="current-number">
+    LESSON {lessons[0].number}
+  </span>
 
-          <h2 id="current-title">Introduction to Visual Storytelling</h2>
+  <h2 id="current-title">{lessons[0].title}</h2>
 
-          <span class="free-label">Free video lesson</span>
-        </div>
+  <span class="free-label">Free video lesson</span>
+</div>
+
 
         <!-- OPTIONAL COMPANION GUIDE -->
         <div class="companion-guide" id="companion-guide" hidden>
@@ -89,6 +85,7 @@ const lessons = [
         </div>
 
         
+
 <div class="playlist-items">
   {
     lessons.map((lesson, index) => (
@@ -104,7 +101,11 @@ const lessons = [
         <span class="playlist-number">{lesson.number}</span>
 
         <span class="playlist-thumbnail">
-          <img src={lesson.thumbnail} alt={`Thumbnail: ${lesson.title}`} loading="lazy" />
+          <img
+            src={lesson.thumbnail}
+            alt={`Thumbnail: ${lesson.title}`}
+            loading="lazy"
+          />
           <span class="thumbnail-play">▶</span>
         </span>
 
@@ -116,12 +117,12 @@ const lessons = [
     ))
   }
 
-  <!-- LESSON 03 — COMING SOON -->
+  <!-- AUTOMATIC UPCOMING LESSON -->
   <div class="playlist-item playlist-upcoming">
-    <span class="playlist-number">03</span>
+    <span class="playlist-number">{nextLessonNumber}</span>
 
-    <span class="playlist-upcoming-icon">
-      <span>▶</span>
+    <span class="playlist-thumbnail playlist-placeholder">
+      <span class="placeholder-lock">🔒</span>
     </span>
 
     <span class="playlist-text">
@@ -130,6 +131,7 @@ const lessons = [
     </span>
   </div>
 </div>
+
 
       </aside>
     </div>
@@ -146,7 +148,8 @@ const lessons = [
 
     const companion = document.querySelector<HTMLElement>('#companion-guide');
 
-    const buttons = document.querySelectorAll<HTMLButtonElement>('.playlist-item');
+const buttons = document.querySelectorAll<HTMLButtonElement>('button.playlist-item');
+
 
     if (!player || !title || !number || !companion) return;
 
@@ -510,33 +513,24 @@ const lessons = [
     }
   }
 
-/* UPCOMING LESSON */
+/* AUTOMATIC UPCOMING LESSON */
 
 .pyros-site .playlist-upcoming {
   opacity: 0.55;
   cursor: default;
+  pointer-events: none;
 }
 
-.pyros-site .playlist-upcoming:hover {
-  background: transparent;
-}
-
-.pyros-site .playlist-upcoming-icon {
+.pyros-site .playlist-placeholder {
   display: grid;
   place-items: center;
-  width: 110px;
-  aspect-ratio: 16 / 9;
-  flex-shrink: 0;
-  border-radius: 5px;
   background: #252527;
-  color: #777;
-  font-size: 16px;
+  border: 1px solid #343235;
 }
 
-@media (max-width: 600px) {
-  .pyros-site .playlist-upcoming-icon {
-    width: 92px;
-  }
+.pyros-site .placeholder-lock {
+  font-size: 20px;
+  filter: grayscale(1);
 }
 
 </style>
