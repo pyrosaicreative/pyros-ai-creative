@@ -428,7 +428,8 @@ export default function PyrosConnectClient() {
         {editorOpen && (
           <>
             <p className="mt-2 text-xs text-gray-400">
-              Paste an Instagram Reel or carousel link to find its media ID. Alternatively enter the numeric media ID manually. New automations start disabled.
+              Paste an Instagram Reel or carousel link to find its media ID. Alternatively enter the numeric media ID
+              manually. New automations start disabled.
             </p>
 
             <form className="mt-4 grid gap-3 md:grid-cols-2" onSubmit={(event) => void save(event)}>
