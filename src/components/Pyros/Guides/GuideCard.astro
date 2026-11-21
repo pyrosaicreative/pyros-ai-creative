@@ -1,8 +1,10 @@
 ---
 import type { Guide } from '~/data/guides';
+
 interface Props {
   guide: Guide;
 }
+
 const { guide } = Astro.props;
 ---
 
@@ -19,31 +21,47 @@ const { guide } = Astro.props;
         >
           <img src={guide.cover} alt={guide.title} loading="lazy" />
         </button>
+      ) : guide.shopUrl ? (
+        <a href={guide.shopUrl} target="_blank" rel="noopener noreferrer" aria-label={`Buy ${guide.title}`}>
+          <img src={guide.cover} alt={guide.title} loading="lazy" />
+        </a>
       ) : (
         <img src={guide.cover} alt={guide.title} loading="lazy" />
       )
     }
   </div>
+
   <div class="integrated-guide-info">
-    <span class="badge free">{guide.type} · PDF · {guide.pages} pages</span>
-    <h2>{guide.title}<small>{guide.workflow}</small></h2>
+    <span class={`badge ${guide.type}`}>
+      {guide.type} · PDF · {guide.pages} pages
+    </span>
+
+    <h2>
+      {guide.title}
+      <small>{guide.workflow}</small>
+    </h2>
+
     <div class="guide-description">
-      <p data-guide-description>{guide.description}</p><button
-        type="button"
-        data-guide-more
-        aria-expanded="false"
-        class="hidden"><span data-guide-more-label>More →</span></button
-      >
+      <p data-guide-description>{guide.description}</p>
+      <button type="button" data-guide-more aria-expanded="false" class="hidden">
+        <span data-guide-more-label>More →</span>
+      </button>
     </div>
+
     {
       guide.type === 'free' ? (
         <button class="btn" type="button" data-guide-access data-guide-id={guide.id} data-shop-url={guide.shopUrl}>
           Get guide <span>↗</span>
         </button>
+      ) : guide.shopUrl ? (
+        <a class="btn" href={guide.shopUrl} target="_blank" rel="noopener noreferrer">
+          Buy guide · {guide.price} <span>↗</span>
+        </a>
       ) : (
         <span class="btn secondary">Coming soon</span>
       )
     }
+
     {
       guide.tutorialUrl && (
         <a
@@ -57,6 +75,7 @@ const { guide } = Astro.props;
     }
   </div>
 </article>
+
 <script>
   const setupGuideDescriptions = () => {
     const descriptions = document.querySelectorAll<HTMLElement>('[data-guide-description]');

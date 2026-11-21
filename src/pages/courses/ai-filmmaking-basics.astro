@@ -1,5 +1,20 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+
+const lessons = [
+  {
+    number: '01',
+    title: 'Introduction to Visual Storytelling',
+    videoId: 'wZ0bl99-bXQ',
+    thumbnail: '/images/tutorials/lesson1.png',
+  },
+  {
+    number: '02',
+    title: '9 Camera Shot Sizes and When to Use Them',
+    videoId: 'ptiDRX7W7DY',
+    thumbnail: '/images/tutorials/lesson2.png',
+  },
+];
 ---
 
 <Layout metadata={{ title: 'AI Filmmaking: How Cinema Communicates' }}>
@@ -16,77 +31,195 @@ import Layout from '~/layouts/PageLayout.astro';
         </div>
 
         <h1>AI Filmmaking: How Cinema Communicates</h1>
-
         <p class="muted">A foundation in cinematic visual storytelling for creators working with AI.</p>
       </div>
     </section>
 
-    <div class="wrap detail-layout">
-      <div>
-        <div class="course-video" id="lesson-01">
+    <div class="wrap playlist-layout">
+      <!-- MAIN VIDEO PLAYER -->
+      <main class="player-column">
+        <div class="video-player">
           <iframe
-            src="https://www.youtube.com/embed/wZ0bl99-bXQ"
-            title="Introduction to Visual Storytelling — PYROS AI Creative"
+            id="course-player"
+            src={`https://www.youtube.com/embed/${lessons[0].videoId}?rel=0`}
+            title={`PYROS AI Creative — ${lessons[0].title}`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
-      </div>
 
-      <aside class="course-sidebar">
-        <div class="eyebrow">COURSE CONTENT</div>
+        <div class="video-details">
+          <span class="lesson-label" id="current-number"> LESSON 01 </span>
 
-        <a class="episode-card" href="#lesson-01"> 01 — Introduction to Visual Storytelling </a>
+          <h2 id="current-title">Introduction to Visual Storytelling</h2>
 
-        <div class="episode-card episode-upcoming">02 — Coming soon</div>
+          <span class="free-label">Free video lesson</span>
+        </div>
+
+        <!-- OPTIONAL COMPANION GUIDE -->
+        <div class="companion-guide" id="companion-guide" hidden>
+          <div class="guide-copy">
+            <span class="guide-kicker"> OPTIONAL COMPANION RESOURCE </span>
+
+            <h3>9 Camera Shot Sizes — Guide, Prompts & Worksheets</h3>
+
+            <p>
+              Go beyond the lesson with a 44-page PDF featuring cinematic examples, AI prompts, a shot list planner, and
+              practical worksheets.
+            </p>
+
+            <span class="guide-meta"> Premium PDF · 44 pages · $2.99 </span>
+          </div>
+
+          <a
+            class="guide-button"
+            href="https://shop.pyrosaicreative.com/products/9-camera-shot-sizes-ai-filmmaking-guide-prompts-worksheets"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get the Guide · $2.99 ↗
+          </a>
+        </div>
+      </main>
+
+      <!-- VIDEO PLAYLIST -->
+      <aside class="playlist-sidebar">
+        <div class="playlist-header">
+          <h2>Course Playlist</h2>
+          <span>{lessons.length} lessons</span>
+        </div>
+
+        <div class="playlist-items">
+          {
+            lessons.map((lesson, index) => (
+              <button
+                class:list={['playlist-item', { active: index === 0 }]}
+                type="button"
+                data-lesson-index={index}
+                data-video-id={lesson.videoId}
+                data-title={lesson.title}
+                data-number={lesson.number}
+                aria-pressed={index === 0 ? 'true' : 'false'}
+              >
+                <span class="playlist-number">{lesson.number}</span>
+
+                <span class="playlist-thumbnail">
+                  <img src={lesson.thumbnail} alt={`Thumbnail: ${lesson.title}`} loading="lazy" />
+
+                  <span class="thumbnail-play">▶</span>
+                </span>
+
+                <span class="playlist-text">
+                  <strong>{lesson.title}</strong>
+                  <small>Free lesson</small>
+                </span>
+              </button>
+            ))
+          }
+        </div>
       </aside>
     </div>
   </div>
 </Layout>
 
-<style>
-  .course-heading {
+<script>
+  const initializeCoursePlaylist = () => {
+    const player = document.querySelector<HTMLIFrameElement>('#course-player');
+
+    const title = document.querySelector<HTMLElement>('#current-title');
+
+    const number = document.querySelector<HTMLElement>('#current-number');
+
+    const companion = document.querySelector<HTMLElement>('#companion-guide');
+
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.playlist-item');
+
+    if (!player || !title || !number || !companion) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const videoId = button.dataset.videoId;
+        const videoTitle = button.dataset.title;
+        const videoNumber = button.dataset.number;
+
+        if (!videoId || !videoTitle || !videoNumber) return;
+
+        // Switch the YouTube video
+        player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+        player.title = `PYROS AI Creative — ${videoTitle}`;
+
+        title.textContent = videoTitle;
+        number.textContent = `LESSON ${videoNumber}`;
+
+        // Update the selected lesson
+        buttons.forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-pressed', 'false');
+        });
+
+        button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
+
+        // Show paid guide only for Lesson 2
+        companion.hidden = videoNumber !== '02';
+      });
+    });
+  };
+
+  initializeCoursePlaylist();
+
+  document.addEventListener('astro:page-load', initializeCoursePlaylist);
+</script>
+
+<style is:global>
+  /* COURSE PAGE */
+
+  .pyros-site .course-heading {
     padding: 28px 0 24px;
   }
 
-  .course-heading .eyebrow {
+  .pyros-site .course-heading .eyebrow {
     margin-top: 24px;
   }
 
-  .course-heading h1 {
+  .pyros-site .course-heading h1 {
     margin: 14px 0 12px;
     font-size: clamp(2rem, 4vw, 3.5rem);
     line-height: 1.1;
   }
 
-  .course-heading p {
+  .pyros-site .course-heading p {
     max-width: 720px;
   }
 
-  .detail-layout {
+  /* MAIN PLAYLIST LAYOUT */
+
+  .pyros-site .playlist-layout {
     display: grid;
-    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-    gap: 32px;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
     align-items: start;
-    padding-bottom: 40px;
+    gap: 30px;
+    padding-bottom: 70px;
   }
 
-  .detail-layout > div,
-  .course-sidebar {
+  .pyros-site .player-column {
     min-width: 0;
   }
 
-  .course-video {
+  /* VIDEO PLAYER */
+
+  .pyros-site .video-player {
     position: relative;
+    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
-    overflow: hidden;
-    scroll-margin-top: 100px;
-    border: 1px solid rgb(255 255 255 / 12%);
-    border-radius: 12px;
     background: #000;
+    border: 1px solid #ffffff20;
+    border-radius: 10px;
+    overflow: hidden;
   }
 
-  .course-video iframe {
+  .pyros-site .video-player iframe {
     position: absolute;
     inset: 0;
     display: block;
@@ -95,52 +228,270 @@ import Layout from '~/layouts/PageLayout.astro';
     border: 0;
   }
 
-  .course-sidebar {
+  /* VIDEO DETAILS */
+
+  .pyros-site .video-details {
+    padding-top: 22px;
+  }
+
+  .pyros-site .lesson-label {
+    color: #b08a57;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+  }
+
+  .pyros-site .video-details h2 {
+    color: #f5f5f5;
+    font-family: Inter, Arial, sans-serif;
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 600;
+    line-height: 1.35;
+    text-transform: none;
+    margin: 10px 0;
+  }
+
+  .pyros-site .free-label {
+    color: #999;
+    font-size: 12px;
+  }
+
+  /* PLAYLIST SIDEBAR */
+
+  .pyros-site .playlist-sidebar {
+    background: #171719;
+    border: 1px solid #343235;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .pyros-site .playlist-header {
+    padding: 21px 20px;
+    border-bottom: 1px solid #343235;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .pyros-site .playlist-header h2 {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: none;
+    margin: 0;
+    color: #fff;
+  }
+
+  .pyros-site .playlist-header > span {
+    color: #999;
+    font-size: 11px;
+  }
+
+  .pyros-site .playlist-items {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    padding: 10px;
+    gap: 5px;
   }
 
-  .course-sidebar > .eyebrow {
-    margin: 0 0 4px;
+  /* PLAYLIST ITEMS */
+
+  .pyros-site .playlist-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: #eee;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
   }
 
-  .course-sidebar .episode-card {
+  .pyros-site .playlist-item:hover {
+    background: #262427;
+  }
+
+  .pyros-site .playlist-item.active {
+    background: #30271d;
+    border-color: #98764a;
+  }
+
+  .pyros-site .playlist-item:focus-visible {
+    outline: 2px solid #b08a57;
+    outline-offset: 2px;
+  }
+
+  .pyros-site .playlist-number {
+    color: #b08a57;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* THUMBNAILS */
+
+  .pyros-site .playlist-thumbnail {
+    position: relative;
     display: block;
-    margin: 0;
-    padding: 24px;
-    background: #202020;
-    border: 1px solid #363636;
-    border-radius: 10px;
-    color: #f5f5f5;
-    font-size: 18px;
-    line-height: 1.5;
-    text-decoration: none;
-    transition: border-color 0.2s ease;
+    width: 110px;
+    aspect-ratio: 16 / 9;
+    background: #222;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .course-sidebar a.episode-card:hover {
-    border-color: #b89563;
+  .pyros-site .playlist-thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .course-sidebar a.episode-card:focus-visible {
-    outline: 2px solid #b89563;
-    outline-offset: 4px;
+  .pyros-site .thumbnail-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0009;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 11px;
   }
 
-  .course-sidebar .episode-upcoming {
+  .pyros-site .playlist-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .pyros-site .playlist-text strong {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #eee;
+  }
+
+  .pyros-site .playlist-text small {
+    font-size: 11px;
+    color: #a6a1a1;
+  }
+
+  /* PREMIUM COMPANION GUIDE */
+
+  .pyros-site .companion-guide[hidden] {
+    display: none;
+  }
+
+  .pyros-site .companion-guide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 28px;
+    padding: 22px;
+    border: 1px solid #554530;
+    background: #191817;
+    border-radius: 9px;
+  }
+
+  .pyros-site .guide-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pyros-site .guide-kicker {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    color: #c4a16e;
+    font-weight: 600;
+  }
+
+  .pyros-site .guide-copy h3 {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 16px;
+    color: #eee;
+    line-height: 1.4;
+    margin: 10px 0;
+    text-transform: none;
+  }
+
+  .pyros-site .guide-copy p {
     color: #aaa;
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 0 0 12px;
   }
 
-  @media (max-width: 767px) {
-    .detail-layout {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 24px;
+  .pyros-site .guide-meta {
+    color: #c4a16e;
+    font-size: 11px;
+  }
+
+  .pyros-site .guide-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #b08a57;
+    color: #090909;
+    border-radius: 4px;
+    padding: 13px 17px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .pyros-site .guide-button:hover {
+    background: #c6a16a;
+  }
+
+  /* RESPONSIVE */
+
+  @media (max-width: 900px) {
+    .pyros-site .playlist-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pyros-site .playlist-layout {
+      gap: 22px;
     }
 
-    .course-sidebar .episode-card {
-      padding: 20px;
-      font-size: 16px;
+    .pyros-site .playlist-header {
+      padding: 18px;
+    }
+
+    .pyros-site .playlist-thumbnail {
+      width: 92px;
+    }
+
+    .pyros-site .playlist-text strong {
+      font-size: 12px;
+    }
+
+    .pyros-site .companion-guide {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .pyros-site .guide-button {
+      width: 100%;
     }
   }
 </style>

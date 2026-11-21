@@ -2174,12 +2174,17 @@ html {
   letter-spacing: 1px;
   margin-top: 10px;
 }
-.pyros-site .guide-cover button {
-  display: block;
+
+.pyros-site .guide-cover button,
+.pyros-site .guide-cover > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   cursor: pointer;
 }
+
 .pyros-site .guide-cover img {
   margin: auto;
 }

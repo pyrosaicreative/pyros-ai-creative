@@ -8,6 +8,7 @@ export interface Guide {
   cover: string;
   pages: number;
   type: GuideType;
+  price?: string;
   tutorialUrl?: string;
   shopUrl?: string;
 }
@@ -102,5 +103,18 @@ export const guides: Guide[] = [
     type: 'free',
     tutorialUrl: '/tutorials/character-consistency-cinematic-workflow/',
     shopUrl: 'https://shop.pyrosaicreative.com/products/character-consistency-guide-cinematic-workflow',
+  },
+
+  {
+    id: '9-camera-shot-sizes',
+    title: '9 Camera Shot Sizes',
+    workflow: 'AI FILMMAKING BASICS · LESSON 2',
+    description:
+      'Learn when to use all 9 essential camera shot sizes to tell better visual stories. Includes cinematic examples, ready-to-adapt AI prompts, a shot list planner, and practical worksheets for creating AI films.',
+    cover: '/images/ai-guides/9CameraShotSizes.png',
+    pages: 44,
+    type: 'premium',
+    price: '$2.99',
+    shopUrl: 'https://shop.pyrosaicreative.com/products/9-camera-shot-sizes-ai-filmmaking-guide-prompts-worksheets',
   },
 ];
